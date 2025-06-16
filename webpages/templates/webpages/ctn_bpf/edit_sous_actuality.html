@@ -1,0 +1,178 @@
+
+  {% extends './operations_details.html' %}
+  {% load humanize %}
+  {% load static %}
+  
+  
+  {% block content %}
+  
+  
+  <div class="container-fluid">
+
+	<div class="form-wrap card my-4">	
+		<div class="card-body">
+				<div class="header">
+		<h6 id="title" class="text-center">Mise A Jour
+
+			{{ sous_actualite.intitule }}</h6>
+
+	</div>
+		<form id="survey-form" method="POST" action="/update_sous_actuality/{{ sous_actualite.id }}/">
+            {%csrf_token%}
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label id="name-label" for="name">intitule</label>
+						<input type="text" name="intitule" id="intitule" placeholder="Intitule" value ="{{ sous_actualite.intitule }}"class="form-control" required>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label id="email-label" for="email">Actualite</label>
+                        <select class="form-control" name="actualite" id ="actualite" >
+                            <option></option>
+
+                            {%for actuality in actualite%}
+                            {%if actuality.id == sous_actualite.actualite_id%}
+                            <option value="{{ actuality.id }}" selected>{{actuality.intitule}}</option>
+                            {%else%}
+                            <option value="{{ actuality.id }}" >{{actuality.intitule}}</option>
+                            {%endif%}
+                            {%endfor%}
+                        </select>
+                    </div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label id="number-label" for="number">Photo</label>
+						<input type="file" name="file_image"  class="form-control"  >
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Document</label>
+						<input type="file" name="file_doc"  class="form-control"  >
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+					<div class="col-md-12">
+					<label>Sexe</label>
+                    <select class="form-control" name="sexe">
+                    	{%if sous_actualite.sexe == 'Masculin'%}
+                        <option value="Masculin" selected>Masculin</option>
+                        {%elif sous_actualite.sexe == 'Feminin'%}
+                            <option value="Feminin" selected>Feminin</option>
+                         {%else%}
+                            <option value="Masculin" >Masculin</option>
+                            <option value="Feminin" >Feminin</option>
+                    		{%endif%}
+                        
+                    </select>
+				</div>
+
+					<div class="col-md-12">
+					<label>Prix</label>
+                   <input type="number" class="form-control" value="{{sous_actualite.prix}}" name="prix">
+				</div>
+
+				<div class="col-md-12">
+					<label>Tranche D'age</label>
+                    <input type="range" name="tranche" class="form-control" min="0" max="150" id="ageRange" oninput="updateValue(this.value)" value="{{sous_actualite.tranche}}">  
+                      <span id="rangeValue">0</span>
+				</div>
+
+				<div class="col-md-12">
+					<h6 style="font-weight:bold;">Couleur Article</h6>
+                        <br/>
+                        <select name="colors" id="couleurs" class="form-control">
+                        <option value="">-- Choisissez une couleur --</option>
+                        <option value="Rouge" style="color: red;">Rouge (Red)</option>
+                        <option value="Bleu" style="color: blue;">Bleu (Blue)</option>
+                        <option value="Vert" style="color: green;">Vert (Green)</option>
+                        <option value="Jaune" style="color: yellow;">Jaune (Yellow)</option>
+                        <option value="Orange" style="color: orange;">Orange (Orange)</option>
+                        <option value="Violet" style="color: purple;">Violet (Purple)</option>
+                        <option value="Rose" style="color: pink;">Rose (Pink)</option>
+                        <option value="Marron" style="color: brown;">Marron (Brown)</option>
+                        <option value="Noir" style="color: black;">Noir (Black)</option>
+                        <option value="Blanc" style="color: black; background-color: #eee;">Blanc (White)</option>
+                        <option value="Gris" style="color: gray;">Gris (Gray)</option>
+                        <option value="Cyan" style="color: cyan;">Cyan (Cyan)</option>
+                        <option value="Magenta" style="color: magenta;">Magenta (Magenta)</option>
+                        <option value="Vert clair" style="color: lime;">Vert clair (Lime)</option>
+                        <option value="Olive" style="color: olive;">Olive (Olive)</option>
+                        <option value="Sarcelle" style="color: teal;">Sarcelle (Teal)</option>
+                        <option value="Bleu marine " style="color: navy;">Bleu marine (Navy)</option>
+                        <option value="Bordeaux" style="color: maroon;">Bordeaux (Maroon)</option>
+                        <option value="Argent" style="color: silver;">Argent (Silver)</option>
+                        <option value="Or" style="color: gold;">Or (Gold)</option>
+                        <option value="indigo" style="color: indigo;">Indigo (Indigo)</option>
+                        <option value="violet" style="color: violet;">Violet (Violet)</option>
+                        <option value="turquoise" style="color: turquoise;">Turquoise (Turquoise)</option>
+                        <option value="Corail" style="color: coral;">Corail (Coral)</option>
+                    </select>
+
+
+			</div>
+
+
+
+			<div class="row">
+				<div class="col-md-12">
+					<label>Institution</label>
+                    <select class="form-control" name="institution">
+                        <option></option>
+                        {%for institutions in institution%}
+                        {%if institutions.id == sous_actualite.institution_id%}
+                        <option value="{{institutions.id}}" selected>{{institutions.sigle}}</option>
+
+                        {%else%}
+                        <option value="{{institutions.id}}" >{{institutions.sigle}}</option>
+                        {%endif%}
+                        {%endfor%}
+                    </select>
+				</div>
+
+				
+
+
+			
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Description</label>
+                        <textarea name="description" class="form-control" id="editions">{{sous_actualite.description}}</textarea>	
+                    </div>
+				
+			
+			
+			<div class="row">
+				<div class="col-md-4">
+					<button type="submit" id="submit" class="btn btn-primary btn-block">Modifier</button>
+				</div>
+			</div>
+
+		</form>
+	</div>	
+</div>
+</div>
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+ 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor 4
+    // instance, using default configuration.
+    CKEDITOR.replace( 'editions' );
+</script>
+    <script>  
+                      function updateValue(value) {  
+                          document.getElementById('rangeValue').textContent = value; // Met à jour le contenu du span  
+                      }  
+                  </script>  
+  {% endblock %}
+  

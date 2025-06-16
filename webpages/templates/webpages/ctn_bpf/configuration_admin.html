@@ -1,0 +1,571 @@
+
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">  
+<!-- Inclure JQuery si ce n'est pas déjà fait -->
+ {% extends './dataelts.html' %}
+  {% load humanize %}
+  {% load static %}
+ 
+
+  
+  {% block content %}
+   
+  <div class="modal fade" id="exampleModal_Operation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">AJOUTER NATURE OPERATIONS</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
+        </div>
+        <div class="modal-body">
+          ...
+          <form method="POST" action="/add_nature_operation/">
+            {%csrf_token%}
+            <input type="number" name="institution" value="{{ actual_institution.id }}" style="display:none">
+            <div class="row">
+              <div class="col-md-12">
+                <label>Intitul&eacute;</label>
+                <input type="text" class="form-control" placeholder="Intitule" name="intitule">
+              </div>
+              <div class="col-md-12">
+                <label>Description Nature</label>
+                <textarea class="form-control" name="description"></textarea>
+              </div>
+            </div>
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="modal fade" id="exampleModal_Categorie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Gestion Des Categories</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> -->
+        <div class="modal fade" id="exampleModal_Categorie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Gestion Des Categories</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                  </button>
+              </div>
+        <div class="modal-body">
+          ...
+          <form method="POST" action="/add_categorie_operation/">
+            {%csrf_token%}
+          <label>Intitutle</label>
+          <input type="text" name="intitule" class="form-control">
+            <input type="text" class="form-control" name="institution" value="{{ actual_institution.id }}" style="display:none">
+          <label>Description</label>
+          <textarea class="form-control" name="description"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-xl-12 col-sm-12 col-lg-12 col-12">
+       
+        <!-- <nav>
+          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Configuration Des Finances</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Configuration Des Formulaires</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Configuration Ponderations</a>
+            <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">Configuration Des Operations</a>
+            <a class="nav-item nav-link" id="nav-periode-tab" data-toggle="tab" href="#nav-periode" role="tab" aria-controls="nav-periode" aria-selected="false">Configuration Periodes(Mois,Ann&eacute;es etc...)</a>
+        
+          </div>
+        </nav> -->
+        <div class="nav-align-top my-4">
+          <ul class="nav nav-pills mb-4" role="tablist">
+            <li class="nav-item">
+              <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-home" aria-controls="navs-pills-top-home" aria-selected="true">Configuration Des Elements De Donn&eacute;</button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-profile" aria-controls="navs-pills-top-profile" aria-selected="false">Formulaires</button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-contact" aria-controls="navs-pills-top-contact" aria-selected="false">Ponderations</button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-about" aria-controls="navs-pills-top-about" aria-selected="false"> Operations</button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-periode" aria-controls="navs-pills-top-periode" aria-selected="false"> Periodes(Mois,Ann&eacute;es etc...)</button>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
+        <!-- <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"> -->
+        <h5 style="font-weight:bold" class="text-primary">  Configurez Les Groupes D'indicateurs De L'institution {{ actual_institution.nom }}</h5>
+
+        <!-- <div class="p-1">
+            <input id='default_operation' type="checkbox" {% if actual_institution.operation_defaulted %}checked{% endif %}>
+            <label for='default_operation'> Configuration des Options minimale </label>
+        </div> -->
+        <div class="p-1">
+          <a href="/indicator_group/" class="btn btn-light"><i class="fa fa-plus"></i> Indicateur Group </a>
+        </div>
+        <!-- {% if actual_institution.finan_options != None %}
+        <button class="btn btn-dark">Desactiver Gestion Financiere</button>
+        {%endif%} -->
+        </div>
+        <div class="tab-pane fade show " id="navs-pills-top-profile" role="tabpanel">
+        Configurez Le Formulaire A chaque Cadre Logique Du systeme {{ actual_institution.nom }}   
+            <!-- <form method="POST" action="/activ_form/{{ actual_institution.id }}/">
+              {%csrf_token%}
+        <button type="submit"class="btn btn-dark">Activer Formulaire</button>
+            </form> -->
+            <div class="row">
+              <div class="col-md-12">
+    
+            
+                <form method="POST" action="/activ_form/{{ actual_institution.id }}/">
+                  {%csrf_token%}
+            <button type="submit"class="btn btn-dark">Activer L'utilisation Du Formulaire Dans Le Systeme</button>
+                </form>
+              </div>
+            </div> 
+                   <div class="card">
+              
+                    <div class="card-body">
+    
+                      <div class="container">
+                        <div class="col-md-12">
+    
+            </div> 
+            <div class="table-title">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6> Configuration Des Formulaires</h6>
+                  <a href="/data_sets/0/" class="btn btn-primary">Creer Formulaire</a>
+                </div>
+                <div class="col-sm-6">
+                 
+    
+              </div>
+              </div>
+            </div>
+            <hr class="bg-dark p-2"/>
+    
+            <h5 style="font-weight:bold;font-style:italic">NATURE DES OPERATIONS</h5>
+      
+            <table class="table table-striped table-hover table-responsive w-100" id="example">
+              <thead>
+                <tr>
+                  <th>
+                    <span class="custom-checkbox">
+                      <input type="checkbox" id="selectAll">
+                      <label for="selectAll"></label>
+                  </span>
+                  </th>
+                  
+                  <th style="width: 50%;">Formulaire</th>
+                  <th style="width: 25%;">Periodicite</th>
+                  <th style="width: 25%;">Date Creation</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                 
+                  {%for datasets in dataset%}
+                      <tr>  
+                        <td>
+                          <span class="custom-checkbox">  
+                            <input type="checkbox" id="checkbox{{ forloop.counter }}" name="options[]" value="{{ periode_oks.id }}">  
+                            <label for="checkbox{{ forloop.counter }}"></label>  
+                        </span>  
+                        </td>
+                       
+                          <td>{{datasets.m_name}}</td>  
+                          <td>{{datasets.periodicite.m_value}}</td>  
+                          <td>{{datasets.m_start_date}}</td>
+                        
+                          <td>  
+                            <div class="dropdown">
+                              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/data_sets_edit/{{datasets.id}}/"><i class="bx bx-edit-alt me-1"></i>Edit</a>
+                                <a class="dropdown-item" href="/duplicate_dataset/{{datasets.id}}/"><i class="bx bx-duplicate me-1"></i>Duplicate</a>
+                              </div>
+                            </div>
+                            <!-- <a href="/data_sets_edit/{{datasets.id}}/" class="btn btn-success rounded text-light">modifier</a>
+                            <a href="/duplicate_dataset/{{datasets.id}}/" class="btn btn-primary rounded text-light">Dupliquer</a>
+                                                  -->
+                          </td>  
+                      </tr>  
+                      {%endfor%}
+                
+              </tbody>
+            </table>
+         
+       </div>
+       </div>
+       </div>
+        </div>
+        <!-- <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
+          Configuration Du Formulaire Au Niveau Des Ponderations
+                  
+          </div> -->
+          <div class="tab-pane fade" id="navs-pills-top-periode" role="tabpanel" aria-labelledby="nav-periode-tab">
+            Configuration Periode(Ann&eacute;e,Mois,Trimestre,Semestre etc..........)
+  
+            <div class="container">
+              <div class="table-wrapper">
+                <div class="table-title">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <h2>Gestion Des <b>P&eacute;riodes</b></h2>
+                    </div>
+                    <div class="col-sm-6">
+                      <a href="#addEmployeeModal" class="btn btn-success" data-bs-toggle="modal"><i class="bx bx-plus">&#xE147;</i> <span>Nouvelle Periode</span></a>
+                      <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-minus">&#xE15C;</i> <span>Supprimer</span></a> -->
+                    </div>
+                  </div>
+                </div>
+               
+                <table class="table table-responsive table-hover" >  
+                  <thead>  
+                      <tr>  
+                          <th>  
+                              <span class="custom-checkbox">  
+                                  <input type="checkbox" id="selectAll">  
+                                  <label for="selectAll"></label>  
+                              </span>  
+                          </th>  
+                          <th>Nom</th>  
+                          <th>Année</th>  
+                          <th>Periodicité</th>  
+                          <th>Num D'ordre</th>  
+                          <th>NiceName</th>  
+                          <th>Actions</th>  
+                      </tr>  
+                  </thead>  
+                  <tbody>  
+                      {% for periode_oks in periode_ok %}  
+                      
+                      <tr>  
+                          <td>  
+                              <span class="custom-checkbox">  
+                                  <input type="checkbox" id="checkbox{{ forloop.counter }}" name="options[]" value="{{ periode_oks.id }}">  
+                                  <label for="checkbox{{ forloop.counter }}"></label>  
+                              </span>  
+                          </td>  
+                          <td>{{ periode_oks.nom }}</td>  
+                          <td>{{ periode_oks.annee }}</td>  
+                          <td>{{ periode_oks.periodicite.m_value }}</td>  
+                          <td>{{ periode_oks.numero_ordre }}</td>
+                          <td>{{ periode_oks.nicename }}</td> 
+                          <td>  
+                                <!-- <a href="/delete_periode/{{ periode_oks.id }}/" class="delete" ><i class="fa fa-trash" data-toggle="tooltip" title="Delete">&#xE872;</i></a>   -->
+
+                                <!-- Icon Dropdown -->
+<div class="btn-group">
+  <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+    <i class="bx bx-dots-vertical-rounded"></i>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="/delete_periodes/{{ periode_oks.id }}/">Supprimer</a></li>
+    <li><a class="dropdown-item"  href="/edit_periode/{{periode_oks.id}}/">Editer</a></li>
+    
+  </ul>
+</div>
+                          </td>  
+                      </tr>  
+                     
+                      {% endfor %}  
+                  </tbody>  
+              </table>  
+              
+              
+              </div>
+            </div>
+
+
+
+
+
+            </div>
+            <div class="tab-pane fade show " id="navs-pills-top-about" role="tabpanel">
+          <h5 class="text-primary" style="font-weight:bold">  Configurez Les Elements Liées Aux Operations Du Systeme {{ actual_institution.nom }}</h5>
+            <form method="POST" action="/add_nature/{{ actual_institution.id }}/">
+							{%csrf_token%}
+							<input type="text" value="True" name="nature" style="display:none">
+								{%if actual_institution.nature != False%}
+									<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal_Operation">Gerer Nature Operation</button>
+									
+									{%else%}
+								<button class="btn btn-dark" type="submit">Activer La nature des Op&eacute;rations</button>
+							
+								{%endif%}
+							</form>
+                          	 
+						<div>
+                            <form method="POST" action="/activ_cat/{{actual_institution.id}}/">
+                                {%csrf_token%}
+                               
+                                <input type="number" value="{{ actual_institution.id }}" name="institution"style="display:none">
+                                {%if actual_institution.categorie_op != True %}
+                                <button class="btn btn-dark" type="submit">Activer Categorisation</button>
+                            </form>
+                                {%else%}
+                                <button  class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal_Categorie">Gerer Categorisation</button>
+                          
+                            {%endif%}
+                            <form method="POST"action="/desactive_nature/{{ actual_institution.id }}/">
+                              {%csrf_token%}
+                            <button  class="btn btn-danger" type="submit"><i class="fa fa-minus"></i>Desactiver Nature </button>
+                            </form>
+                            <form method="POST"action="/desactive_categorie/{{ actual_institution.id }}/">
+                              {%csrf_token%}
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-minus"></i> Desactiver Categorie</button>
+                          </form>
+                              <div class="container">
+                                <div class="table-wrapper">
+                                  <div class="table-title">
+                                    <div class="row">
+                                      
+                                      <div class="col-sm-6">
+                                       
+                                    </div>
+                                    </div>
+                                  </div>
+                                  <hr class="bg-dark p-2"/>
+
+                                  <h5 style="font-weight:bold;font-style:italic">NATURE DES OPERATIONS</h5>
+                            
+                                  <table class="table table-striped table-hover">
+                                    <thead>
+                                      <tr>
+                                        <th>
+                                          <span class="custom-checkbox">
+                                                              <input type="checkbox" id="selectAll">
+                                                              <label for="selectAll"></label>
+                                                          </span>
+                                        </th>
+                                        <th>Nom</th>
+                                        <th>Description</th>
+                                        
+                                        <th>Actions</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        {%for natures in nature%}
+                                      <tr>
+                                        <td>
+                                          <span class="custom-checkbox">
+                                                              <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                                              <label for="checkbox1"></label>
+                                                          </span>
+                                        </td>
+                                        <td>{{natures.intitule}}</td>
+                                        <td>{{natures.description}}</td>
+                                        
+                                        <td>
+                                          <!-- <a href="/edit_natures/{{natures.id  }}/" class="edit" ><i class="bx bx-edit" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                          <a href="/delete_nature/{{ natures.id }}/" class="delete" ><i class="bx bx-trash" data-toggle="tooltip" title="Delete">&#xE872;</i></a> -->
+
+                                          <div class="btn-group">
+                                            <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                              <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                              <li><a class="dropdown-item" href="/delete_nature/{{ natures.id }}/">Supprimer</a></li>
+                                              <li><a class="dropdown-item" href="/edit_natures/{{natures.id  }}/">Modifier</a></li>
+                                              <!-- <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li> -->
+                                              <!-- <li>
+                                                <hr class="dropdown-divider">
+                                              </li>
+                                              <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li> -->
+                                            </ul>
+                                          </div>
+                                        </td>
+                                      </tr>
+                          
+                                        {%endfor%}
+                                        
+                                      
+                                    </tbody>
+                                  </table>
+                               
+                             
+                              <hr class="bg-dark p-2"/>
+
+                                  <h5 style="font-weight:bold;font-style:italic">CATEGORISATION DES OPERATIONS</h5>
+                              <table class="table table-striped table-hover">
+                                <thead>
+                                  <tr>
+                                    <th>
+                                      <span class="custom-checkbox">
+                                                          <input type="checkbox" id="selectAll">
+                                                          <label for="selectAll"></label>
+                                                      </span>
+                                    </th>
+                                    <th>Nom</th>
+                                    <th>Description</th>
+                                    
+                                    <th>Actions</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+
+                              {%for categorie_operations in categorie_operation%}
+                              <tr>
+                                <td>
+                                    <span class="custom-checkbox">
+                                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                                        <label for="checkbox1"></label>
+                                                    </span>
+                                  </td>
+                                <td>{{categorie_operations.intitule}}</td>
+                                <td>{{categorie_operations.description}}</td>
+                                <td>
+                                    <!-- <a href="/update_categorie/{{ categorie_operations.id }}/" class="edit" ><i class="bx bx-edit" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="/delete_categorie/{{ categorie_operations.id }}/" class="delete" ><i class="bx bx-trash" data-toggle="tooltip" title="Delete">&#xE872;</i></a> -->
+                                    <!-- Icon Dropdown -->
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                  <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="/delete_categorie/{{ categorie_operations.id }}/">Supprimer</a></li>
+                                  <li><a class="dropdown-item" href="/update_categorie/{{ categorie_operations.id }}/">Modifier</a></li>
+                                  <!-- <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li> -->
+                                  <!-- <li>
+                                    <hr class="dropdown-divider">
+                                  </li>
+                                  <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li> -->
+                                </ul>
+                              </div>
+                                  </td>
+                              </tr>
+                          {%endfor%}
+                        </tbody>
+                      </table>
+                   
+                    </div>
+                  </div>  
+        </div>
+        </div>
+      
+      </div>
+    </div>
+</div>
+</div>
+</div>
+<!-- <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addEmployeeModalLabel">AJOUTER LES PERIODES</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+      <div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">AJOUTER LES PERIODES</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+      <div class="modal-body">
+        ...
+        <form method="POST" action="/add_periodes/">
+          {%csrf_token%}
+          <div class="form-row">
+            <div class="col">
+              <label>Nom</label>
+              <input type="text" class="form-control" placeholder="Nom" name="nom">
+            </div>
+            <div class="col">
+              <label>Ann&eacute;e</label>
+              <input type="text" class="form-control" placeholder="Annee" name="annee">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <label>Periodicit&eacute;</label>
+              <select class="form-control" name="periodicite">
+                <option></option>
+                {%for periodes in periode%}
+                <option value="{{  periodes.id}}">{{periodes.m_value}}</option>
+                {%endfor%}
+              </select>
+            </div>
+            <div class="col">
+              <label>Numero D'ordre</label>
+              <input type="number" class="form-control" name="numero">
+            </div>
+            <div class="col">
+              <label>NiceName</label>
+              <input type="texte" class="form-control" name="nicename">
+            </div>
+          </div>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+<!-- Inclure le JS de DataTables -->  
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>  
+
+  
+{% for message in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ {% if message.tags == 'success' %}
+
+<script type="text/javascript">
+ Swal.fire({
+ position: "top-end",
+ icon: "success",
+ title: "{{message}}",
+ showConfirmButton: false,
+ timer: 2000
+});
+</script>
+{%endif%}
+{%endfor%}
+</script>
+{% for message in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ {% if message.tags == 'error' %}
+
+<script type="text/javascript">
+ Swal.fire({
+ position: "top-end",
+ icon: "error",
+ title: "{{message}}",
+ showConfirmButton: false,
+ timer: 5000
+});
+</script>
+{%endif%}
+{%endfor%}
+  {% endblock %}
+  

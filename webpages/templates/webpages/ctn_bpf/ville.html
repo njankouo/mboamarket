@@ -1,0 +1,58 @@
+{% extends './config.html' %}
+
+{% block content %}
+<div class="py-6">
+  <h5 class="text-xl sm:text-2xl font-semibold mb-4 mx-6">Liste Des Bannières</h5>
+  <div class="overflow-x-auto shadow-lg rounded-lg">
+    <table class="min-w-full divide-y divide-gray-200 text-center table-auto">
+      <!-- En-tête -->
+      <thead class="bg-gray-50">
+        <tr class="text-gray-500 uppercase text-xs font-semibold tracking-wide">
+          <th class="px-6 py-3 text-left w-1/4">Image</th>
+          <th class="px-6 py-3">Nom</th>
+          <th class="px-6 py-3 min-w-[100px]">Actions</th>
+        </tr>
+      </thead>
+      
+      <!-- Corps -->
+      <tbody class="divide-y divide-gray-200">
+        {% for banieres in baniere %}
+        <tr>
+          <!-- Image -->
+          <td class="px-6 py-4 flex justify-center items-center">
+            {% if banieres.logo %}
+              <img src="{{ banieres.logo.url }}" alt="Logo" class="w-16 h-16 object-cover rounded-lg" />
+            {% else %}
+              <div class="w-16 h-16 bg-gray-200 rounded-lg"></div>
+            {% endif %}
+          </td>
+          
+          <!-- Nom -->
+          <td class="px-6 py-4 font-medium text-gray-900">{{ banieres.nom }}</td>
+          
+          <!-- Actions -->
+          <td class="px-6 py-4 flex justify-center space-x-4">
+            <!-- Modifier -->
+            <a href="/edit_baniere/{{ banieres.id }}/" class="text-blue-500 hover:text-blue-600" title="Edit">
+              <!-- Heroicon: Pencil -->
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+              </svg>
+              
+            </a>
+            <!-- Supprimer -->
+            <a href="/delete_baners/{{ banieres.id }}/" class="text-red-500 hover:text-red-600" title="Delete">
+              <!-- Heroicon: Trash -->
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+              </svg>
+              
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

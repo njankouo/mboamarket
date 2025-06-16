@@ -1,0 +1,251 @@
+<!-- <!DOCTYPE html>
+<html lang='fr'>
+<head>
+    <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier des Opérations</title>
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/main.min.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/main.min.css' rel='stylesheet' />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/@fullcalendar/common/main.min.css' rel='stylesheet' />  
+<link href='https://unpkg.com/@fullcalendar/timegrid/main.min.css' rel='stylesheet' />  
+<link href='https://unpkg.com/@fullcalendar/daygrid/main.min.css' rel='stylesheet' />  
+    <style>
+        body {  
+            background-color: #f8f9fa; /* Couleur de fond douce */  
+            font-family: 'Arial', sans-serif; /* Police de caractères */  
+        }  
+    
+        h1 {  
+            color: #343a40; /* Couleur du titre */  
+            text-align: center;  
+            margin-top: 20px;  
+        }  
+    
+        #calendar {  
+            margin: 0 auto; /* Centrer le calendrier */  
+            border-radius: 10px; /* Bords arrondis */  
+            overflow: hidden; /* Cache les débordements */  
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre douce */  
+            color:white;
+          
+            background: #141E30;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }  
+    
+        .fc-daygrid-event {  
+            background-color: #5cb85c; /* Couleur douce pour les événements */  
+            border: none; /* Pas de bordure */  
+            color: white; /* Couleur du texte */  
+            border-radius: 8px; /* Bords arrondis pour les événements */  
+            padding: 5px; /* Espacement interne */  
+        }  
+    
+        .fc-daygrid-event:hover {  
+            background-color: #4cae4c; /* Légère variation au survol */  
+        }  
+    
+        .modal-body {  
+            background-color: #e9ecef; /* Couleur de fond douce pour le modal */  
+            color: #212529; /* Couleur du texte */  
+        }  
+    
+        .modal-header {  
+            background-color: #007bff; /* Couleur douce pour l'en-tête du modal */  
+            color: white; /* Couleur du texte dans l'en-tête */  
+        }  
+    
+        .btn-secondary {  
+            background-color: #6c757d; /* Couleur du bouton */  
+            border-color: #6c757d;  
+        }  
+    
+        .btn-secondary:hover {  
+            background-color: #5a6268; /* Variation lors du survol du bouton */  
+        }  
+    </style>
+    <!-- CSS de FullCalendar -->  
+
+    
+<!-- 
+    <script>  
+        document.addEventListener('DOMContentLoaded', function() {  
+            var calendarEl = document.getElementById('calendar');  
+            var calendar = new FullCalendar.Calendar(calendarEl, {  
+                locale: 'fr',  
+                initialView: 'timeGridWeek', // Changer à 'timeGridWeek' ou 'timeGridDay' selon vos besoins  
+                events: [], // Initialiser avec un tableau vide  
+                eventClick: function(info) {  
+                    // Ouvrir le modal avec les détails de l'événement  
+                    $('#modalTitle').text(info.event.title);  
+                    $('#modalBody').text(`Détails : ${info.event.extendedProps.details}`); // Ajouter les détails ici  
+                    $('#eventModal').modal('show');  
+                }  
+            });  
+    
+            // Requête AJAX pour récupérer les opérations  
+            fetch('/api_operations/')  
+                .then(response => response.json())  
+                .then(data => {  
+                    const events = data.map(operation => ({  
+                        title: `${operation.nom} (Responsable : ${operation.nom_personne})`, // Utilisez nom_personne pour obtenir le nom  
+                        start: operation.date_echeance,  // Assurez-vous que ceci est un format de date valide  
+                        end: operation.date_echeance,    // Si vous souhaitez afficher comme un événement d'une journée  
+                        allDay: true,  
+                        extendedProps: {  
+                            details: `Responsable : ${operation.nom_personne},` // Utilisez aussi le nom ici  
+                        }  
+                    }));  
+                    calendar.addEventSource(events);  // Ajouter les événements au calendrier  
+                })  
+                .catch(error => console.error('Erreur:', error));  
+    
+            calendar.render();  
+        });  
+    </script>
+</head> -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="author" content="XB Software" />
+		<meta name="publisher" content="XB Software" />
+		<meta name="copyright" content="XB Software" />
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1,  user-scalable=no, shrink-to-fit=no"
+		/>
+		<link rel="icon" href="../favicon.ico" type="image/x-icon" />
+		<link rel="icon" href="../assets/favicon/icon-16.png" sizes="16x16" />
+		<link rel="icon" href="../assets/favicon/icon-32.png" sizes="32x32" />
+		<link rel="icon" href="../assets/favicon/icon-48.png" sizes="48x48" />
+		<link rel="icon" href="../assets/favicon/icon-96.png" sizes="96x96" />
+		<link
+			rel="icon"
+			href="../assets/favicon/icon-144.png"
+			sizes="144x144"
+		/>
+        {%load static%}
+		<!-- Event Calendar -->
+		<link rel="stylesheet" href="{%static 'event-calendar.css'%}" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.dhtmlx.com/fonts/wxi/wx-icons.css"
+		/>
+		<script src="{%static 'event-calendar.js'%}"></script>
+
+		<!-- Demo data -->
+		<script src="./common/data.js"></script>
+		<link rel="stylesheet" href="{%static 'demos.css' %}" />
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/2.0.0-alpha0/date_fns.min.js"
+			integrity="sha512-0kon+2zxkK5yhflwFqaTaIhLVDKGVH0YH/jm8P8Bab/4EOgC/n7gWyy7WE4EXrfPOVDeNdaebiAng0nsfeFd9A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+
+		<title>Event Calendar: Backend</title>
+	</head>
+
+	<body>
+        <header class="g-header">
+            <div class="h-wrap">
+                <div class="h-nav">
+                    <a href="/">Retour A L'acceuil</a>
+                </div>
+                <div class="h-title">Event Calendar: Backend</div>
+                <div class="h-cta">
+                    <a
+                        href="/"
+                        target="_blank"
+                        class="g-btn"
+                        >Deconnexion</a
+                    >
+                </div>
+            </div>
+        </header>
+		<div class="g-wrap">
+			
+
+			<div id="root"></div>
+		</div>
+
+		<script>  
+            const { EventCalendar, RestDataProvider } = eventCalendar;  
+            const { format } = dateFns;  
+        
+            const url = "https://docs.dhtmlx.com/event-calendar-backend";  
+            const restProvider = new RestDataProvider(url);  
+            const editorShape = [  
+                ...eventCalendar.defaultEditorShape,  
+                {  
+                    key: "files",  
+                    type: "files",  
+                    label: "Attachments",  
+                    config: {  
+                        multiple: true,  
+                    },  
+                    uploadURL: url + "/uploads",  
+                },  
+            ];  
+        
+            function weekEvent({ event, calendar }) {  
+                const start_date = format(event.start_date, "HH:mm");  
+                const end_date = format(event.end_date, "HH:mm");  
+        
+                return `  
+                <div class="week_event_wrapper">  
+                    <div>${event.text}</div>  
+                    <div>  
+                        ${start_date} - ${end_date}  
+                    </div>  
+                    ${event.files?.length ? `<img src=${event.files[0].url} style="width: 80px; height: 60px" alt="" />` : ""}  
+                </div>  
+                `;  
+            }  
+        
+            // Récupérer des événements depuis l'API  
+            fetch('/api_operations/')  
+                .then(response => {  
+                    if (!response.ok) {  
+                        throw new Error("Erreur lors de la récupération des opérations");  
+                    }  
+                    return response.json();  
+                })  
+                .then(data => {  
+                    const operationsEvents = data.map(operation => ({  
+                        text: `${operation.nom} (Responsable : ${operation.nom_personne})`,  
+                        start_date: new Date(operation.date_echeance), // Assurez-vous que ceci est un format de date valide  
+                        end_date: new Date(operation.date_echeance), // S'il s'agit d'un événement d'une journée  
+                        allDay: true,  
+                        extendedProps: {  
+                            details: `Responsable : ${operation.nom_personne}`,  
+                        },  
+                    }));  
+        
+                    // Récupérer les événements de l'API restProvider  
+                    Promise.all([  
+                        restProvider.getEvents(),  
+                        restProvider.getCalendars(),  
+                    ]).then(([events, calendars]) => {  
+                        const allEvents = [...events, ...operationsEvents]; // Combiner les événements  
+                        const obj = new EventCalendar("#root", {  
+                            events: allEvents,  
+                            calendars,  
+                            date: new Date(2022, 7, 22), // Vous pouvez changer cette date  
+                            editorShape,  
+                            templates: { weekEvent },  
+                        });  
+        
+                        obj.api.setNext(restProvider);  
+                    });  
+                })  
+                .catch(error => {  
+                    console.error("Erreur:", error);  
+                });  
+        </script>
+	</body>
+</html>

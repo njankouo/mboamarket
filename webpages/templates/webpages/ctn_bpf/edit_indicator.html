@@ -1,0 +1,803 @@
+{%extends './dataelts.html'%}
+{%block content%}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Edition Indicateur</h4>
+                    <form action="/editions_indicator/{{indicator.id}}/" method="post">
+                        {%csrf_token%}
+                    <label>Nom de l'Indicateur</label>
+                    <input type="text" required class="form-control" id="indicateur_name" name="nature_indicateur" value="{{indicator.m_name}}">
+                    <label><b>Formule de Calcul</b></label>
+
+
+                    <div>
+                        <textarea id="num_div" rows="3" class="form-control" name="numerateur">{{indicator.m_numerateur}}</textarea>
+                        <div class="bg-light text-secondary my-2">
+                            <small></small>
+                        </div>
+                    </div>
+                    <div class="card" style="border-color: blue;">
+                        <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-between">
+                        <div class="p-1">
+                            <span data-elt="SUM" onclick="printELT('0','num_div','2')" class="btn btn-light">0</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="SUM" onclick="printELT('1','num_div','2')" class="btn btn-light">1</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="SUM" onclick="printELT('2','num_div','2')" class="btn btn-light">2</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="SUM" onclick="printELT('3','num_div','2')" class="btn btn-light">3</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="SUM" onclick="printELT('4','num_div','2')" class="btn btn-light">4</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="SUM" onclick="printELT('5','num_div','2')" class="btn btn-light">5</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="SUM" onclick="printELT('6','num_div','2')" class="btn btn-light">6</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="SUM" onclick="printELT('7','num_div','2')" class="btn btn-light">7</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="SUM" onclick="printELT('8','num_div','2')" class="btn btn-light">8</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="SUM" onclick="printELT('9','num_div','2')" class="btn btn-light">9</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="SUM" onclick="printELT('.','num_div','2')" class="btn btn-light">.</span>
+                        </div>
+                    </div>
+
+
+                    <div class="d-flex flex-wrap justify-content-between">
+                        <div class="p-1">
+                            <span data-elt="SUM" onclick="printELT('+','num_div','2')" class="btn btn-light">+</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('-','num_div','2')" class="btn btn-light">-</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('*','num_div','2')" class="btn btn-light">*</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('/','num_div','2')" class="btn btn-light">/</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('^','num_div','2')" class="btn btn-light">^</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('%','num_div','2')" class="btn btn-light">%</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('<','num_div','2')" class="btn btn-light"><</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('>','num_div','2')" class="btn btn-light">></span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT(',','num_div','2')" class="btn btn-light">,</span>
+                        </div>
+
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('(','num_div','2')" class="btn btn-light">(</span>
+                        </div>
+
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT(')','num_div','2')" class="btn btn-light">)</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('and','num_div','2')" class="btn btn-light">ET</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('or','num_div','2')" class="btn btn-light">OU</span>
+                        </div>
+
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('xor','num_div','2')" class="btn btn-light">XOR</span>
+                        </div>
+
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('xnor','num_div','2')" class="btn btn-light">XNOR</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('not','num_div','2')" class="btn btn-light">NON</span>
+                        </div>
+
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('==','num_div','2')" class="btn btn-light">==</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('!=','num_div','2')" class="btn btn-light">!=</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('avg','num_div','2')" class="btn btn-light">Moy</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('max','num_div','2')" class="btn btn-light">Max</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('min','num_div','2')" class="btn btn-light">Min</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('sum','num_div','2')" class="btn btn-light">Sum</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('product','num_div','2')" class="btn btn-light">Prd</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('variance','num_div','2')" class="btn btn-light">Var</span>
+                        </div>
+
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('len','num_div','2')" class="btn btn-light">Nb</span>
+                        </div>
+
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('is_null','num_div','2')" class="btn btn-light">Null</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('nb_max','num_div','2')" class="btn btn-light">Mode</span>
+                        </div>
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="printELT('e_type','num_div','2')" class="btn btn-light">E.Type</span>
+                        </div>
+
+                        <div class="p-1">
+                            <span data-elt="{{elt.id}}" onclick="deletetELT('num_div')" class="btn btn-danger">Del</span>
+                        </div>
+                    </div>
+                        </div>
+            </div>
+                </div>
+
+                <br/>
+                <div class="card">
+                    <div class="card-body">
+            <div class="pt-2 px-2">
+
+            <div class="col-md-12">
+                <p class="text-danger" style="font-weight: bold">Filtre des elements de Donn&eacute;</p>
+                <input type="text" class="form-control" placeholder="Filtrer" id="filter">
+            </div>
+            <div class="col-md-12">
+            <div class="text-danger" style="font-weight: bold;">Variables (Elements de donn&eacute;es)</div>
+        </div>
+            <div class="d-flex flex-wrap justify-content-between" style="max-height:250px;overflow:auto;">
+
+                {% for d in dataelts %}
+                <div style="cursor:pointer;" class="col-md-9">
+                    <div>
+                        <span onclick="launchVar(this,'num_div')" data-id="{{d.id}}" class="btn p-1 btn-light">{{d}}</span>
+                    </div>
+                    <!-- <div class="pl-2"><small>${{d.id}}$</small></div> -->
+                </div>
+                {% endfor %}
+            </div>
+
+
+
+            <label for="Type">Type De Donnee</label>
+            <select name="type" id="type" class="form-control" required>
+                <option>Selectionnez Le type de Donnee</option>
+                {%if indicator.type_aggregation == 'Date'%}
+                <option value="Date" selected>Date</option>
+                <option value="Moyenne" >Moyenne</option>
+                <option value="Somme" >Somme</option>
+                {%elif indicator.type_aggregation == 'Moyenne'%}
+                
+                <option value="Moyenne" selected>Moyenne</option>
+                <option value="Date" >Date</option>
+                <option value="Somme" >Somme</option>
+                {%else%}
+                <option value="Somme" selected>Somme</option>
+                <option value="Date" >Date</option>
+                <option value="Moyenne" >Moyenne</option>
+                {%endif%}
+            </select>
+
+
+            <label for="NiceName">NiceName</label>
+            <input type="text" name="nicename" id="NiceName" class="form-control" value="{{indicator.nicename}}">
+
+        </div>
+        <button type="submit" class="btn btn-primary my-4 mx-2">Editer</button>
+                </div>
+            </div>
+           
+        </form>
+        </div>
+    </div>
+</div>
+
+<!-- <script>
+    new TomSelect("#type",{
+	persist: false,
+	createOnBlur: true,
+	create: true
+});
+</script> -->
+<script type="text/javascript">
+
+
+function add_sup_line(element){
+    parent = element.parentNode.parentNode;
+    contentDiv = parent.getElementsByClassName("content_div")[0];
+    node = document.createElement("div");
+    div_to_add = contentDiv.getElementsByClassName("to_add_line")[0];
+    node.innerHTML = div_to_add.innerHTML;
+
+    contentDiv.appendChild(node)
+}
+</script>
+<script type="text/javascript">
+    $(".indiAdd").click(function(){
+        arg_text = $(this).attr('data-name');
+        arg_id = parseInt($(this).attr('data-id'));
+        $("#entity_modal_name").text(arg_text)
+        $("#entity_modal_id").val(arg_id)
+    });
+
+    ind_periodicite = document.getElementById("ind_periodicite");
+    data_periods = new Array()
+    data_periods[0] = ["<option value='0'>Mensuelle</option>","<option value='1'>Trimestriel</option>","<option value='2'>Semestriel</option>","<option value='3'>Hebdomadaire</option>"]
+    data_periods[1] = ["<option value='3'>Hebdomadaire</option>"]
+    data_periods[2] = ["<option value='4'>Journalier</option>"]
+
+    data_intervals = [[]]
+    for (var j=0;j<25;j++){
+        data_intervals[0].push((2022+j));
+    }
+    data_intervals[1] = ["Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre"]
+    data_intervals[2] = ["Semaine 1","Semaine 2","Semaine 3","Semaine 4","Semaine 5"]
+
+    indi_cibl1 = document.getElementsByClassName("indi_cibl1")
+    ind_periodicite.onchange = function(){
+        id_elt = parseInt(this.value)
+        ind_periodicite2 = document.getElementById("ind_periodicite2")
+        ind_periodicite2.innerHTML = data_periods[id_elt];
+
+        for(var j=0;j<indi_cibl1.length;j++){
+            indi_cibl1[j].innerHTML = ""
+            for (var k=0;k<data_intervals[id_elt].length;k++){
+                indi_cibl1[j].innerHTML += "<option value='"+data_intervals[id_elt][k]+"'>"+data_intervals[id_elt][k]+"</option>"
+            }
+        }
+    }
+
+
+    function save_indicateur(){
+
+    indi_adds = document.getElementById("indi_adds");
+    indi_cibls = document.getElementById("indi_cibls");
+    indi_srcs = document.getElementById("indi_srcs");
+
+    // Champs additionnels
+    tmp = "";
+    indi_add1 = document.getElementsByClassName("indi_add1");
+    //indi_add2 = document.getElementsByClassName("indi_add2");
+    for (var i=0; i<indi_add1.length; i++)
+    {
+        //indi_add2_text = indi_add2[i].value.replace("\n","<br>");
+        tmp += indi_add1[i].value+"|#";
+    }
+    indi_adds.value = tmp;
+    // Resultats ciblés
+    tmp = "";
+
+    indi_cibl1 = document.getElementsByClassName("indi_cibl1");
+    indi_cibl2 = document.getElementsByClassName("indi_cibl2");
+    for (var i=0; i<indi_cibl2.length; i++)
+    {
+        indi_add2_text = indi_cibl2[i].value.replace("\n","<br>");
+        tmp += ind_periodicite.getAttribute('data-type')+"#"+indi_cibl1[i].value+"|"+indi_cibl2[i].value+"$";
+    }
+    indi_cibls.value = tmp;
+
+    // Sources de verification
+    indiSrc1 = document.getElementsByClassName("indiSrc1");
+    indiSrc2 = document.getElementsByClassName("indiSrc2");
+    tmp = "";
+    for (var i=0; i<indiSrc2.length; i++)
+    {
+        indi_Src2text = indiSrc2[i].value.replace("\n","<br>");
+        tmp += indiSrc1[i].value+"#"+indi_Src2text+"\n";
+    }
+    indi_srcs.value = tmp;
+    // Color Getter
+    codes_colors= document.getElementById("codes_colors")
+    icol1 = document.getElementsByClassName("icol1")
+    icol2 = document.getElementsByClassName("icol2")
+    tmp = ""
+    for (var i=0;i<icol1.length;i+=2){
+        tmp += icol1[i].value +"|";
+        tmp += icol1[(i+1)].value +"|";
+        tmp += icol2[parseInt(i/2)].value+"$"
+    }
+    codes_colors.value = tmp,
+    // Alert Getter
+    alerts_modals = document.getElementById("alerts_modals");
+    s1 = document.getElementsByClassName("s1");
+    alerts_modals.value = s1[0].value + "#"+s1[1].value+"#"+s1[2].value;
+
+
+    {% if no_secund == False %}
+    indiShitter = document.getElementsByClassName("indiShitter")
+    other_fields = document.getElementById("other_fields")
+    tmp = ""
+    for (var i=0;i<indiShitter.length; i++){
+        label = indiShitter[i].getElementsByTagName("label")[0].textContent;
+        input = indiShitter[i].getElementsByTagName("input")[0].value;
+        tmp += label +"|"+input+"#";
+    }
+    other_fields.value = tmp
+    {% endif %}
+
+}
+
+denominateur = document.getElementsByClassName("denominateur");
+for(var i=0;i<denominateur.length;i++){
+    denominateur[i].innerHTML = denominateur[i].innerHTML.replace("#"," : ")
+}
+function getIndi(type_i,index){
+    $.ajax({
+        url: '/get_indicateur_value/',
+        data: {
+            'id_indicateur':index,
+        },
+        dataType: 'json',
+        success: function (data) {
+            indicaBody = document.getElementById("indicaBody");
+            tmp = "<table class='table table-bordered '><tbody>";
+            tmp += "<tr> <td> Nature de l'Indicateur </td><td>"+data.indicateur+"</td></tr>"
+
+            fields = data.fields.split("#")
+            for (var i=0; i<fields.length-1; i++){
+
+                actu_fields = fields[i].split("|");
+
+                if (actu_fields.length > 2){
+                    tmp += "<tr>";
+                    for (var j=0;j<2;j++){
+                        tmp += "<td>"+actu_fields[j]+"</td>";
+                    }
+                    tmp += "</tr>";
+                }
+            }
+            tmp += "<tr> <td>Interets de l'Indictateur</td><td>"+
+            data.obj+"</td> </tr>"
+            periods = ["Annuelle","Trimestriel","Semestriel","Hebdomadaire"]
+            tmp += "<tr> <td> Périodicité </td><td>"+periods[data.periodicite]+"</td></tr>";
+            tmp_fc = data.final_cible.split("|");
+            if (data.final_cible != ""){
+                tmp += "<tr> <td> Dernier résultat connu </td><td class='d-flex'><div class='pr-4'>"+(tmp_fc[0].split("#")[0] + " "+tmp_fc[0].split("#")[1] )+"</div><div class='px-4' style='border-left:1px solid #aaa;'> Valeur : <b>"+tmp_fc[1]+"</b> </div></td></tr>";
+
+            }
+            tmp_cibles = data.cibles.split("$");
+            tmp += "<tr> <td> Cibles par Périodes </td> <td>";
+            for (var i=0;i<tmp_cibles.length-1;i++){
+                tmp_fc = tmp_cibles[i].split("|");
+                tmp += "<div class='d-flex mb-2'><div class='pr-4'>"+(tmp_fc[0].split("#")[0] + " "+tmp_fc[0].split("#")[1] )+"</div><div class='px-4' style='border-left:1px solid #aaa;'> Valeur : <b>"+tmp_fc[1]+"</b> </div></div>";
+            }
+            tmp += "</tbody></table>"
+            indicaBody.innerHTML = tmp;
+            indiSources = document.getElementById("indiSources");
+            indiSources.innerHTML = "";
+            veri_indi = data.verification_indi.split("#")
+            data_infi = data.data_verification
+            tmp = "<table class='table'>"
+            if (veri_indi.length>1){
+                tmp += "<tr> <td> Moyen de Verification </td> <td>"+veri_indi[0]+"&nbsp;<small class='badge badge-primary'>"+veri_indi[1]+"</small> </td> </tr>";
+            }
+            if (data.data_verificationind != "#"){
+                tmp += "<tr> <td> Sources de Verification </td> <td> <a href='"+data.data_verificationind_url+"'> <i class='fas fa-file'></i> "+data.data_verificationind+"</a> </td> </tr>"
+            }
+            else{
+                tmp += "<tr> <td> Sources de Verification </td> <td> Tous les Formulaires </td> </tr>"
+
+            }
+            tmp += "</table>"
+            //tmp += "</table><div class='text-center'><span> Renseignement des Formulaires de Donnee </span></div>"
+
+            if (data.others != "#"){
+                tmp += "<div> <div> Contenu Supplementaire </div> <div class='p-3'>"+data.others+" </div> </div>"
+            }
+            indiSources.innerHTML += tmp;
+        },
+        error: function(data){
+
+        }
+    });
+}
+
+
+function replace_codes() {  
+    const nums_code = document.getElementsByClassName("nums_code");  
+    const codesArray = [];  
+    
+    for (let i = 0; i < nums_code.length; i++) {  
+        codesArray.push(nums_code[i].textContent);  
+    }  
+    const codes = codesArray.join("#");  
+
+    $.ajax({  
+        url: '/get_elements/',  
+        data: {  
+            'codes': codes,  
+            'other': 'dE_code',  
+            'institution': {{actual_institution.id}}  
+        },  
+        dataType: 'json',  
+        success: function(data) {  
+            console.log(data.data_elts);  
+            for (let i = 0; i < nums_code.length; i++) {  
+                let txt = nums_code[i].textContent;  
+                const c_r = data.codes_replace[i];  
+                for (let j = 0; j < c_r.length; j++) {  
+                    const regex = new RegExp(`\\$${c_r[j]}\\$`, "g");  
+                    txt = txt.replace(regex, `<span class='badge'>${data.data_elts[i][j]}</span>`);  
+                }  
+                nums_code[i].innerHTML = txt;  
+            }  
+        },  
+        error: function(xhr, status, error) {  
+            console.error("AJAX Error: " + status + ": " + error);  
+            // Optional user feedback  
+        }  
+    });  
+}  
+replace_codes();
+
+
+
+indi_canver = document.getElementsByClassName("indi_canver");
+barColors = ["red","green","blue","yellow"];
+
+for (var i=0; i<indi_canver.length; i++){
+    periodes = indi_canver[i].getAttribute("data-period")
+    t_values = indi_canver[i].getAttribute("data-values")
+
+    xValues = periodes.split("#");
+    xValues2 = new Array();
+    yValues = t_values.split("#")
+    yValues2 = new Array();
+    t_cibles = indi_canver[i].getAttribute("data-cibles").split("$")
+    for (var i2=0;i2<t_cibles.length;i2++){
+        ar = t_cibles[i2].split("|")
+        //xValues2.push(ar[0].split("#")[1])
+        yValues2.push(ar[1])
+    }
+
+    new Chart(indi_canver[i].id, {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                label:'Valeurs Reelles',
+                fill:false,
+                borderColor: "blue",
+                data: yValues,
+            },{
+                label:'Valeurs Cibles',
+                fill:false,
+                borderColor: "red",
+                data: yValues2,
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Atteinte des Objectifs"
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        suggestedMax: 100
+                    }
+                }],
+            }
+        }
+    });
+}
+
+
+function LaunchFormData(indi_id){
+    $.ajax({
+        url: '/ajax_form/',
+        data: {
+            'id_dataset':indi_id,
+        },
+        dataType: 'json',
+        success: function (data) {
+            dF_Div = document.getElementById("dF_Div");
+            tmp = "<div class='my-2'> Periode de Saisie </div>"
+            if (data.periode == "0"){
+                tmp += "<div style='border-bottom:1px solid #aaa;' class='py-2 col-12 d-flex'> <div class='col-6 px-3'> <label> Année </label>  <div>  <input class='form-control' value='2023' type='number'> </div> </div>"
+                if (data.subperiode == "Mensuelle"){
+                tmp += "<div> <label> Mois </label> <div> <select class='form-control'><option value='Janvier'>Janvier</option></select> </div> <div> </div> </div> ";
+                }
+            }
+            tmp +=  "</div>";
+
+            tmp2 = "<div class='my-2'> Strucures concernees </div> <div style='border-bottom:1px solid #aaa;' Class='py-2 d-flex'>"
+            for (var i=0;i<data.structures.length;i++){
+                tmp2 += "<div class='px-2'><input type='checkbox' class='mr-2'>"+data.structures[i]+" </div>"
+            }
+            tmp2 += "</div>";
+
+            tmp3 = " <div>";
+            tmp3 += data.form;
+            tmp3 += "</div>";
+
+            dF_Div.innerHTML = tmp+tmp3
+        },
+        error: function(data){
+
+        }
+    });
+}
+
+numStack = ""
+function launchVar(element,ht){
+    html = document.getElementById(ht);
+    txt = element.value;
+    id = element.getAttribute('data-id');
+    html.value += "$"+id+"$"
+}
+function printELT(element,ht,coeff){
+    html = document.getElementById(ht);
+    html.value += element
+}
+
+function deletetELT(ht){
+    html = document.getElementById(ht);
+    elt = html.value00;
+    html.value = ""
+    for (var i=0;i<element.length;i++){
+        html.value += elt[i]
+    }
+}
+
+function editIndic(elt){
+    nom = elt.getAttribute('data-nom')
+    $("#indicateur_name").val(nom);
+    objectif = elt.getAttribute('data-objectif');
+    $("#objectif_indi").val(objectif);
+    formula = elt.getAttribute('data-formula');
+    $("#num_div").val(formula)
+    $("#edit_id").val(elt.getAttribute('data-id'));
+    $("#add_indiModal").modal()
+    edit_or_create = document.getElementById("edit_or_create")
+    edit_or_create.value = "e"
+}
+
+function loadObjs(elt){
+    obj = elt.getAttribute("data-obj")
+    textObjectif = document.getElementById("textObjectif")
+    textObjectif.innerHTML = obj
+    edit_or_create = document.getElementById("edit_or_create")
+    edit_or_create.value = "c"
+}
+
+function loadDataForm(ind=1){
+        $.ajax({
+        url: '/get_elements/',
+        data: {
+            'other':"dS",
+            "institution":{{actual_institution.id}}
+        },
+        dataType: 'json',
+        success: function (data) {
+            list_formulaires = document.getElementById("list_formulaires")
+            tmp = ""
+            for (var i=0;i<data.datasets.length;i++){
+                tmp += "<div class='px-3'> <input type='radio' value='"+data.datasets_id[i]+"' name='dataSt'>&nbsp; <i class='fas fa-file'></i>&nbsp;"+data.datasets[i]+"</div>"
+            }
+            list_formulaires.innerHTML = tmp;
+        }
+        });
+}
+loadDataForm();
+
+function display_graph(elt){
+    if (elt.checked){
+        $(".canvas_show").slideDown("slow")
+    }
+    else{
+        $(".canvas_show").slideUp("slow")
+    }
+}
+
+</script>
+<script>
+    function afficherAnneeMoisSemaine() {
+        var dateActuelle = new Date();
+        var annee = dateActuelle.getFullYear();
+        var mois = obtenirNomMois(dateActuelle.getMonth()); // Utilisation de la fonction pour obtenir le nom du mois
+        var numeroSemaine = getWeekNumber(dateActuelle); // Fonction pour obtenir le numéro de la semaine
+
+        var choix = document.getElementById('ind_periodicite').value;
+        var resultatInput = document.getElementById('resultat');
+
+        if (choix === '0') {
+          resultatInput.value = + annee;
+        } else if (choix === '1') {
+          resultatInput.value =  + mois;
+        } else if (choix === '2') {
+          resultatInput.value = + numeroSemaine;
+        }
+      }
+
+      // Fonction pour obtenir le nom du mois à partir de son numéro
+      function obtenirNomMois(numeroMois) {
+        var nomsMois = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+        return nomsMois[numeroMois];
+      }
+
+      // Fonction pour obtenir le numéro de la semaine
+      function getWeekNumber(date) {
+        var target = new Date(date.valueOf());
+        var dayNumber = (date.getUTCDay() + 6) % 7;
+        target.setUTCDate(target.getUTCDate() - dayNumber + 3);
+        var firstThursday = target.valueOf();
+        target.setUTCMonth(0, 1);
+        if (target.getUTCDay() !== 4) {
+          target.setUTCMonth(0, 1 + ((4 - target.getUTCDay()) + 7) % 7);
+        }
+        return 1 + Math.ceil((firstThursday - target) / 604800000); // Nombre de millisecondes dans une semaine
+      }
+
+      // Écouter les changements dans le menu déroulant
+      document.getElementById('ind_periodicite').addEventListener('change', afficherAnneeMoisSemaine);
+
+      // Appel initial de la fonction pour afficher les valeurs
+      afficherAnneeMoisSemaine();
+
+</script>
+
+<script>
+    // Fonction pour filtrer les éléments en fonction du texte saisi
+function filtrerElements() {
+    var filter, span, txtValue;
+    filter = document.getElementById('filter').value.toUpperCase(); // Convertir le texte en majuscules pour la comparaison
+    span = document.getElementsByTagName('span'); // Récupérer les éléments à filtrer
+
+    // Parcourir les éléments et afficher ou masquer en fonction du filtre
+    for (var i = 0; i < span.length; i++) {
+      txtValue = span[i].textContent || span[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        span[i].parentNode.style.display = ''; // Afficher l'élément parent du span
+      } else {
+        span[i].parentNode.style.display = 'none'; // Masquer l'élément parent du span
+      }
+    }
+  }
+
+  // Ajouter un écouteur d'événement "input" pour détecter les changements dans le champ de texte en temps réel
+  document.getElementById('filter').addEventListener('input', filtrerElements);
+</script>
+
+
+
+{% for message in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {% if message.tags == 'success' %}
+
+<script type="text/javascript">
+    Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "{{message}}",
+  showConfirmButton: false,
+  timer: 2000
+});
+</script>
+{%endif%}
+{%endfor%}
+
+
+
+{% for message in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {% if message.tags == 'error' %}
+
+<script type="text/javascript">
+    Swal.fire({
+  position: "top-end",
+  icon: "error",
+  title: "{{message}}",
+  showConfirmButton: false,
+  timer: 2000
+});
+</script>
+{%endif%}
+{%endfor%}
+
+
+
+
+
+{% for message in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {% if message.tags == 'info' %}
+
+<script type="text/javascript">
+    Swal.fire({
+  position: "top-end",
+  icon: "info",
+  title: "{{message}}",
+  showConfirmButton: false,
+  timer: 2000
+});
+</script>
+{%endif%}
+{%endfor%}
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>  
+
+<script>  
+    $(document).ready(function() {  
+        $('#example').DataTable({  
+            "searching": true,        // Activer la barre de recherche  
+            "paging": true,           // Pagination  
+            "lengthChange": true,     // Changer la taille de la page  
+            "ordering": true,         // Activer le tri des colonnes  
+            "info": true,             // Afficher des informations sur les entrées  
+            "autoWidth": false,       // Désactiver la largeur automatique (utiliser si vous voulez définir vos propres largeurs de colonnes)  
+            "responsive": true,       // Rendre le tableau réactif  
+            "language": {             // Personnaliser le texte de l'interface  
+                "lengthMenu": "Afficher _MENU_ entrées",  
+                "zeroRecords": "Aucun résultat trouvé",  
+                "info": "Affichage de _START_ à _END_ sur _TOTAL_ entrées",  
+                "infoEmpty": "Aucune entrée à afficher",  
+                "infoFiltered": "(filtré à partir de _MAX_ entrées au total)",  
+                "search": "Rechercher:",  
+                "paginate": {  
+                    "first": "Premier",  
+                    "last": "Dernier",  
+                    "next": "Suivant",  
+                    "previous": "Précédent"  
+                }  
+            },  
+            // Ajouter des boutons d'exportation  
+            dom: 'Bfrtip',             // Utiliser le DOM pour ajouter des boutons et un tableau  
+            buttons: [  
+                {  
+                    extend: 'copyHtml5',  
+                    text: 'Copier',  
+                    titleAttr: 'Copier dans le presse-papiers'  
+                },  
+                {  
+                    extend: 'excelHtml5',  
+                    text: 'Exporter vers Excel',  
+                    titleAttr: 'Exporter vers un fichier Excel'  
+                },  
+                {  
+                    extend: 'csvHtml5',  
+                    text: 'Exporter vers CSV',  
+                    titleAttr: 'Exporter vers un fichier CSV'  
+                },  
+                {  
+                    extend: 'print',  
+                    text: 'Imprimer',  
+                    titleAttr: 'Imprimer le tableau'  
+                }  
+            ]  
+        });  
+    });  
+</script>  
+{%endblock%}
+
+
+
+
+

@@ -1,0 +1,63 @@
+{%extends './dataelts.html'%}
+{%block content%}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+
+   
+<div class="card">
+    <div class="card-body">
+  
+          <!-- <p>Croissant jelly beans donut apple pie. Caramels bonbon lemon drops. Sesame snaps lemon drops lemon drops liquorice icing bonbon pastry pastry carrot cake. Dragée sweet sweet roll sugar plum.</p>
+          <p>Jelly-o cookie jelly gummies pudding cheesecake lollipop macaroon. Sweet chocolate bar sweet roll carrot cake. Sweet roll sesame snaps fruitcake brownie bear claw toffee bonbon brownie.</p> -->
+          <form method="POST" action="edition_periode/{{periode.id}}/">
+            {%csrf_token%}
+            <div class="form-row">
+              <div class="col">
+                <label>Nom</label>
+                <input type="text" class="form-control" placeholder="Nom" name="nom" value="{{periode.nom}}">
+              </div>
+              <div class="col">
+                <label>Ann&eacute;e</label>
+                <input type="text" class="form-control" placeholder="Annee" name="annee" value="{{periode.annee}}">
+              </div>
+            </div>
+  
+            <div class="form-row">
+              <div class="col">
+                <label>Periodicit&eacute;</label>
+                <select class="form-control" name="periodicite">
+                  <option></option>
+                  {%for periodicites in periodicite%}
+                  {%if periodicites.id ==  periode.periodicite_id%}
+                  <option value="{{  periodicites.id}}" selected>{{periodicites.m_value}}</option>
+                  {%else%}
+                  <option value="{{  periodicites.id}}" >{{periodicites.m_value}}</option>
+                  {%endif%}
+                  
+                  {%endfor%}
+             
+                </select>
+              </div>
+              <div class="col">
+                <label>Numero D'ordre</label>
+                <input type="number" class="form-control" name="numero" value="{{periode.numero_ordre}}">
+              </div>
+
+              <div class="col">
+                <label>NiceName</label>
+                <input type="text" class="form-control" name="nicename" value="{{periode.nicename}}">
+              </div>
+            </div>
+    
+        <div class="card-footer">
+        
+          <button type="submit" class="btn btn-primary">Editer</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}

@@ -1,0 +1,601 @@
+
+<style>  
+	#loadingIndicator {  
+		display: none; /* Masquer par défaut */  
+		position: fixed;  
+		top: 50%;  
+		left: 50%;  
+		transform: translate(-50%, -50%);  
+		color:white;
+		border: 1px solid #ccc;  
+		padding: 10px;  
+		background: #8E0E00;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #1F1C18, #8E0E00);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #1F1C18, #8E0E00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+		z-index: 1000;  
+	}  
+	/* Styles supplémentaires ici */  
+</style>  
+{% extends './decision.html' %}
+{% load static %}
+{% load humanize %}
+{% block main_content %}
+<div class=" mt-4 row col-12 pl-3" style='display:flex;justify-content:center;margin-top:10px;'>
+	<div class="col-lg-6">
+	
+		<div> 
+			<div class="p-3">
+				
+				<div class="py-2">
+					<div class="card">
+						<div class="card-title">
+							<h6 class="text-center text-danger my-2" style="font-weight:bold">RESPONSABILITÉS</h6>
+						</div>
+						<div class="card-body">
+
+<table class="table caption-top text-center table-responsive mx-4">
+ 
+  <thead class="text-success">
+
+    <tr>
+      <th>R</th>
+     <th>{{operation.personnel}}</th>
+     
+      
+    </tr>
+
+  </thead>
+  <tbody class="text-danger" style=" font-weight:bold">
+    <tr>
+     <td>A</td>
+      <td>{{operation.accountable}}</td>
+       
+    </tr>
+
+  </tbody>
+
+  <tbody class="text-primary" style="font-weight:bold">
+    <tr>
+     <td>C</td>
+   <td> {{operation.consulted}}</td>
+       
+    </tr>
+
+  </tbody>
+
+  <tbody class="text-warning" style="font-weight:bold">
+    <tr>
+     <td>I</td>
+   <td> {{operation.informed}}</td>
+       
+    </tr>
+
+  </tbody>
+
+
+</table>
+</div>
+</div>
+					{%comment%}
+						{% for elt in operation_rapport.aggregate_values %}
+										<div class="d-flex my-2">
+											<div class="pr-2 ">{{elt.label}} : </div>
+												{% if elt.type == 'file' %}
+												{% if elt.value.m_file != None and elt.value.m_file != "" %}
+													<div>
+														<a href="{{elt.value.m_file.url}}"><i class="fas fa-file"></i>
+														{{elt.value.m_file}}</a>
+													</div>
+												{% endif %}
+												{% elif elt.type == 'image' %}
+												{% if elt.value.m_file != None and elt.value.m_file != "" %}
+												<div>
+													<img src="{{elt.value.m_file.url}}" style="width:80px;height:80px;">
+												</div>
+												{% endif %}
+												{% elif elt.type == 'choix' %}
+												<div>
+													{% for e in elt.extras_repported %}
+														{% if e.state == '1' %}<div class="text-success d-flex"> <div><i class="fas fa-check"></i></div> <div class="value_liner pl-2">{{e.label}}</div> </div>
+														{% else %}<div class="text-danger d-flex"> <div> <i class="fas fa-times">	</i> </div> <div class="value_liner pl-2">{{e.label}}</div> </div>
+														{% endif %}
+													{% endfor %}
+												</div>Soumi
+												{% else %}
+												<div class="value_liner text-success">{{elt.value}}</div> 
+												{% endif %}
+											</div>
+										{% endfor %}
+						{%endcomment%}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-6">
+								<div class="col-lg-12 ">
+									<div class="p-2">
+										{% if actual_institution.default_options == True %}
+
+										{% else %}
+										{% for elt in operation_rapport.aggregate_values %}
+										<div class="d-flex my-2">
+											<div class="pr-2 ">{{elt.label}} : </div>
+												{% if elt.type == 'file' %}
+												{% if elt.value.m_file != None and elt.value.m_file != "" %}
+													<div>
+														<a href="{{elt.value.m_file.url}}"><i class="fas fa-file"></i>
+														{{elt.value.m_file}}</a>
+													</div>
+												{% endif %}
+												{% elif elt.type == 'image' %}
+												{% if elt.value.m_file != None and elt.value.m_file != "" %}
+												<div>
+													<img src="{{elt.value.m_file.url}}" style="width:80px;height:80px;">
+												</div>
+												{% endif %}
+												{% elif elt.type == 'choix' %}
+												<div>
+													{% for e in elt.extras_repported %}
+														{% if e.state == '1' %}<div class="text-success d-flex"> <div><i class="fas fa-check"></i></div> <div class="value_liner pl-2">{{e.label}}</div> </div>
+														{% else %}<div class="text-danger d-flex"> <div> <i class="fas fa-times">	</i> </div> <div class="value_liner pl-2">{{e.label}}</div> </div>
+														{% endif %}
+													{% endfor %}
+												</div>Soumi
+												{% else %}
+												<div class="value_liner text-success">{{elt.value}}</div> 
+												{% endif %}
+											</div>
+										{% endfor %}
+
+										{% endif %}
+										<div class="my-2"> Soumis le <span class="text-success"> {{operation_rapport.date_created}}</span></div>
+
+
+										<div> Par <span class="text-success"> {{operation_rapport.personnel}} </span></div>
+									</div>
+										{% if operation_rapport.m_commentaire != None %}
+										<div class="bg-light  p-3">
+											<legend>Compte Rendu</legend>
+	                      					<div class="">
+	                      						{{operation_rapport.m_commentaire}}
+	                      					</div>
+                      					</div>
+
+                      					{% endif %}									
+									{% if operation.accountable.bd_user == user %}
+									<div class="my-2">
+										<div data-target="#validOperModal" data-operation="{{operation}}" data-personnel="{{operation.personnel}}" data-id="{{operation.id}}" data-toggle="modal" onclick="validerTache(this);" class="opera_valider btn btn text-success" style="font-weight:bold;text-transform:uppercase"> Valider </div>
+										<div data-target="#annulerOperModal" data-toggle="modal" data-id="{{operation.id}}" data-rapport="{% if operation.tech_rapports.first != None %}{{operation.tech_rapports.first.id}}{% endif %}" onclick="annulerTache(this)" class="btn btn text-danger" style="font-weight:bold;text-transform:uppercase"> Rejeter </div>
+									
+																
+	</div>
+									{% endif %}
+{%comment%}
+									{% if operation.consulted.bd_user == user %}
+									<form method="POST" action="/consult_oper/">
+										{% csrf_token %}
+										<input type="hidden" name="operation_rapport" value="{{operation_rapport.id}}">
+										<input type="hidden" name="operation" value="{{operation.id}}">
+										<input type="hidden" name="nb_stars" id="nb_stars">
+									<div> Donnez vos Avis ( sur 5 Etoiles )</div>
+									<div class="starDiv d-flex my-2">
+										<div>
+											<i data-id="1" class="fas fa-star"></i>
+										</div>
+
+										<div>
+											<i data-id="2" class="fas fa-star"></i>
+										</div>
+										<div>
+											<i data-id="3" class="fas fa-star"></i>
+										</div>
+										<div>
+											<i data-id="4" class="fas fa-star"></i>
+										</div>
+										<div>
+											<i data-id="5" class="fas fa-star"></i>
+										</div>
+									</div>
+									<div>
+										<textarea class="form-control" name="observations"  rows="6"></textarea>
+										<div class="my-3">
+											<input type="submit" value="Enregistrer" class="btn btn-warning" name="">
+										</div>
+									</div>
+									</form>
+									{% endif %}
+									{%endcomment%}
+
+</div>
+</div>
+								
+</div>
+{%for datasets in dataset%}
+{%if datasets.id == operation.dataset_id%}
+<div class="row">
+<div class="col-md-12">
+	<p style="font-weight:bold" class="text-danger">
+		Veuillez Charger Les Donn&eacute;es Du Formulaire En Selectionnant La Periode Et La Structure
+		De La Saisie
+	</p>
+    <button class="btn btn text-light" style="background: #536976;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #292E49, #536976);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #292E49, #536976); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+" id="loadDataButton">Charger Les Donn&eacute;s</button>
+<hr class="p-2 bg-dark"/>
+<div class="row">
+						     
+	<div class="col-md-4 text-dark" style="font-weight:bold;font-style:italic" >
+		<label>Ann&eacute;e</label>
+		<select class="form-control" name="period1_saisie" id="annee">
+			<option>Selectionnez L'ann&eacute;e</option>
+			{%for period_oks in periode_ok%}
+			<option value="{{ period_oks.annee }}"> {{period_oks.annee}}</option>
+			{%endfor%}
+		</select>
+	</div>
+	
+	<div class="col-md-4" style="font-weight:bold;font-style:italic" >
+		<label>Periode</label>
+		<select class="form-control" name="period2_saisie" id="period">
+			<option></option>
+		</select>
+	</div>
+	<div class="col-md-4" style="font-weight:bold;font-style:italic">
+		<label>Structure</label>
+		<select class="form-control" name='struc_selec' id="structure">
+			{%for structures in structure%}
+			<option value="{{ structures.id }}">{{structures.nom}}</option>
+			{%endfor%}
+		</select>
+	</div>
+</div>
+<div class="col-md-6">
+	<label for="" class="text-danger" style="font-weight:bold;display:none">Resultat CalCul *</label>
+	 <input type="text" id="indicator-values" name="indicator-values" class="form-control" readonly style="display:none">
+
+  </div>
+   <div class="col-md-6">
+	<label for="" class="text-danger" style="font-weight:bold;display:none">Code Indicateur *</label>
+		<input type="text" id="indicator-ids" name="indicator-ids" class="form-control" readonly style="display:none">
+  </div>
+  <div id="loadingIndicator" role="alert" aria-live="assertive" aria-hidden="true" style="display: none;">  
+    <span>Chargement en cours, veuillez patienter...</span>  
+</div> 
+<script>
+// Fonction pour afficher l'indicateur de chargement  
+function showLoading() {  
+    const loadingIndicator = document.getElementById('loadingIndicator');   
+    loadingIndicator.style.display = 'block'; // Afficher un spinner  
+    loadingIndicator.setAttribute('aria-hidden', 'false'); // Définir aria-hidden à false  
+}  
+
+function hideLoading() {  
+    const loadingIndicator = document.getElementById('loadingIndicator');  
+    loadingIndicator.style.display = 'none'; // Masquer le spinner  
+    loadingIndicator.setAttribute('aria-hidden', 'true'); // Définir aria-hidden à true  
+}  
+
+// Fonction pour charger le dataset  
+async function load_Dataset() {  
+    const datasetElement = document.querySelector(`.card[data-id='{{ datasets.id }}']`);  
+    if (!datasetElement) {  
+        console.error('Élément dataset introuvable');  
+        return;  
+    }  
+
+    const datasetId = datasetElement.getAttribute('data-id');  
+    const url = `/get_dataset_accountable/${datasetId}/`;  
+
+    showLoading(); // Afficher l'indicateur de chargement  
+
+    try {  
+        const response = await fetch(url);  
+        console.log('Réponse du serveur:', response); // Log de la réponse  
+
+        if (!response.ok) {  
+            switch (response.status) {  
+                case 404:  
+                    throw new Error('Dataset non trouvé (404)');  
+                case 403:  
+                    throw new Error('Accès interdit (403)');  
+                default:  
+                    throw new Error('Erreur lors de la récupération du dataset');  
+            }  
+        }  
+
+        const data = await response.json();  
+        const datasetContent = datasetElement.querySelector('.dataset-content');  
+        if (datasetContent) {  
+            datasetContent.innerHTML = `<p>${data.content}</p>`;  
+            initIndic(datasetId);  
+        } else {  
+            console.error('datasetContent est null');  
+        }  
+    } catch (error) {  
+        console.error('Erreur:', error);  
+    } finally {  
+        hideLoading(); // Masquer l'indicateur de chargement  
+    }  
+}  
+
+document.addEventListener('DOMContentLoaded', load_Dataset);
+
+//********************************fin de la fonction du chargement du dataset*********************
+
+
+
+
+
+//Debut de la fonction  Fonction pour initialiser les indicateurs  
+function initIndic(datasetId) {  
+    console.log("Fonction initIndic() appelée avec datasetId:", datasetId);  
+
+    const indicSelector = document.getElementsByClassName("indicSelector");  
+    let indic_value = "";  
+    for (let i = 0; i < indicSelector.length; i++) {  
+        indic_value += indicSelector[i].getAttribute("data-id") + "#";  
+    }  
+
+    const institutionId = {{ actual_institution.id }}; // Assurez-vous que `actual_institution` est défini  
+
+    $.ajax({  
+        url: '/get_elements/',  
+        data: {  
+            'dataset': datasetId,  
+            'type_dataset': '0',  
+            'other': 'dI_formula',  
+            'institution': institutionId,  
+            'value': indic_value  
+        },  
+        success: function(data) {  
+            check_selector(true, data);  
+            setupVariableSelectors(data);  
+        },  
+        error: function(xhr, status, error) {  
+            console.error('Erreur lors de la récupération des éléments:', error);  
+        }  
+    });  
+}  
+
+function check_selector(evalu = false, data) {  
+    const indicSelector = document.getElementsByClassName("indicSelector");  
+    const indicatorValues = {};  
+
+    for (let i = 0; i < indicSelector.length; i++) {  
+        indicSelector[i].textContent = data.formulas[i];  
+        const indicatorId = indicSelector[i].getAttribute("data-id");  
+        const tmp_elts = data.data_elts.split("#");  
+        let elts = [];  
+
+        for (let j = 0; j < tmp_elts.length; j++) {  
+            const tp = document.getElementsByName("D0elt" + tmp_elts[j]);  
+            if (tp.length > 0) {  
+                elts.push(tp[0].value);  
+            }  
+        }  
+        console.log("Éléments récupérés :", elts);  
+        for (let j = 0; j < elts.length; j++) {  
+            indicSelector[i].textContent = indicSelector[i].textContent.replace("$" + tmp_elts[j] + "$", elts[j]);  
+        }  
+        if (evalu) {  
+            try {  
+                indicSelector[i].textContent = eval(indicSelector[i].textContent); // Évaluation des calculs  
+                const indicatorValue = indicSelector[i].textContent;  
+                indicatorValues[indicatorId] = indicatorValue;  
+            } catch (error) {  
+                console.error("Erreur lors du calcul de l'indicateur :", error);  
+            }  
+        }  
+    }  
+
+    // Stocker les valeurs et les identifiants dans les champs cachés du formulaire  
+    document.getElementById("indicator-values").value = JSON.stringify(indicatorValues);  
+    const indicatorIds = Object.keys(indicatorValues);  
+    document.getElementById("indicator-ids").value = JSON.stringify(indicatorIds);  
+
+    return indicatorValues;  
+}  
+
+function setupVariableSelectors(data) {
+    const variables_selector = document.getElementsByClassName("variableSelector");  
+    for (let i = 0; i < variables_selector.length; i++) {  
+        const inputs = variables_selector[i].getElementsByTagName("input")[0];  
+        if (inputs) {  
+            inputs.onchange = function() {  
+                try {  
+                    check_selector(true, data);  
+                } catch (error) {  
+                    alert("Erreur lors de la mise à jour des sélecteurs :",error);  
+                    check_selector(false, data); // Évaluer sans option  
+                }  
+            };  
+        }  
+    }  
+}  
+
+
+//Chargement des données stockées en BD
+
+
+document.getElementById('loadDataButton').addEventListener('click', function() {  
+    const selectedYear = document.getElementById('annee').value;  
+    const selectedPeriod = document.getElementById('period').value;  
+    const selectedStructure = document.getElementById('structure').value;  
+
+    // Vérifier si toutes les sélections sont faites  
+    if (!selectedYear || !selectedPeriod || !selectedStructure) {  
+        alert('Veuillez sélectionner l\'année, la période et la structure.');  
+        return;  
+    }  
+
+    const url = `/load_data/${selectedStructure}/${selectedPeriod}/`; // URL pour récupérer les données  
+
+    showLoading(); // Afficher l'indicateur de chargement avant de charger des données  
+
+    fetch(url)  
+        .then(response => {  
+            if (!response.ok) {  
+                throw new Error('Erreur lors de la récupération des données');  
+            }  
+            return response.json();  
+        })  
+        .then(data => {  
+            if (data.error) {  
+                console.error('Erreur:', data.error);  
+                alert("Erreur lors du chargement des données: " + data.error); // Montrer un message d'alerte à l'utilisateur  
+            } else {  
+                console.log('Données récupérées:', data);  
+                
+                // Créer une chaîne pour les alertes  
+                let alertMessage = 'Données récupérées:\n';  
+                if (Array.isArray(data.data)) {  
+                    data.data.forEach(item => {  
+                        alertMessage += `ID: ${item.id}, Contenu: ${item.content}\n`;  
+                    });  
+                } else {  
+                    alertMessage += 'Aucune donnée trouvée.';  
+                }  
+
+                alert(alertMessage); // Affiche les données dans une alerte  
+
+                // Vider l'élément où les résultats seront affichés  
+                const indicatorValuesDiv = document.getElementById('indicator-values');  
+                indicatorValuesDiv.innerHTML = ''; // Réinitialiser les résultats  
+
+                // Vérifiez si data.values est bien un tableau  
+                if (Array.isArray(data.data)) {  
+                    // Parcourir les données et les afficher  
+                    data.data.forEach(item => { // Les données sont dans data.data  
+                        if (item.content !== null) { // Vérifier si content n'est pas null  
+                            const div = document.createElement('div');  
+                            div.textContent = item.content; // Afficher la valeur de content  
+                            indicatorValuesDiv.appendChild(div); // Ajouter chaque valeur au conteneur  
+                        }  
+                    });  
+                } else {  
+                    console.error('data.data n\'est pas un tableau ou n\'existe pas:', data.data);  
+                    alert('Aucune donnée trouvée ou un format inattendu.');  
+                }  
+            }  
+        })  
+        .catch(error => {  
+            console.error('Erreur lors du chargement des données:', error);  
+            alert("Une erreur est survenue. Veuillez réessayer."); // Alerte pour l'utilisateur  
+        })  
+        .finally(() => {  
+            hideLoading(); // Masquer l'indicateur de chargement  
+        });  
+});
+</script>
+
+
+<div class="card my-2" data-id="{{ datasets.id }}">
+<div  class="card-body">
+	<div class="dataset-content">  
+		<!-- Le contenu du dataset sera inséré ici -->  
+	</div>  
+</div>
+</div>
+</div>
+</div>
+<hr class="p-2 bg-dark"/>
+
+{%endif%}
+{%endfor%}
+<table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+    <tr>
+      <th>Identifiant</th>
+      <th>Date</th>
+      <th>Responsables</th>
+      <th>Commentaires</th>
+      <th>Fichier Joint</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for operation_historics in operation_historic%}
+{%if operation.id  == operation_historics.m_operation_id%}
+    <tr>
+      <td>
+
+        <div class="d-flex align-items-center">
+          <img
+              src="{{operation.personnel.photo.url}}"
+              alt=""
+              style="width: 45px; height: 45px"
+              class="rounded-circle"
+              />
+
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{operation.personnel}}</p>
+            <p class="text-muted mb-0">{{operation.personnel.mail}}</p>
+          </div>
+        </div>
+
+
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{operation_historics.m_date_realisation}}</p>
+        <p class="text-muted mb-0">{{operation_historics.m_date_realisation|naturaltime}}</p>
+      </td>
+      <td>
+        <span class="badge badge-success rounded-pill d-inline">{{operation_historics.m_role}}</span>
+      </td>
+      <td>{{operation_historics.m_commentaire}}</td>
+      <td>
+        <a href="{{operation_historics.value.file.url}}"type="button" class="btn btn-link btn-sm btn-rounded">
+       {{operation_historics.file}}
+        </a>
+      </td>
+    </tr>
+{%endif%}
+{%endfor%}
+      </tbody>
+</table>						</div>
+							</div>
+								</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+						
+	$(document).ready(function() {
+	  $('#annee').on('change', function() {
+		var selectedId = $(this).val();
+	  
+		// Effectuer une requête AJAX pour récupérer les informations de la table periodeok en fonction de l'ID de la période sélectionnée
+		$.ajax({
+		url: '/search_period/',  // L'URL correspondant à la vue Django
+		method: 'GET',
+		data: { annee: selectedId },
+		success: function(data) {
+		  var selectInformations = $('#period');
+		  selectInformations.empty(); // Effacer les anciennes options
+	  
+		  // Ajouter les nouvelles options basées sur les données récupérées via AJAX
+		  data.forEach(function(periode_ok_id) {
+		  selectInformations.append($('<option>', {
+			value: periode_ok_id.id,
+			text: periode_ok_id.nom  // Remplacez 'champ1' par le nom du champ que vous souhaitez afficher
+		  }));
+		  });
+		},
+		error: function(xhr, status, error) {
+		  console.error('Une erreur s\'est produite lors de la requête AJAX :', status, error);
+		}
+		});
+	  });
+	  });
+	  
+	  </script>
+
+
+
+
+
+   
+{% endblock %}

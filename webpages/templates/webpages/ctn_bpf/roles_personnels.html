@@ -1,0 +1,109 @@
+{%extends './operations_details.html'%}
+{%block content%}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card my-4">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h5 style="font-weight: bold;">Liste des R&ocirc;les</h5>
+                    </div>
+
+
+                    <div class="">
+                        <table class="table mb-0 table-responsive">
+                          <thead class="">
+                            <tr>
+                              <th>Nom</th>
+                              <th>Designation</th>
+                             
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {%for role in roles%}
+                            <tr>
+                              <td>{{role.nom}}</td>
+                              <td>{{role.description}}</td>
+                              
+                              
+                              <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                      <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal{{role.id}}">Edition</a></li>
+                                    <li><a class="dropdown-item" href="/delete_role/{{role.id}}/">Supprimer</a></li> 
+                                      
+                                    </ul>
+                                  </div>
+                                  
+                              </td>
+                            </tr>
+
+
+                            <div class="modal fade" id="exampleModal{{role.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edition des r&ocirc;les</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                      </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form action="/edit_role/{{role.id}}/" method="post">
+                                      {%csrf_token%}
+                                    <label for="nom">nom</label>
+                                    <input type="text" name="nom" class="form-control" value="{{role.nom}}">
+                                    <label for="description">Description</label>
+                                    <input type="text" name="description" class="form-control" value="{{role.description}}">
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                    <button type="submit" class="btn btn-primary">Edition</button>
+                                  </div>
+                                </form>
+                                </div>
+                              </div>
+                            </div>
+                            {%endfor%}
+                            
+                          </tbody>
+                        </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% for message in messages %}
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   {% if message.tags == 'success' %}
+    <script>
+        swal("Succes!", "{{ message }}", "success");
+    </script>
+   {% endif %}
+{% endfor %}
+
+
+{% for message in messages %}
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   {% if message.tags == 'error' %}
+    <script>
+        swal("error!", "{{ message }}", "error");
+    </script>
+   {% endif %}
+{% endfor %}
+
+
+{% for message in messages %}
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   {% if message.tags == 'info' %}
+    <script>
+        swal("info!", "{{ message }}", "info");
+    </script>
+   {% endif %}
+{% endfor %}
+{%endblock%}

@@ -1,0 +1,49 @@
+{%extends './config.html'%}
+
+
+{%block content%}
+
+
+
+<div class="grid gap-6 py-6 my6">
+    <h5 class="text-xl sm:text-2xl font-semibold mx-6">Groupes De Boutique</h5>
+    <table class="table align-middle table-row-dashed fs-6 gy-3 table-responsive text-center" >
+        <!--begin::Table head-->
+        <thead>
+            <!--begin::Table row-->
+            <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+                <th > Image</th>
+                <th > Nom </th>
+               
+               
+                <th class="min-w-100px">Actions</th>
+            </tr>
+            <!--end::Table row-->
+        </thead>
+        <tbody>
+            {%for groupes in groupe%}
+        <tr>
+            <td>
+                    {%if groupes.icone is Null%}
+                    {%else%}
+                  
+                     <img src="" alt="">
+                    {%endif%}
+              
+            </td>
+            <td>
+          {{groupes.nom}}
+        </td>
+        <td>
+								
+            <a href="" class="edit" data-toggle="modal"><i class="bx bx-edit" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+          <a href="/delete_group/{{ groupes.id }}/" class="delete" ><i class="bx bx-trash" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+        </td>
+      </tr>
+      {%endfor%}
+           
+    </tbody>
+    </table>
+</div>
+
+{%endblock%}

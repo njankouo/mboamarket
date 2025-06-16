@@ -1,0 +1,522 @@
+{%extends './operations_details.html'%}
+
+{%block content%}
+<div class="container-fluid">
+      <div class="d-flex flex-wrap my-4">
+					
+                   	<div class="text-left"><a href="/admin_institution" class="btn btn-success mx-2">Ajouter Institution</a>
+                   	</div>
+					   <button class="btn btn-light mx-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Gestion Groupe D'institution</button>
+					   {% if user.is_staff %}
+                   	<div class="px-4 "><a href="#dupliqModal" data-bs-toggle='modal' class="btn btn-info">Dupliquer</a>
+                   	</div>
+                   	{% endif %}
+					   <button class="btn btn-dark"  data-bs-toggle="modal" data-bs-target="#exampleModalBaners">Gestion Baniere</button>
+				</div>
+				<!-- <div class="modal fade" id="exampleModalBaners" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+					  <div class="modal-content">
+						<div class="modal-header">
+						  <h5 class="modal-title text-primary" id="exampleModalLabel" style="font-weight:bold">Gestion Des Banieres</h5>
+						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						  </button>
+						</div> -->
+						<div class="modal fade" id="exampleModalBaners" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog ">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <h5 class="modal-title" id="exampleModalLabel">Gestion Des Banieres</h5>
+								  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+						<div class="modal-body">
+						 
+						  <form method="POST" action="/add_baniere/" enctype="multipart/form-data">
+							{%csrf_token%}
+							<div class="row">
+							  <div class="col-md-12">
+								<label>Nom </label>
+								<input type="text" class="form-control" placeholder="Nom baniere" name="nom">
+							  </div>
+							  <div class="col-md-12">
+								<label>Logo</label>
+								<input type="file" class="form-control" placeholder="logo" name="logo">
+							  </div>
+							  {% comment %} <div class="col-md-12">
+								<label>Institution</label>
+								<select class="form-control" name="institution">
+									<option></option>
+									{%for institutions in institutions1%}
+									<option value= '{{ institutions.id }}'>{{institutions.nom}}</option>
+	
+									{%endfor%}
+	
+								</select>
+							  </div> {% endcomment %}
+							</div>
+						</div>
+						<div class="modal-footer">
+						  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+						  <button type="submit" class="btn btn-primary">Enregistrer</button>
+						</form>
+						</div>
+						<hr/>
+				<div class="container mx-4 table" style="width:95%">
+				<div class="table-wrapper">
+				  <div class="table-title">
+					<div class="row">
+					  <div class="col-sm-6">
+						<h5>Liste des Banieres</h5>
+					  </div>
+					 
+					</div>
+				  </div>
+				  <table class="table table-striped table-hover table-responsive">
+					<thead>
+					  <tr>
+						
+						<th>Icone</th>
+						<th>Nom</th>
+						
+						
+						<th>Actions</th>
+					  </tr>
+					</thead>
+					<tbody>
+						{%for baniers in baniere%}
+					  <tr>
+						
+						<td><img src="{{ baniers.logo.url }}" class="img-responsive" width="50"/></td>
+						<td>{{baniers.nom}}</td>
+						
+						
+						<td>
+						  <a href="/edit_baniere/{{ baniers.id }}/" class="edit" ><i class="fa fa-edit" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+						  <a href="/delete_baners/{{ baniers.id }}/" class="delete" ><i class="fa fa-trash" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+						</td>
+					  </tr>
+					  {%endfor%}
+					  
+					
+					  </tr>
+					</tbody>
+				  </table>
+				
+					  </div>
+					</div>
+				  </div>
+	
+	
+				   </div>
+			  </div>
+			  <!-- <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <h5 class="modal-title text-primary" id="staticBackdropLabel" style="font-weight:bold">Groupe D'institution</h5>
+					
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					  </button>
+					</div> -->
+					<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="exampleModalLabel">Groupe D'institution</h5>
+							  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+					<div class="modal-body">
+					  ... <button class="btn btn-light" onclick="toggleElement()"><i class="fa fa-plus"></i>Plus de detail</button> 
+					  <form method="POST" action="/groupe_institution/" enctype="multipart/form-data">
+						{%csrf_token%}
+						<div class="row">
+						  <div class="col-md-12">
+							<label>Nom</label>
+							<input type="text" class="form-control" placeholder="Nom" name="nom">
+						  </div>
+						  <div class="col-md-12">
+							<label>Description</label>
+							<textarea class="form-control" name="description"></textarea>
+						  </div>
+		
+						  <div class="col-md-12">
+							<label>Icone</label>
+							<input type="file" class="form-control" placeholder="Icone" name="icone">
+						  </div>
+						</div>
+					
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+					  <button type="submit" class="btn btn-primary">Valider</button>
+					</div>
+				</form>
+			
+				<hr/>
+					<div class="container mx-4 table" style="width:95%">
+					<div class="table-wrapper">
+					  <div class="table-title">
+						<div class="row">
+						  <div class="col-sm-6">
+							<h5>Groupe <b>D'institution</b></h5>
+						  </div>
+						 
+						</div>
+					  </div>
+					  <table class="table table-striped table-hover table-responsive">
+						<thead>
+						  <tr>
+							
+							<th>Icone</th>
+							<th>Nom</th>
+							<th>Description</th>
+							
+							<th>Actions</th>
+						  </tr>
+						</thead>
+						<tbody>
+							{%for groupes in groupe%}
+						  <tr>
+							
+							<td><img src="{{ groupes.icone.url }}" class="img-responsive" width="50"/></td>
+							<td>{{groupes.nom}}</td>
+							<td>{{groupes.description}}</td>
+							
+							<td>
+								
+								<a href="" class="edit" data-toggle="modal"><i class="bx bx-edit" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							  <a href="/delete_group/{{ groupes.id }}/" class="delete" ><i class="bx bx-trash" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+						  </tr>
+						  {%endfor%}
+						  
+						
+						  </tr>
+						</tbody>
+					  </table>
+					
+					</div>
+				  </div>
+				  </div>
+				</div>
+			  </div>
+					
+	<div class="row">
+	  {% for line in institutions1 %}
+	  <div class="col-md-4 col-xs-6 col-sm-3">
+		<div class="card my-2" style="height: 90%;">
+			<div class="card-body">
+  
+				  <a href="/set_institution/{{ line.id }}/">
+					<img style="width:40px;height:40px;border-radius:100%; " src="{{line.img.url}}">
+                        
+					<h3>{{ line.sigle }}</h3>
+				  </a>
+				  <p>
+					{{ line.nom }}
+				  </p>
+				  {% if line.groupe_id is not null %}
+					<p style="font-weight:bold">Cet Institution Est Liée Au Groupe {{ line.groupe.nom }}</p>
+				  {% else %}
+					<button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal{{ line.id }}">Associer Un Groupe &nbsp;<i class="fa fa-chevron-right"></i></button>
+				  {% endif %}
+				 
+				  <!-- <button class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal_delete{{line.id}}" 
+				  style="display: none; transition: all 0.2s ease; background-color: white; border: 2px solid #f44336 !important; box-shadow: 0 3px #d32f2f !important; background-color: #ef5350;"  
+				 >Supprimer</button>   -->
+				</div>
+			  </div>
+			</div>
+		<div class="modal fade" id="exampleModal_delete{{line.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h5 class="modal-title text-danger" id="exampleModalLabel" style="font-weight: bold;">AVERTISSEMENT</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<form method="POST" action="/delete_institution/{{line.id}}/">
+					{%csrf_token%}
+				<div class="modal-body">
+				  ...
+				  <p style="font-style: italic; line-height: 20px;">
+					Vous êtes sur le point de supprimer une institution qui pourrait contenir des données importantes. Êtes-vous sûr de vouloir continuer cette action ?																  </p>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">ANNULER</button>
+				  <button type="submit" class="btn btn-primary">OK</button>
+				</div>
+			</form>
+			  </div>
+			</div>
+		  </div>
+
+	  <div class="modal fade" id="exampleModal{{ line.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Associer L'institution {{line.sigle}} a un groupe</h5>
+			  <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button> -->
+			</div>
+			<div class="modal-body">
+			  ...
+			  <form method="POST" action="/edit_group_institution/{{ line.id }}/">
+				{%csrf_token%}
+				<input type="hidden" value="{{ line.id }}">
+			  <div class="radio-wrapper">
+				{%for groupes in groupe%}
+				<input type="radio" id="radio1" name="groupe" value="{{ groupes.id }}" />
+				<label for="radio1">
+					<span class="outer">
+						<span class="inner animated"></span>
+					</span>
+					{{ groupes.nom }}
+				</label>
+				{%endfor%}
+			</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+			  <button type="submit" class="btn btn-primary"> Associer</button>
+			</form>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+	{% endfor %}
+
+	<div class="modal fade" id="dupliqModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form class="form-horizontal bordered-row" id='duplicate_instis' action="/duplicate/" data-toggle="validator" role="form" method="post" >
+				{% csrf_token %}
+				<div class="modal-body">
+						<input type="hidden" class="form-control" name="generator_d" value='i'>
+						<input type="hidden" name="values_d" id="values_d" value="">
+						<div>
+							<h5 style="text-transform:uppercase;">Dupliquer une Institution <span> </span></h5>
+							<h6>Vous souhaitez créer une institution ... mais ne souhaitez plus refaire les meme configurations</h6>
+						</div>
+						<div class="pt-4">
+							<div class="mb-2"> <small> Choisissez une Institution </small></div>
+							{% for line in institutions1 %}
+							<div class="list-group-item mb-3">
+								<input data-id="{{line.id}}" id="{{line.id}}ch" class="dupli_chec" type="checkbox" name="">&nbsp;&nbsp;
+								<img src="{{line.img.url}}" style="width:25px;height:25px;"> 
+								<label for="{{line.id}}ch">&nbsp;{{line}}</label> 
+							</div>
+							{% endfor %}
+							<div>
+								<label for="dupli_datas">Dupliquer les données</label> ? <input id="dupli_datas" type="checkbox" value="1" name="entity_dup">
+							</div>
+						</div>
+				</div>
+				<div class="modal-footer">
+						<button type="submit" class="btn btn-success"> Dupliquer </button>
+				</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="adminModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form class="form-horizontal bordered-row" id="deleteFormAction" data-toggle="validator" role="form" method="post">
+				{% csrf_token %}
+				<div class="modal-body">
+						<input type="hidden" class="form-control" name="idaction" id="idaction">
+						<h5 style="text-transform:uppercase;">Adminsitration de l'Institution <span> </span></h5>
+
+				</div>
+				<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="mdi mdi-thumb-down-outline"></i> Cancel</button>
+						<button type="submit" class="btn btn-primary"><i class="mdi mdi-thumb-up-outline"></i> Confirm</button>
+				</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+
+		
+	<div class="modal modalAnimate fade" id="myModalRETRY" tabindex="-1" role="dialog" aria-labelledby="myModalRETRY" aria-hidden="true" data-animation-in="fadeInLeft"  data-animation-out="bounceOut">
+		<div class="modal-dialog modal-dialog-centered modal-lg " role="document">
+		<div class="modal-dialog ">
+		  <div class="modal-content">
+	  
+			<!-- Modal Header -->
+			<div class="modal-header">
+			  <h4 class="modal-title">Associez Les Banieres A Vos Institutions </h4>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+	  
+			<!-- Modal body -->
+			<div class="modal-body">
+			  <div class="col-md-12">
+				<form method="POST" action="/edit_baniere_institution/">
+				{%csrf_token%}
+			  <label>Baniere</label>
+			  <select class="form-control" name="baniere">
+				
+				{%for banieres in baniere%}
+				<option value="{{ banieres.id }}">{{banieres.nom}}</option>
+				{%endfor%}
+			  </select>
+			  <br/>
+			  <fieldset class="p-2 border">
+				<legend  class="w-auto">Associez Les Banieres A Vos Institutions</legend>
+			  <label>Institutions</label>
+			  <select class="form-control " name="institution" >
+				<option></option>
+				{%for institutions in institutions1%}
+				<option value="{{ institutions.id }}">{{institutions.nom}}</option>
+				{%endfor%}
+			  </select>
+			  <fieldset>
+		  </div>
+			<!-- Modal footer -->
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+			  <button type="submit" class="btn btn-success" >Enregistrer</button>
+		 
+			</div>
+		  </form>
+		 
+		  
+		 
+		</div>
+		<div class="container">
+			
+				<div class="row">
+				   <div class="col-sm-12">
+					<h5>Liste Des Institutions Associées Aux Banieres</h5>
+				  </div>
+				 
+				  {% comment %} <div class="col-sm-6">
+					<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+					<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+				  </div>  {% endcomment %}
+				
+			  <table class="table table-striped table-hover table-responsive">
+				<thead>
+				  <tr>
+					
+					<th>Institution(s)</th>
+					<th>Baniere(s)</th>
+					
+					<th>Actions</th>
+				  </tr>
+				</thead>
+				<tbody>
+					{%for banieres in baniere%}
+					{%for institutions in institutions1%}
+					{%if institutions.baniere_id == banieres.id%}
+				  <tr>
+					
+					<td>{{banieres.nom}}</td>
+					<td>{{institutions.sigle}}</td>
+					
+					<td>
+						  <a href="/delete_baniere/{{ institutions.id }}" class="delete" ><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+					</td>
+				  </tr>
+				  {%endif%}
+				  {%endfor%}
+				 {%endfor%}
+				
+				</tbody>
+			  </table>
+			  
+			</div>
+		  </div>
+	  </div>
+
+	 
+			
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Masquer les éléments au chargement de la page
+    $('.table').show();
+
+    // Fonction pour basculer les éléments et changer le texte du bouton
+    function toggleElement() {
+      $('.table').toggle('slow');
+      var buttonText = $('.btn-light').text();
+      if (buttonText.trim() === "Afficher les Informations") {
+        $('.btn-light').text("Afficher les Informations");
+
+      } else {
+        $('.btn-light').text("Afficher les Informations");
+      }
+    }
+
+    // Attacher la fonction à un événement, par exemple un clic sur un bouton
+    $('.btn-light').click(function() {
+      toggleElement();
+    });
+  });
+</script>
+
+
+
+{% for message in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {% if message.tags == 'success' %}
+
+<script type="text/javascript">
+    Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "{{message}}",
+  showConfirmButton: false,
+  timer: 2000
+});
+</script>
+{%endif%}
+{%endfor%}
+
+{% for message in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {% if message.tags == 'error' %}
+
+<script type="text/javascript">
+    Swal.fire({
+  position: "top-end",
+  icon: "error",
+  title: "{{message}}",
+  showConfirmButton: false,
+  timer: 2000
+});
+</script>
+{%endif%}
+{%endfor%}
+
+
+
+{% for message in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {% if message.tags == 'info' %}
+
+<script type="text/javascript">
+    Swal.fire({
+  position: "top-end",
+  icon: "info",
+  title: "{{message}}",
+  showConfirmButton: false,
+  timer: 7000
+});
+</script>
+{%endif%}
+{%endfor%}
+<!-- Inclure SweetAlert JS -->  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>  
+
+{%endblock%}

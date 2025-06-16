@@ -1,0 +1,1157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>MboaMarket</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  {%load static%}
+
+  <!-- Favicons -->
+  <link href="{%static 'styles/assets/img/favicon.png'%}" rel="icon">
+  <link href="{%static 'styles/assets/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{%static 'styles/assets/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+  <link href="{%static 'styles/assets/vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
+  <link href="{%static 'styles/assets/vendor/aos/aos.css'%}" rel="stylesheet">
+  <link href="{%static 'styles/assets/vendor/glightbox/css/glightbox.min.css'%}" rel="stylesheet">
+  <link href="{%static 'styles/assets/vendor/swiper/swiper-bundle.min.css'%}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{%static 'styles/assets/css/main.css'%}" rel="stylesheet">
+  
+  
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500|Yellowtail");
+      .overlay_bg {
+         display: block;
+         position: absolute;
+         top: 0;
+         width: 100%;
+         height: 100%;
+         background: url(https://images.pexels.com/photos/262713/pexels-photo-262713.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb)
+            no-repeat center;
+         background-size: cover;
+         filter: blur(0px);
+         z-index: -1;
+      }
+      .title {
+         padding: 60px 0px;
+      }
+      .card {
+         padding-bottom: 10px;
+      }
+      .card-title {
+         font-family: "Yellowtail", cursive;
+         background: linear-gradient(40deg, #2096ff, #05ffa3);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+      }
+      .card-text {
+         color: #777;
+         font-size: 0.9rem;
+      }
+      .btn_grad_blgr {
+         margin: 0 auto;
+         margin-bottom: 0px;
+         border: 0;
+         border-radius: 10em;
+         padding: 15px 15px;
+         font-size: 14px;
+         font-weight: 300;
+         background: linear-gradient(40deg, #2096ff, #05ffa3) !important;
+         color: #fff;
+      }
+      
+      .btn_grad_blgr:focus,
+      .btn_grad_blgr:active {
+         box-shadow: none !important;
+         border-color: none;
+      }
+      .shine_fx {
+        width: 405px;
+        height: 605px;
+        position: absolute;
+        top: -256px;
+        left: 250px;
+        transition: .5s;
+        transform: rotate(40deg);
+        background: linear-gradient(90deg, rgba(255,255,255, 0)50%, rgba(255,255,255,0.7)100%);
+         
+      }
+      .shiny {
+         position: relative;   
+         overflow: hidden;
+         transition: ease .3s;
+      }
+      .card:hover .shine_fx {  
+        transform: rotate(0);
+        left: -560px;
+        top: -445px;
+      }
+      /* .btn {
+        margin: 0 auto;
+        margin-bottom: 30px;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 600;    
+      } */
+      /*
+      .card {
+         border: solid 12px rgba(255,255,255,0.2);
+         background-clip: padding-box;
+      }
+      */
+      /*Profile Card 5*/
+.profile-card-5 {
+   margin-top: 20px;
+ 
+}
+
+.profile-card-5 .btn {
+   border-radius: 2px;
+   text-transform: uppercase;
+   font-size: 12px;
+   padding: 7px 20px;
+}
+
+.profile-card-5 .card-img-block {
+   width: 75%;
+   margin: 0 auto;
+   position: relative;
+   top: -20px;
+   height: 90%;
+}
+
+.profile-card-5 .card-img-block img {
+   border-radius: 5px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.63);
+}
+
+.profile-card-5 h5 {
+   color: #4e5e30;
+   font-weight: 600;
+}
+
+.profile-card-5 p {
+   font-size: 14px;
+   font-weight: 300;
+}
+
+.profile-card-5 .btn-primary {
+   background-color: #4e5e30;
+   border-color: #4e5e30;
+}
+
+
+</style>
+<style>
+  .profile-card-5 {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .profile-card-5:hover {
+      transform: translateY(-10px); /* Légère élévation de la carte */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Ombre portée pour un effet de profondeur */
+  }
+
+  .card-img-block img {
+      transition: transform 0.3s ease;
+  }
+
+  .profile-card-5:hover .card-img-block img {
+      transform: scale(1.05); /* Légère mise à l'échelle de l'image */
+  }
+
+  .card-body {
+      transition: opacity 0.3s ease;
+  }
+
+  .profile-card-5:hover .card-body {
+      opacity: 0.9; /* Légère réduction de l'opacité pour un effet subtil */
+  }
+
+
+
+
+
+
+  .product-card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    transition: all 0.5s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #6366f1;
+}
+
+.btn-custom {
+    background: linear-gradient(45deg, #6366f1, #8b5cf6);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+
+
+
+#cards .card {
+    border-radius: 20px;
+    min-height: 100%;
+}
+
+#cards .heading-border {
+    position: absolute;
+    width: 100%;
+    top: 60%;
+}
+
+#cards .card .user-picture img {
+    position: absolute;
+    top: -20%;
+    right: 10%;
+    background: #f8f9fa!important;
+    padding: 10px;
+}
+
+#cards .card .user-content .user-name {
+    margin-right: 150px;
+}
+</style>
+ <style>
+      
+     .animated-text {  
+        font-size: 1.2rem;  
+/*        text-align: center;  */
+        position: relative;  
+        height: 2rem; /* Ajustez selon vos besoins */  
+    }  
+    
+    .highlight {  
+        font-size: 1.2rem;  
+        font-weight: 800;  
+        color: #0056b3;  
+        display: inline-block;  
+        text-shadow: 0 0 8px rgba(0, 150, 255, 0.3);  
+        animation: highlightPulse 4s infinite, colorWave 19s infinite;  
+        padding: 0 10px;  
+        border-radius: 8px;  
+        background: linear-gradient(135deg, rgba(230, 245, 255, 0.7) 0%, rgba(200, 235, 255, 0.9) 100%);  
+        box-shadow: 0 4px 15px rgba(0, 120, 215, 0.2);  
+        position: relative; /* Position absolute pour chevaucher */  
+        opacity: 1;  
+        transition: opacity 1.5s ease;  
+    }  
+    
+    .rest-of-text {  
+        color: #333;  
+        font-weight: 500;  
+        position: absolute; /* Position absolute pour chevaucher */  
+        opacity: 0; /* Commencer caché */  
+        transition: opacity 1.8s ease;   
+        left: 0; /* Assurez-vous qu'il soit au bon endroit */  
+        right: 0; /* Assurez-vous qu'il soit au bon endroit */  
+    }  
+
+    @keyframes highlightPulse {  
+        0% { transform: scale(1); }  
+        50% { transform: scale(1.05); }  
+        100% { transform: scale(1); }  
+    }  
+    
+    @keyframes colorWave {  
+        0% { color: #0056b3; }  
+        25% { color: #0078d7; }  
+        50% { color: #0099cc; }  
+        75% { color: #0078d7; }  
+        100% { color: #0056b3; }  
+    }  
+    </style>
+
+
+
+ <style type="text/css">
+    .wrapper{
+  display:flex;
+
+  flex-direction: row;
+  padding: 0 20px;
+
+
+}
+
+
+
+.fab {
+margin: auto;
+
+}
+.social{
+  color: #FFF;
+  transition: all 0.35s;
+  transition-timing-function: cubic-bezier(0.31, -0.105, 0.43, 1.59);
+}
+.social:hover {
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+  transition: all ease 0.5s;
+  -moz-transition: all ease-in 0.5s;
+  -webkit-transition: all ease-in 0.5s;
+  -o-transition: all ease-in 0.5s;
+  
+}
+
+.facebook {
+ color:#4267B2;
+}
+
+.twitter {
+color:#1DA1F2;
+
+}
+.youtube {
+      color:#c4302b;
+}
+.pinterest {
+   color:#c8232c;
+}
+.instagram {
+ color: transparent;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+
+}
+.tumblr {
+        color: #34526f;
+}
+.whatsapp {
+        color:#25D366;
+}
+
+.bg-ico {
+  display: flex;
+  background-color: #FFF;
+  width: 60px;
+  height: 60px;
+  line-height: 90px;
+  margin: 0 5px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 28%;
+  box-shadow: 0 5px 15px -5px rgba(0,0,0,0.1);
+  opacity: 0.99;
+  -webkit-transition: background-color 2s ease-out;
+  -moz-transition: background-color 2s ease-out;
+  -o-transition: background-color 2s ease-out;
+  transition: background-color 2s ease-out;
+  
+}
+.bg-ico:hover{
+     box-shadow: 0 5px 15px -5px rgba(0,0,0,0.8);
+}
+
+#facebook:hover {
+  background-color: #4267B2;
+}
+
+#twitter:hover {
+background-color: #1DA1F2;
+
+}
+#youtube:hover {
+      background-color: #c4302b;
+}
+#pinterest:hover {
+   background-color:#c8232c;
+}
+#instagram:hover {
+ background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  
+
+}
+#tumblr:hover {
+    background-color: #34526f;
+}
+#whatsapp:hover {
+       background-color:#25D366;
+}
+
+.facebook:hover, 
+.twitter:hover, 
+.youtube:hover, 
+.pinterest:hover,
+.instagram:hover, 
+.tumblr:hover,
+.whatsapp:hover {
+ color:#fff;
+ transform: scale(1.3);
+
+}
+  </style>
+
+
+  
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500|Yellowtail");
+      .overlay_bg {
+         display: block;
+         position: absolute;
+         top: 0;
+         width: 100%;
+         height: 100%;
+         background: url(https://images.pexels.com/photos/262713/pexels-photo-262713.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb)
+            no-repeat center;
+         background-size: cover;
+         filter: blur(0px);
+         z-index: -1;
+      }
+      .title {
+         padding: 60px 0px;
+      }
+      .card {
+         padding-bottom: 10px;
+      }
+      .card-title {
+         font-family: "Yellowtail", cursive;
+         background: linear-gradient(40deg, #2096ff, #05ffa3);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+      }
+      .card-text {
+         color: #777;
+         font-size: 0.9rem;
+      }
+      .btn_grad_blgr {
+         margin: 0 auto;
+         margin-bottom: 0px;
+         border: 0;
+         border-radius: 10em;
+         padding: 15px 15px;
+         font-size: 14px;
+         font-weight: 300;
+         background: linear-gradient(40deg, #2096ff, #05ffa3) !important;
+         color: #fff;
+      }
+      
+      .btn_grad_blgr:focus,
+      .btn_grad_blgr:active {
+         box-shadow: none !important;
+         border-color: none;
+      }
+      .shine_fx {
+        width: 405px;
+        height: 605px;
+        position: absolute;
+        top: -256px;
+        left: 250px;
+        transition: .5s;
+        transform: rotate(40deg);
+        background: linear-gradient(90deg, rgba(255,255,255, 0)50%, rgba(255,255,255,0.7)100%);
+         
+      }
+      .shiny {
+         position: relative;   
+         overflow: hidden;
+         transition: ease .3s;
+      }
+      .card:hover .shine_fx {  
+        transform: rotate(0);
+        left: -560px;
+        top: -445px;
+      }
+      /* .btn {
+        margin: 0 auto;
+        margin-bottom: 30px;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 600;    
+      } */
+      /*
+      .card {
+         border: solid 12px rgba(255,255,255,0.2);
+         background-clip: padding-box;
+      }
+      */
+      /*Profile Card 5*/
+.profile-card-5 {
+   margin-top: 20px;
+ 
+}
+
+.profile-card-5 .btn {
+   border-radius: 2px;
+   text-transform: uppercase;
+   font-size: 12px;
+   padding: 7px 20px;
+}
+
+.profile-card-5 .card-img-block {
+   width: 75%;
+   margin: 0 auto;
+   position: relative;
+   top: -20px;
+   height: 90%;
+}
+
+.profile-card-5 .card-img-block img {
+   border-radius: 5px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.63);
+}
+
+.profile-card-5 h5 {
+   color: #4e5e30;
+   font-weight: 600;
+}
+
+.profile-card-5 p {
+   font-size: 14px;
+   font-weight: 300;
+}
+
+.profile-card-5 .btn-primary {
+   background-color: #4e5e30;
+   border-color: #4e5e30;
+}
+
+
+</style>
+<style>
+  .profile-card-5 {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .profile-card-5:hover {
+      transform: translateY(-10px); /* Légère élévation de la carte */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Ombre portée pour un effet de profondeur */
+  }
+
+  .card-img-block img {
+      transition: transform 0.3s ease;
+  }
+
+  .profile-card-5:hover .card-img-block img {
+      transform: scale(1.05); /* Légère mise à l'échelle de l'image */
+  }
+
+  .card-body {
+      transition: opacity 0.3s ease;
+  }
+
+  .profile-card-5:hover .card-body {
+      opacity: 0.9; /* Légère réduction de l'opacité pour un effet subtil */
+  }
+
+
+
+
+
+
+  .product-card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    transition: all 0.5s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #6366f1;
+}
+
+.btn-custom {
+    background: linear-gradient(45deg, #6366f1, #8b5cf6);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+
+
+
+#cards .card {
+    border-radius: 20px;
+    min-height: 100%;
+}
+
+#cards .heading-border {
+    position: absolute;
+    width: 100%;
+    top: 60%;
+}
+
+#cards .card .user-picture img {
+    position: absolute;
+    top: -20%;
+    right: 10%;
+    background: #f8f9fa!important;
+    padding: 10px;
+}
+
+#cards .card .user-content .user-name {
+    margin-right: 150px;
+}
+</style>
+ <style>
+      
+     .animated-text {  
+        font-size: 1.2rem;  
+/*        text-align: center;  */
+        position: relative;  
+        height: 2rem; /* Ajustez selon vos besoins */  
+    }  
+    
+    .highlight {  
+        font-size: 1.2rem;  
+        font-weight: 800;  
+        color: #0056b3;  
+        display: inline-block;  
+        text-shadow: 0 0 8px rgba(0, 150, 255, 0.3);  
+        animation: highlightPulse 4s infinite, colorWave 19s infinite;  
+        padding: 0 10px;  
+        border-radius: 8px;  
+        background: linear-gradient(135deg, rgba(230, 245, 255, 0.7) 0%, rgba(200, 235, 255, 0.9) 100%);  
+        box-shadow: 0 4px 15px rgba(0, 120, 215, 0.2);  
+        position: relative; /* Position absolute pour chevaucher */  
+        opacity: 1;  
+        transition: opacity 1.5s ease;  
+    }  
+    
+    .rest-of-text {  
+        color: #333;  
+        font-weight: 500;  
+        position: absolute; /* Position absolute pour chevaucher */  
+        opacity: 0; /* Commencer caché */  
+        transition: opacity 1.8s ease;   
+        left: 0; /* Assurez-vous qu'il soit au bon endroit */  
+        right: 0; /* Assurez-vous qu'il soit au bon endroit */  
+    }  
+
+    @keyframes highlightPulse {  
+        0% { transform: scale(1); }  
+        50% { transform: scale(1.05); }  
+        100% { transform: scale(1); }  
+    }  
+    
+    @keyframes colorWave {  
+        0% { color: #0056b3; }  
+        25% { color: #0078d7; }  
+        50% { color: #0099cc; }  
+        75% { color: #0078d7; }  
+        100% { color: #0056b3; }  
+    }  
+    </style>
+
+
+
+ <style type="text/css">
+    .wrapper{
+  display:flex;
+
+  flex-direction: row;
+  padding: 0 20px;
+
+
+}
+
+
+
+.fab {
+margin: auto;
+
+}
+.social{
+  color: #FFF;
+  transition: all 0.35s;
+  transition-timing-function: cubic-bezier(0.31, -0.105, 0.43, 1.59);
+}
+.social:hover {
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+  transition: all ease 0.5s;
+  -moz-transition: all ease-in 0.5s;
+  -webkit-transition: all ease-in 0.5s;
+  -o-transition: all ease-in 0.5s;
+  
+}
+
+.facebook {
+ color:#4267B2;
+}
+
+.twitter {
+color:#1DA1F2;
+
+}
+.youtube {
+      color:#c4302b;
+}
+.pinterest {
+   color:#c8232c;
+}
+.instagram {
+ color: transparent;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+
+}
+.tumblr {
+        color: #34526f;
+}
+.whatsapp {
+        color:#25D366;
+}
+
+.bg-ico {
+  display: flex;
+  background-color: #FFF;
+  width: 60px;
+  height: 60px;
+  line-height: 90px;
+  margin: 0 5px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 28%;
+  box-shadow: 0 5px 15px -5px rgba(0,0,0,0.1);
+  opacity: 0.99;
+  -webkit-transition: background-color 2s ease-out;
+  -moz-transition: background-color 2s ease-out;
+  -o-transition: background-color 2s ease-out;
+  transition: background-color 2s ease-out;
+  
+}
+.bg-ico:hover{
+     box-shadow: 0 5px 15px -5px rgba(0,0,0,0.8);
+}
+
+#facebook:hover {
+  background-color: #4267B2;
+}
+
+#twitter:hover {
+background-color: #1DA1F2;
+
+}
+#youtube:hover {
+      background-color: #c4302b;
+}
+#pinterest:hover {
+   background-color:#c8232c;
+}
+#instagram:hover {
+ background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  
+
+}
+#tumblr:hover {
+    background-color: #34526f;
+}
+#whatsapp:hover {
+       background-color:#25D366;
+}
+
+.facebook:hover, 
+.twitter:hover, 
+.youtube:hover, 
+.pinterest:hover,
+.instagram:hover, 
+.tumblr:hover,
+.whatsapp:hover {
+ color:#fff;
+ transform: scale(1.3);
+
+}
+  </style>
+</head>
+
+<body class="index-page">
+
+ <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="/account/{{institution.id}}/" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <img src="{{institution.img.url}}" alt="Logo" style="width: 45px; height: 65px; border-radius: 25%;">&nbsp; 
+        <h1 class="sitename">{{institution.sigle}}</h1>
+      </a>
+      &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/account/{{institution.id}}/" class="active">Acceuil</a></li>
+          <li><a href="#about"> A Propos    </a></li>          
+        
+          <li><a href="/all_article/{{institution.id}}/">Articles</a></li>
+          <li><a href="/all_actuality_article/{{institution.id}}/">M&eacute;diatheque</a></li>
+          <!-- <li><a href="#pricing">Pricing</a></li> -->
+          <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li> -->
+          <li><a href="#contact">Contact</a></li>
+          <li>  <a class="" href="/log_account/">Connexion</a></li>
+        </ul>
+        
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+   
+
+    </div>
+   
+  </header>
+
+  <br><br><br><br><br>
+  <main class="main">
+    
+   <!--  <h5 class="animated-text">
+        <span class="highlight">PORTAIL NUMERIQUE</span> -->
+        <!-- <span class="rest-of-text">DU CENTRE HOSPITALIER DE REFERENCE DE BERTOUA</span> -->
+    <!-- </h5> -->
+
+<!-- {%if baniere|length == '0'%}
+{%else%}
+<div class="slider">
+  <div class="slide-track">
+    {%for baniers in baniere%}
+    <div class="slide">
+      <img src="{{baniers.logo.url}}" height="50" width="40 "  class='img-responsive rounded' alt="" />
+      &nbsp;    
+      {{baniers.nom}}
+    </div>
+    {%endfor%}
+    
+  </div>
+</div> 
+{%endif%}  -->
+
+    <section id="about" class="about section">
+    
+           <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Nos Differentes Publications </h2>
+          <p>Videos Rendues Publics</p>
+        </div><!-- End Section Title -->
+  
+        <div class="container">
+  
+     
+  
+          <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+  
+            <div class="tab-pane fade active show" id="features-tab-1">
+              <div class="row">
+               {% for video in archive %}
+<div class="col-lg-4 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center my-2">
+    <h5>{{ video.titre }}</h5>
+    <div style="position: relative; max-height: 600px; overflow: hidden; border-radius: 10px;">
+        <video controls autoplay muted loop 
+               style="width: 100%; height: auto; max-height: 600px; object-fit: contain; display: block;">
+            <source src="{{ video.file.url }}" type="video/mp4">
+            Votre navigateur ne prend pas en charge la lecture des vidéos.
+        </video>
+    </div>
+</div>
+{% endfor %}
+                
+              </div>
+            </div><!-- End tab content item -->
+  
+        
+          </div>
+  
+    </section>
+
+
+
+
+ 
+
+
+  
+
+ 
+
+    <section id="contact" class="contact section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> -->
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row g-4 g-lg-5">
+          <div class="col-lg-5">
+            <div class="info-box" data-aos="fade-up" data-aos-delay="200">
+              <h3>Contact Info</h3>
+              <!-- <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis.</p> -->
+
+              <div class="info-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box">
+                  <i class="bi bi-geo-alt"></i>
+                </div>
+                <div class="content">
+                  <h4>Localisation</h4>
+                  <p>Yaounde-Cameroun</p>
+                 
+                </div>
+              </div>
+
+              <div class="info-item" data-aos="fade-up" data-aos-delay="400">
+                <div class="icon-box">
+                  <i class="bi bi-telephone"></i>
+                </div>
+                <div class="content">
+                  <h4>Telephone </h4>
+                  <p>+237 699 07 25 61</p>
+                  
+                </div>
+              </div>
+
+              <div class="info-item" data-aos="fade-up" data-aos-delay="500">
+                <div class="icon-box">
+                  <i class="bi bi-envelope"></i>
+                </div>
+                <div class="content">
+                  <h4>Email Address</h4>
+                  <p>info@example.com</p>
+                  <p>contact@example.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="contact-form" data-aos="fade-up" data-aos-delay="300">
+              <h3>Établir une communication avec {{institution.sigle}}</h3>
+              <!-- <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis.</p> -->
+
+              <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+                <div class="row gy-4">
+
+                  <div class="col-md-6">
+                    <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                  </div>
+
+                  <div class="col-md-6 ">
+                    <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                  </div>
+
+                  <div class="col-12">
+                    <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  </div>
+
+                  <div class="col-12">
+                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                  </div>
+
+                  <div class="col-12 text-center">
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                    <button type="submit" class="btn">Envoyer</button>
+                  </div>
+
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-4 footer-about">
+          <a href="/" class="logo d-flex align-items-center">
+            <span class="sitename">{{institution.sigle}}</span>
+          </a>
+          <div class="footer-contact pt-3">
+          
+            <p>Yaounde</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+237 699 07 25 61</span></p>
+            <p><strong>Email:</strong> <span>beinInfo@gmail.com</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 footer-links">
+          <h4>Liens Utilis&eacute;s</h4>
+          <ul>
+            <li><a href="#">Acceuil</a></li>
+            <li><a href="#">A Propos</a></li>
+            <li><a href="#">Actualit&eacute;s</a></li>
+            <li><a href="#">M&eacute;diatheque</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-4 footer-links">
+          <h4>Nos Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+     
+
+     
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">BeinInfo+</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="operaplus.org">BeinInfo+</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- JS -->  
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>  
+  <!-- Vendor JS Files -->
+  <script src="{%static 'styles/assets/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/php-email-form/validate.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/aos/aos.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/glightbox/js/glightbox.min.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/swiper/swiper-bundle.min.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/purecounter/purecounter_vanilla.js'%}"></script>
+
+  <!-- Main JS File -->
+  <script src="{%static 'styles/assets/js/main.js'%}"></script>
+ <script>  
+    const portal = document.getElementById('portal');  
+    const chamber = document.getElementById('chamber');  
+
+    let isPortalVisible = true;  
+    
+    function animateText() {  
+        if (isPortalVisible) {  
+            // Fade out PORTAIL NUMERIQUE and fade in CHR-BERTOUA  
+            portal.style.opacity = '0'; // Fait disparaître le portail numérique  
+            chamber.style.opacity = '1'; // Fait apparaître CHR-BERTOUA  
+        } else {  
+            // Fade out CHR-BERTOUA and fade in PORTAIL NUMERIQUE  
+            chamber.style.opacity = '0'; // Fait disparaître CHR-BERTOUA  
+            portal.style.opacity = '1'; // Fait apparaître le portail numérique  
+        }  
+        
+        isPortalVisible = !isPortalVisible;  
+        setTimeout(animateText, 5000);  
+    }  
+
+    // Démarrer l'animation après 1 seconde  
+    setTimeout(animateText, 1000);  
+</script>  
+<script>  
+        function afficherNumero() {  
+            alert("Le numéro de téléphone est : +237 699 072 561");  
+        }  
+    </script> 
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{%extends './operations_details.html'%}
+{%block content%}
+    <div class="container-fluid">
+        <div class="row">
+            {% for datasets in dataset %}
+            <div class="col-md-4 col-xs-6 col-sm-3">
+            <div class="card my-3" style="width: 20rem;">
+                <div class="card-body">
+                  <h6 class="card-title">   {{ datasets.m_name }}  </h6>
+                  <p class="card-text">Saisir,Modidier et Visualiser  Donn&eacute;es</p>
+                  <a href="/grub_form/{{ datasets.id }}/" class="btn btn-primary" >  
+                    Saisir Donn&eacute;es  
+                </a>  
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {%endblock%}
+      
+        
+ 

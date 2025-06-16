@@ -1,0 +1,232 @@
+{% for rubriques in rubrique %}
+    {% if rubriques.actualite_set.all %}
+    <div class="{% if not forloop.first %}mt-16 mb-10{% else %}mt-10{% endif %}">
+        <!-- En-tête de rubrique avec effet de profondeur -->
+        <div class="relative mb-8 group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+            <div class="relative flex justify-between items-center bg-white p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <h2 class="text-2xl font-bold text-gray-900 flex items-center">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                        {{ rubriques.nom }}
+                    </span>
+                    <span class="ml-3 px-3 py-1 bg-gradient-to-br from-blue-100 to-purple-100 text-blue-800 text-sm font-semibold rounded-full shadow-inner">
+                        {{ rubriques.actualite_set.all|length }} offre(s)
+                    </span>
+                </h2>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 group-hover:text-purple-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Grille asymétrique avec carte mise en avant -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {% for actualite in rubriques.actualite_set.all|slice:":4" %}
+            <a href="view_actuality/{{ actualite.id }}/" class="
+              
+                group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300
+                border border-gray-100 hover:border-blue-100 transform hover:-translate-y-1
+            ">
+                <!-- Effet de superposition colorée -->
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-50/20 to-purple-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                
+                <!-- Conteneur d'image avec effet de zoom et luminosité -->
+                <div class="relative overflow-hidden 
+                    {% if forloop.first %} 
+                        aspect-[16/9] 
+                    {% else %} 
+                        aspect-[4/3] 
+                    {% endif %}
+                    bg-gray-100">
+                    {% if actualite.photos %}
+                    <img 
+                        class="absolute inset-0 object-cover w-full h-full transition-all duration-500 group-hover:scale-105 brightness-95 group-hover:brightness-100" 
+                        src="{{ actualite.photos.url }}" 
+                        alt="{{ actualite.intitule }}" 
+                        loading="lazy"
+                    />
+                    {% endif %}
+                    
+                    <!-- Badge institution flottant -->
+                    <div class="absolute left-3 top-3">
+                        <span class="px-3 py-1.5 text-xs font-semibold tracking-wide text-white bg-gray-900/90 backdrop-blur rounded-full shadow-lg">
+                            {{ actualite.institution.sigle }}
+                        </span>
+                    </div>
+                    
+                    <!-- Overlay de prix -->
+                    <div class="absolute bottom-3 right-3">
+                        <span class="px-3 py-1.5 text-sm font-bold text-white bg-blue-600/90 backdrop-blur rounded-lg shadow-md">
+                            {{ actualite.prix|floatformat:"0" }} FCFA
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Contenu texte avec fond dégradé -->
+                <div class="p-4 relative z-20 bg-white">
+                    <h3 class="
+                        {% if forloop.first %} 
+                            text-xl font-bold 
+                        {% else %} 
+                            text-lg font-semibold 
+                        {% endif %}
+                        text-gray-900 group-hover:text-blue-600 transition-colors
+                        line-clamp-2
+                    ">
+                        {{ actualite.intitule }}
+                    </h3>
+                    
+                    <!-- Métadonnées avec icônes -->
+                    <div class="mt-3 flex items-center space-x-3 text-sm text-gray-600">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>{{ actualite.institution.ville|default:"-" }}</span>
+                        </div>
+                        
+                        {% if forloop.first %}
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span>{{ actualite.date_publication|date:"d/m/Y" }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    {% if forloop.first %}
+                    <!-- Bouton visible uniquement sur la carte principale -->
+                    <div class="mt-4">
+                        <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800 group-hover:bg-blue-200 transition-colors">
+                            Voir détails
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </div>
+                    {% endif %}
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+
+        <!-- Conteneur masqué pour éléments supplémentaires -->
+        <div id="more-{{ rubriques.id }}" class="hidden grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+            {% for actualite in rubriques.actualite_set.all|slice:"4:" %}
+            <a href="view_actuality/{{ actualite.id }}/" class="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-100 transform hover:-translate-y-1">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-50/20 to-purple-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                
+                <div class="relative overflow-hidden aspect-[4/3] bg-gray-100">
+                    {% if actualite.photos %}
+                    <img 
+                        class="absolute inset-0 object-cover w-full h-full transition-all duration-500 group-hover:scale-105 brightness-95 group-hover:brightness-100" 
+                        src="{{ actualite.photos.url }}" 
+                        alt="{{ actualite.intitule }}" 
+                        loading="lazy"
+                    />
+                    {% endif %}
+                    
+                    <div class="absolute left-3 top-3">
+                        <span class="px-3 py-1.5 text-xs font-semibold tracking-wide text-white bg-gray-900/90 backdrop-blur rounded-full shadow-lg">
+                            {{ actualite.institution.sigle }}
+                        </span>
+                    </div>
+                    
+                    <div class="absolute bottom-3 right-3">
+                        <span class="px-3 py-1.5 text-sm font-bold text-white bg-blue-600/90 backdrop-blur rounded-lg shadow-md">
+                            {{ actualite.prix|floatformat:"0" }} FCFA
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="p-4 relative z-20 bg-white">
+                    <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+                        {{ actualite.intitule }}
+                    </h3>
+                    
+                    <div class="mt-3 flex items-center space-x-3 text-sm text-gray-600">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>{{ actualite.institution.ville|default:"-" }}</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+
+        <!-- Bouton "Voir plus" animé -->
+        {% if rubriques.actualite_set.all|length > 4 %}
+        <div class="mt-8 text-center">
+            <button onclick="toggleMore('{{ rubriques.id }}')" 
+                    id="toggle-{{ rubriques.id }}"
+                    class="relative inline-flex items-center px-6 py-3 bg-white text-gray-800 font-medium rounded-full shadow-md hover:shadow-lg transition-all
+                           border border-gray-200 hover:border-blue-300 overflow-hidden group">
+                <span class="relative z-10 flex items-center">
+                    <span>Voir plus d'offres</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </span>
+                <span class="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+{% endfor %}
+
+<script>
+function toggleMore(rubriqueId) {
+    const moreContent = document.getElementById(`more-${rubriqueId}`);
+    const toggleButton = document.getElementById(`toggle-${rubriqueId}`);
+    
+    if (moreContent.classList.contains('hidden')) {
+        moreContent.classList.remove('hidden');
+        toggleButton.innerHTML = `
+            <span class="relative z-10 flex items-center">
+                <span>Voir moins</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+            </span>
+            <span class="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
+        `;
+        
+        // Animation douce pour le déploiement
+        moreContent.style.opacity = '0';
+        moreContent.style.transform = 'translateY(10px)';
+        moreContent.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        
+        setTimeout(() => {
+            moreContent.style.opacity = '1';
+            moreContent.style.transform = 'translateY(0)';
+        }, 10);
+    } else {
+        toggleButton.innerHTML = `
+            <span class="relative z-10 flex items-center">
+                <span>Voir plus d'offres</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </span>
+            <span class="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
+        `;
+        
+        // Animation douce pour le repli
+        moreContent.style.opacity = '0';
+        moreContent.style.transform = 'translateY(10px)';
+        
+        setTimeout(() => {
+            moreContent.classList.add('hidden');
+            moreContent.style.opacity = '';
+            moreContent.style.transform = '';
+        }, 300);
+    }
+}
+</script>

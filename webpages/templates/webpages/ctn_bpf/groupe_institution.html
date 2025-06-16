@@ -1,0 +1,801 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>MboaMarket</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  {%load static%}
+
+  <!-- Favicons -->
+  <link href="{%static 'styles/assets/img/favicon.png'%}" rel="icon">
+  <link href="{%static 'styles/assets/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{%static 'styles/assets/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+  <link href="{%static 'styles/assets/vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
+  <link href="{%static 'styles/assets/vendor/aos/aos.css'%}" rel="stylesheet">
+  <link href="{%static 'styles/assets/vendor/glightbox/css/glightbox.min.css'%}" rel="stylesheet">
+  <link href="{%static 'styles/assets/vendor/swiper/swiper-bundle.min.css'%}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{%static 'styles/assets/css/main.css'%}" rel="stylesheet">
+ 
+  <!-- =======================================================
+  * Template Name: iLanding
+  * Template URL: https://bootstrapmade.com/ilanding-bootstrap-landing-page-template/
+  * Updated: Nov 12 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  <style>
+ .card-title {
+         font-family: "Yellowtail", cursive;
+         background: linear-gradient(40deg, #2096ff, #05ffa3);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+      }
+  
+  .product-card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    transition: all 0.5s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #6366f1;
+}
+
+.btn-custom {
+    background: linear-gradient(45deg, #6366f1, #8b5cf6);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+  </style>
+
+
+
+<style type="text/css">
+  @import url("https://fonts.googleapis.com/css2?family=Corben:wght@700&display=swap");
+
+
+
+.marquee {
+  --duration: 60s;
+  --gap: var(--space);
+
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+
+}
+
+.marquee__group {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--gap);
+
+  animation: scroll var(--duration) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__group {
+    animation-play-state: paused;
+  }
+}
+
+.marquee__group img {
+  max-width: clamp(10rem, 1rem + 28vmin, 20rem);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 2rem;
+}
+
+.marquee__group p {  
+  background-image: linear-gradient(  
+    to left,  
+    hsl(144deg, 70%, 45%) 0%,         /* Vert */  
+    hsl(0deg, 100%, 40%) 50%,          /* Rouge */  
+    hsl(60deg, 100%, 50%) 100%         /* Jaune */  
+  );  
+  -webkit-background-clip: text;  
+  -webkit-text-fill-color: transparent;  
+  font-size: 1em; /* Ajustez la taille du texte si nécessaire */  
+  font-weight: bold; /* Rendre le texte plus épais pour plus d'impact */  
+}  
+.marquee--borders {
+  border-block: 1px solid white;
+  padding-block: 0.25rem;
+}
+
+.marquee--reverse .marquee__group {
+  animation-direction: reverse;
+  animation-delay: calc(var(--duration) / -2);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+
+.banniere-container {  
+    width: 100%; /* large de votre choix */  
+    overflow: hidden;   
+    white-space: nowrap; /* Les éléments ne passent pas à la ligne */  
+}  
+
+.banniere {  
+    display: inline-block;   
+    padding: 10px;  
+    animation: scroll 10s linear infinite; /* Durée et type d'animation */  
+}  
+
+@keyframes scroll {  
+    from {  
+        transform: translateX(100%); /* Commence hors de l'écran à droite */  
+    }  
+    to {  
+        transform: translateX(-100%); /* Fin hors de l'écran à gauche */  
+    }  
+}  
+
+/* Style des éléments défilants */  
+.marquee-item {  
+    transition: transform 0.3s ease, color 0.3s ease; /* Transition douce */  
+    display: inline-block; /* Assure un comportement en ligne */  
+}  
+
+/* Effet survol */  
+.marquee-item:hover {  
+    transform: scale(1.05); /* Agrandir légèrement sur le survol */  
+    color: #007bff; /* Change la couleur sur le survol */  
+}  
+
+/* Style pour le texte en mode mobile */  
+@media (max-width: 768px) {  
+    .marquee-item {  
+        font-size: 14px; /* Ajustez la taille de la police sur mobile */  
+    }  
+
+    .marquee-item img {  
+        height: 40px; /* Ajustez la taille de l'image si nécessaire */  
+        width: 32px; /* Ajustez la taille de l'image si nécessaire */  
+    }  
+}  
+  </style>
+
+<style type="text/css">
+    .wrapper{
+  display:flex;
+
+  flex-direction: row;
+  padding: 0 20px;
+
+
+}
+
+
+
+.fab {
+margin: auto;
+
+}
+.social{
+  color: #FFF;
+  transition: all 0.35s;
+  transition-timing-function: cubic-bezier(0.31, -0.105, 0.43, 1.59);
+}
+.social:hover {
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+  transition: all ease 0.5s;
+  -moz-transition: all ease-in 0.5s;
+  -webkit-transition: all ease-in 0.5s;
+  -o-transition: all ease-in 0.5s;
+  
+}
+
+.facebook {
+ color:#4267B2;
+}
+
+.twitter {
+color:#1DA1F2;
+
+}
+.youtube {
+      color:#c4302b;
+}
+.pinterest {
+   color:#c8232c;
+}
+.instagram {
+ color: transparent;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+
+}
+.tumblr {
+        color: #34526f;
+}
+.whatsapp {
+        color:#25D366;
+}
+
+.bg-ico {
+  display: flex;
+  background-color: #FFF;
+  width: 60px;
+  height: 60px;
+  line-height: 90px;
+  margin: 0 5px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 28%;
+  box-shadow: 0 5px 15px -5px rgba(0,0,0,0.1);
+  opacity: 0.99;
+  -webkit-transition: background-color 2s ease-out;
+  -moz-transition: background-color 2s ease-out;
+  -o-transition: background-color 2s ease-out;
+  transition: background-color 2s ease-out;
+  
+}
+.bg-ico:hover{
+     box-shadow: 0 5px 15px -5px rgba(0,0,0,0.8);
+}
+
+#facebook:hover {
+  background-color: #4267B2;
+}
+
+#twitter:hover {
+background-color: #1DA1F2;
+
+}
+#youtube:hover {
+      background-color: #c4302b;
+}
+#pinterest:hover {
+   background-color:#c8232c;
+}
+#instagram:hover {
+ background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  
+
+}
+#tumblr:hover {
+    background-color: #34526f;
+}
+#whatsapp:hover {
+       background-color:#25D366;
+}
+
+.facebook:hover, 
+.twitter:hover, 
+.youtube:hover, 
+.pinterest:hover,
+.instagram:hover, 
+.tumblr:hover,
+.whatsapp:hover {
+ color:#fff;
+ transform: scale(1.3);
+
+}
+  </style>
+  <style>  
+    .marquee {  
+        --duration: 40s; /* Durée par défaut pour les ordinateurs */  
+    }  
+
+    @media (max-width: 768px) { /* Pour les écrans inférieurs à 768px */  
+        .marquee {  
+            --duration: 25s; /* Durée réduite pour les mobiles */  
+        }  
+    }  
+</style>  
+<style>
+      
+     .animated-text {  
+        font-size: 1.2rem;  
+/*        text-align: center;  */
+/*        position: relative;  */
+        height: 2rem; /* Ajustez selon vos besoins */  
+    }  
+    
+    .highlight {  
+        font-size: 1.2rem;  
+        font-weight: 800;  
+        color: #0056b3;  
+        display: inline-block;  
+        text-shadow: 0 0 8px rgba(0, 150, 255, 0.3);  
+        animation: highlightPulse 4s infinite, colorWave 19s infinite;  
+        padding: 0 10px;  
+        border-radius: 8px;  
+        background: linear-gradient(135deg, rgba(230, 245, 255, 0.7) 0%, rgba(200, 235, 255, 0.9) 100%);  
+        box-shadow: 0 4px 15px rgba(0, 120, 215, 0.2);  
+        position: relative; /* Position absolute pour chevaucher */  
+        opacity: 1;  
+        transition: opacity 1.5s ease;  
+    }  
+    
+    .rest-of-text {  
+        color: #333;  
+        font-weight: 500;  
+        position: absolute; /* Position absolute pour chevaucher */  
+        opacity: 0; /* Commencer caché */  
+        transition: opacity 1.8s ease;   
+        left: 0; /* Assurez-vous qu'il soit au bon endroit */  
+        right: 0; /* Assurez-vous qu'il soit au bon endroit */  
+        font-style: italic;
+           font-size: 1.2rem;  
+              display: inline-block; 
+                     padding: 0 10px;   
+    }  
+
+    @keyframes highlightPulse {  
+        0% { transform: scale(1); }  
+        50% { transform: scale(1.05); }  
+        100% { transform: scale(1); }  
+    }  
+    
+    @keyframes colorWave {  
+        0% { color: #0056b3; }  
+        25% { color: #0078d7; }  
+        50% { color: #0099cc; }  
+        75% { color: #0078d7; }  
+        100% { color: #0056b3; }  
+    }  
+    </style>
+ <style>
+        /* Styles pour le loader */
+        .loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loader-container {
+            text-align: center;
+        }
+        
+        .loader {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+        
+        .loader-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 8px solid transparent;
+            border-radius: 50%;
+            animation: rotate 2s linear infinite;
+            box-sizing: border-box;
+        }
+        
+        .loader-circle:nth-child(1) {
+            border-top-color: #28a745; /* Vert */
+            border-bottom-color: #28a745;
+        }
+        
+        .loader-circle:nth-child(2) {
+            border-left-color: #dc3545; /* Rouge */
+            border-right-color: #dc3545;
+            animation-delay: 0.5s;
+        }
+        
+        .loader-circle:nth-child(3) {
+            border-top-color: #ffc107; /* Jaune */
+            border-bottom-color: #ffc107;
+            animation-delay: 1s;
+            width: 60px;
+            height: 60px;
+            top: 10px;
+            left: 10px;
+        }
+        
+     .logo-text {  
+    font-size: 2.5rem;  
+    font-weight: bold;  
+    letter-spacing: 1px;  
+    font-style: italic;  
+   
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Ombre du texte */  
+    transition: transform 0.3s; /* Transition pour un effet dynamique */  
+}  
+
+.logo-text:hover {  
+    transform: scale(1.05); /* Légère augmentation de taille au survol */  
+}  
+        
+        .logo-text span:nth-child(1) { color: #28a745; } /* M - Vert */
+        .logo-text span:nth-child(2) { color: #dc3545; } /* b - Rouge */
+        .logo-text span:nth-child(3) { color: #ffc107; } /* o - Jaune */
+        .logo-text span:nth-child(4) { color: #28a745; } /* a - Vert */
+        .logo-text span:nth-child(5) { color: #dc3545; } /* M - Rouge */
+        .logo-text span:nth-child(6) { color: #ffc107; } /* a - Jaune */
+        .logo-text span:nth-child(7) { color: #28a745; } /* r - Vert */
+        .logo-text span:nth-child(8) { color: #dc3545; } /* k - Rouge */
+        .logo-text span:nth-child(9) { color: #ffc107; } /* e - Jaune */
+        .logo-text span:nth-child(10) { color: #28a745; } /* t - Vert */
+        
+        .loading-text {
+            margin-top: 15px;
+            color: #6c757d;
+            font-size: 1rem;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* Masquer le contenu de la page pendant le chargement */
+        .page-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in, visibility 0.5s;
+        }
+        
+        .page-content.loaded {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+
+  
+  --badge-color: #37633f;
+  --checkmark-color: white;
+}
+
+.bypostauthor > article .fn {  
+  font-family: Montserrat, Verdana, sans-serif;
+  font-weight: 500;
+    position: relative;
+    padding-left: 22px;
+}
+
+.bypostauthor > article .fn:before,
+.bypostauthor > article .fn:after {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    content: "\2713";
+    color: var(--checkmark-color);
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    background-color: var(--badge-color);
+    border-radius: 20%;
+}
+
+.bypostauthor > article .fn:before {
+    transform: rotate(45deg);
+}
+    </style>
+
+</head>
+
+  
+  
+            
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
+
+
+<body class="index-page">
+<div class="loader-overlay" id="loader">
+        <div class="loader-container">
+            <div class="loader">
+                <div class="loader-circle"></div>
+                <div class="loader-circle"></div>
+                <div class="loader-circle"></div>
+            </div>
+            <div class="logo-text">
+                <span>M</span>
+                <span>b</span>
+                <span>o</span>
+                <span>a</span>
+                <span>M</span>
+                <span>a</span>
+                <span>r</span>
+                <span>k</span>
+                <span>e</span>
+                <span>t</span>
+            </div>
+            <div class="loading-text">Chargement en cours...</div>
+        </div>
+    </div>
+
+ <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <!-- <img src="{%static 'logo.jpeg'%}" alt="Logo" style="width: 40px; height: 65px; border-radius: 25%;">&nbsp;  -->
+        <!-- <h1 class="sitename">CHR-BERTOUA</h1> -->
+        <h4 class="animated-text ">  
+            <span class="highlight" id="portal" style="font-weight: bold;">
+<b class="text-success">Mboa</b><b class="text-danger">M</b><b class="text-warning">arket</b>  
+
+        </span>  
+            <span class="rest-of-text fade-out" id="chamber" style="font-weight: bold;">
+
+                <b class="text-success">Boutique</b>&nbsp;<b class="text-danger">En</b>&nbsp;<b class="text-warning"> Ligne</b></span>   
+        </h4>  
+
+      </a>
+      &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/" class="active">Acceuil</a></li>
+           <li><a href="#">A Propos</a></li>
+        
+          <li><a href="/all_actuality_site/">Articles</a></li>
+          <li><a href="/all_actuality/">M&eacute;diatheque</a></li>
+          
+          <li><a href="#contact">Contact</a></li>
+          <li><a class="" href="/log_account/">Connexion</a></li>
+        </ul>
+        
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      
+
+    </div>
+   
+  </header>
+  <br/><br/>
+  
+  <br><br>  <br><br>
+  
+  
+  <main class="main">
+   
+  
+
+    <section id="pricing" class="pricing section light-background">
+
+     
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row g-4 ">
+
+
+      {%for institutions in institution%}
+      {%if groupe.id == institutions.groupe_id%}
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+      
+        <div class="product-card bg-white rounded-4 shadow-sm h-100 position-relative mx-2">
+                <span class="badge bg-danger">  {{ institutions.sigle }}</span>
+                <div class="overflow-hidden">
+                  <img src="{{ institutions.img.url }}" class="product-image w-100" alt="Product">
+                </div>
+                <div class="p-4">
+                  <!-- <h3 class="fw-bold mb-3">{{institutions.nom}}</h3> -->
+                  {%if institutions.status == 1%}
+                  <div class="d-flex align-items-center mb-3">
+                       <div class="bypostauthor">
+                      <article>
+                        <span class="fn">Certifi&eacute;</span>
+                      </article>
+                    </div>
+                   
+                  </div>
+                  {%endif%}
+                  <p class="text-muted mb-4">{{ institutions.nom }}
+                    .</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                 
+
+                      <a href="{% if institutions.link %}{{ institutions.link }}{% else %}/account/{{institutions.id}}/{% endif %}" style="text-decoration:none" class="btn btn-custom text-white px-4 py-2 rounded-pill">
+                      Ouvrir La Boutique
+                    </a>
+                  </div>
+                </div>
+              </div>
+    </div>
+    {%endif%}
+    {%endfor%}
+
+  </div>
+
+</div>
+<footer id="footer" class="footer">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-4 footer-about">
+          <a href="/" class="d-flex align-items-center logo">
+            <span class="sitename">MboaMarket</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>
+              MboaMarket est Une Boutique En Ligne Qui Propose Des Articles Sous DIvers Formes</p>
+            <p>Yaounde</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+237 699072561</span></p>
+            <p><strong>Email:</strong> <span>beinInfo@gmail.com</span></p>
+          </div>
+          <div class="d-flex mt-4 social-links">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 footer-links">
+          <h4>Liens Utilis&eacute;s</h4>
+          <ul>
+            <li><a href="#">Acceuil</a></li>
+            <li><a href="#">A Propos</a></li>
+            <li><a href="#">Actualit&eacute;s</a></li>
+            <li><a href="#">M&eacute;diatheque</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-4 footer-links">
+          <h4>Nos Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+     
+
+     
+
+      </div>
+    </div>
+
+    <div class="container text-center copyright mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">BeinInfo+</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="operaplus.org">MboaMarket</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="d-flex align-items-center justify-content-center scroll-top"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- JS -->  
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>  
+  <!-- Vendor JS Files -->
+  <script src="{%static 'styles/assets/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/php-email-form/validate.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/aos/aos.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/glightbox/js/glightbox.min.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/swiper/swiper-bundle.min.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/purecounter/purecounter_vanilla.js'%}"></script>
+
+  <!-- Main JS File -->
+  <script src="{%static 'styles/assets/js/main.js'%}"></script>
+ <script>  
+    const portal = document.getElementById('portal');  
+    const chamber = document.getElementById('chamber');  
+
+    let isPortalVisible = true;  
+    
+    function animateText() {  
+        if (isPortalVisible) {  
+            // Fade out PORTAIL NUMERIQUE and fade in CHR-BERTOUA  
+            portal.style.opacity = '0'; // Fait disparaître le portail numérique  
+            chamber.style.opacity = '1'; // Fait apparaître CHR-BERTOUA  
+        } else {  
+            // Fade out CHR-BERTOUA and fade in PORTAIL NUMERIQUE  
+            chamber.style.opacity = '0'; // Fait disparaître CHR-BERTOUA  
+            portal.style.opacity = '1'; // Fait apparaître le portail numérique  
+        }  
+        
+        isPortalVisible = !isPortalVisible;  
+        setTimeout(animateText, 5000);  
+    }  
+
+    // Démarrer l'animation après 1 seconde  
+    setTimeout(animateText, 1000);  
+</script> 
+<script>
+        // Simuler le chargement de la page
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loader = document.getElementById('loader');
+                const pageContent = document.getElementById('pageContent');
+                
+                // Faire disparaître le loader
+                loader.style.opacity = '0';
+                
+                // Après la disparition du loader, afficher le contenu
+                setTimeout(function() {
+                    loader.style.display = 'none';
+                    pageContent.classList.add('loaded');
+                }, 500); // Correspond à la durée de la transition (0.5s)
+            }, 1500); // Durée minimale d'affichage du loader
+        });
+    </script>
+</body>
+
+</html>

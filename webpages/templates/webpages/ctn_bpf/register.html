@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">  
+    <link rel="stylesheet"href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css"/>
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>  
+        @keyframes marquee {  
+            0% { transform: translateX(100%); opacity: 1; }  
+            80% { opacity: 1; }  
+            100% { transform: translateX(-100%); opacity: 0; }  
+        }  
+
+        .marquee {  
+            display: flex;  
+            animation: marquee 30s linear infinite; /* La durée totale de l'animation */  
+        }  
+
+        .marquee-item {  
+            flex: 0 0 auto; /* Prevent flex items from shrinking */  
+            padding-right: 50px; /* Espace supplémentaire pour le clic */  
+        }  
+        
+        @media (prefers-reduced-motion: reduce) {  
+            .marquee {  
+                animation: none;  
+            }  
+        }  
+        
+    </style>  
+    <style>
+         @keyframes progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+  .animate-progress {
+    animation: progress 2s ease-in-out infinite;
+  }
+      </style>
+      <style>
+        @keyframes starTravel {
+            0% { transform: translateX(0) translateY(-10px); }
+            25% { transform: translateX(25%) translateY(-5px); }
+            50% { transform: translateX(50%) translateY(-15px); }
+            75% { transform: translateX(75%) translateY(-5px); }
+            100% { transform: translateX(100%) translateY(-10px); }
+        }
+        .animate-star-travel {
+            animation: starTravel 8s ease-in-out infinite alternate;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .hover-float:hover {
+            animation: float 2s ease-in-out infinite;
+        }
+        
+        /* Animation pour le menu mobile */
+        .menu-enter {
+            transition: all 0.3s ease-out;
+        }
+        .menu-enter-from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        .menu-enter-to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .menu-leave {
+            transition: all 0.3s ease-in;
+        }
+        .menu-leave-from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .menu-leave-to {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+    </style>
+
+
+ <!-- slide Institution -->
+<style>  
+    @keyframes scrollUp {  
+      0% {  
+        transform: translateY(0);  
+      }  
+      100% {  
+        transform: translateY(-50%);  
+      }  
+    }  
+    
+    .animate-scroll-up {  
+      animation: scrollUp 90s linear infinite;  
+    }  
+    </style>  
+<!-- Annimation etoile MboaMarket -->
+<style>
+    /* Dégradé pour "MBOA MARKET" */
+.logo-gradient {
+background: linear-gradient(to right, green, red, yellow);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+-webkit-text-fill-color: transparent;
+}
+    /* Animation de l'étoile */
+    @keyframes star-bounce {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-5px) scale(1.1); }
+    }
+    .animate-star-bounce {
+        animation: star-bounce 2s infinite ease-in-out;
+    }
+    
+    /* Effet de lueur sur le logo */
+    .drop-shadow-md {
+        filter: drop-shadow(0 4px 3px rgba(0,0,0,0.15));
+    }
+    
+    /* Transition douce pour le menu mobile */
+    #mobile-menu {
+        transition: all 0.3s ease-out;
+    }
+</style>
+
+<style>  
+    /* Animation fluide pour le carrousel */  
+    .carousel-item {  
+        scroll-snap-align: start;  
+    }  
+    
+    /* Effet de profondeur au survol */  
+    .hover\:translate-y-1 {  
+        transition: transform 0.3s ease;  
+    }  
+    
+    /* Adaptation mobile améliorée */  
+    @media (max-width: 640px) {  
+        .carousel-item {  
+            width: 85%;  
+            padding-left: 1rem;  
+            padding-right: 1rem;  
+        }  
+    }  
+</style>  
+
+<style>
+    /* Animation subtile au survol */
+    .rubrique-carousel div:hover {
+      transform: translateY(-2px);
+    }
+    
+    /* Apparition des flèches au survol du conteneur */
+    .relative:hover .rubrique-prev,
+    .relative:hover .rubrique-next {
+      opacity: 1;
+    }
+  </style>
+
+
+<style>
+    /* Animation personnalisée pour le chargement */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .animate__fadeInUp {
+        animation-name: fadeInUp;
+        animation-duration: 1s;
+    }
+    
+    /* Délai d'animation pour chaque élément */
+    .group:nth-child(1) { animation-delay: 0.1s; }
+    .group:nth-child(2) { animation-delay: 0.2s; }
+    .group:nth-child(3) { animation-delay: 0.3s; }
+    .group:nth-child(4) { animation-delay: 0.4s; }
+    .group:nth-child(5) { animation-delay: 0.5s; }
+    .group:nth-child(6) { animation-delay: 0.6s; }
+</style>
+
+<style>
+    @keyframes titleFade {
+      0%, 33.3% { opacity: 1; transform: translateY(0); }
+      36.6%, 100% { opacity: 0; transform: translateY(-10px); }
+    }
+    
+    @keyframes buttonGroupFade {
+      0%, 30% { opacity: 0; transform: translateY(10px); }
+      33.3%, 96.6% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-10px); }
+    }
+  </style>
+
+ <!-- CSS pour défilement vertical -->  
+ <style>  
+    @keyframes slideDown {  
+      0% {  
+        transform: translateY(-50%);  
+      }  
+      100% {  
+        transform: translateY(0);  
+      }  
+    }  
+    
+    .animate-slide-down {  
+      animation: slideDown 80s linear infinite;  
+    }  
+    </style>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+</head>  
+   
+  
+   
+
+<!-- script -->
+
+<!--     
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+    <title>MboaMarket</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" /> -->
+
+</head>
+
+<body>
+   
+
+
+  <div class="fixed inset-0 flex items-center justify-center bg-white bg-opacity-90 z-50" id="loader">
+    <div class="text-center">
+        <!-- Logo animé -->
+        <div class="relative w-48 h-48 mx-auto mb-8">
+            <!-- Cercle extérieur animé aux couleurs camerounaises -->
+            <div class="absolute inset-0 border-4 border-t-green-600 border-r-red-600 border-b-yellow-400 border-l-green-600 rounded-full animate-spin"></div>
+            
+            <!-- Logo texte avec dégradé camerounais -->
+            <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-3xl font-bold bg-gradient-to-r from-green-600 via-red-600 to-yellow-400 bg-clip-text text-transparent">
+                    MBOAMARKET
+                </span>
+            </div>
+        </div>
+    
+        <!-- Barre de progression aux couleurs camerounaises -->
+        <div class="w-64 h-2 bg-gray-200 rounded-full overflow-hidden mx-auto">
+            <div class="h-full bg-gradient-to-r from-green-600 via-red-600 to-yellow-400 rounded-full animate-progress"></div>
+        </div>
+    
+        <!-- Texte -->
+        <p class="mt-4 text-gray-600 font-medium">Chargement de votre boutique...</p>
+    </div>
+</div>
+
+
+  <!-- Contenu Principal -->
+
+    <!-- Votre contenu ici -->
+   
+
+  
+
+  <nav class="bg-gray-700">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="relative flex h-20 items-center justify-between">
+            <!-- Bouton menu mobile -->
+            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-black hover:bg-opacity-20 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                    <span class="sr-only">Ouvrir le menu</span>
+                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Logo et navigation principale -->
+            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <div class="flex shrink-0 items-center">
+                    <div class="relative">
+                        <!-- Logo avec effet amélioré -->
+                        <div class="relative inline-block">
+                            <div class="relative">
+                                <!-- Étoile animée -->
+                                <div class="absolute top-[-20px] left-[5.0rem] md:left-[6rem] z-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" 
+                                         class="h-6 w-6 text-white animate-star-bounce"
+                                         viewBox="0 0 20 20" 
+                                         fill="currentColor">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                </div>
+                          
+                                <!-- Texte MBOAMARKET avec contraste blanc -->
+                                <a href="/" class="logo-gradient text-2xl md:text-3xl font-bold tracking-wide drop-shadow-md">
+                                    MBOAMARKET
+                                 
+                                  </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boutons côté droit -->
+            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <!-- Bouton panier avec badge -->
+                <div class="relative ml-3">
+                    <div>
+                        <button type="button" class="flex rounded-full bg-black bg-opacity-20 p-1 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent" id="user-menu-button" onclick="toggleMenu()">
+                            <span class="sr-only">Panier</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                            </svg>
+
+                            <!-- <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                            </svg>
+                            <span class="absolute -top-1 -right-1 bg-white text-yellow-600 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span> -->
+                        </button>
+                    </div>
+                    
+                    <!-- Menu déroulant stylisé -->
+                    <div id="user-menu" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu">
+                        <a href="/register/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:via-red-50 hover:to-yellow-50" role="menuitem">Mon compte</a>
+                        <a href="/register/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:via-red-50 hover:to-yellow-50" role="menuitem">Mes Articles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu mobile avec fond dégradé -->
+    <div id="mobile-menu" class="hidden sm:hidden bg-gradient-to-b from-green-600 via-red-600 to-yellow-400 transition-all duration-300">
+        <div class="space-y-1 px-2 pb-3 pt-2">
+            <a href="/" class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-black hover:bg-opacity-20">Accueil</a>
+            <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-black hover:bg-opacity-20">Articles</a>
+            <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-black hover:bg-opacity-20">Catégories</a>
+            <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-black hover:bg-opacity-20">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Menu mobile --> 
+<div id="mobile-menu" class="hidden absolute top-5 inset-x-0 transform transition-all duration-300 ease-in-out z-40">
+  <div class="bg-gradient-to-r from-green-400 via-yellow-400 to-red-500 rounded-b-lg shadow-lg p-4 space-y-2 animate-slideDown">
+    <a href="/" class="block px-4 py-6 rounded hover:bg-green-500 text-white font-semibold text-center transition duration-200">Accueil</a>
+    <a href="/login_ecommerce/" class="block px-4 py-3 rounded hover:bg-green-500 text-white font-semibold text-center transition duration-200">S'enregistrer</a>
+  </div>
+</div>
+<div class="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4" id="mainContent">
+  <div class="w-full max-w-md bg-white bg-opacity-90 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden">
+    
+    <!-- En-tête -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white text-center">
+      <div class="flex justify-center mb-3">
+        <div class="bg-white/20 p-3 rounded-full backdrop-blur-sm border border-white/10 shadow-sm">
+          <svg class="h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+        </div>
+      </div>
+      <h1 class="text-2xl font-bold">Accès à votre espace pro</h1>
+      <p class="text-blue-100 mt-2">Connectez-vous pour gérer votre catalogue</p>
+    </div>
+
+    <!-- Bénéfices -->
+    <div class="px-6 pt-4 pb-2 bg-blue-50/50">
+      <ul class="grid gap-2 text-sm text-blue-800">
+        <li class="flex items-start">
+          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>Ajouter/modifier des articles</span>
+        </li>
+        <li class="flex items-start">
+          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>Suivre vos statistiques</span>
+        </li>
+        <li class="flex items-start">
+          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>Recevoir des commandes</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Formulaire -->
+    <form class="p-6 space-y-5" action="/log/" id="addFormPerso" enctype="multipart/form-data" method="post">
+      {% csrf_token %} 
+      <input type="hidden" name="edit_or_create" id="edit_or_create" />
+      <input type="hidden" name="generator" value="p2" />
+
+      <!-- Champ Email -->
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <input type="email" name="email" required 
+               class="pl-10 w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+               placeholder="Adresse email" />
+      </div>
+
+      <!-- Champ Mot de passe -->
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+        </div>
+        <input type="password" name="password" required 
+               class="pl-10 w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+               placeholder="Mot de passe" />
+      </div>
+
+      <!-- Bouton de connexion -->
+      <button type="submit" 
+              class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-medium py-3 px-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+        </svg>
+        Se connecter
+      </button>
+
+      <!-- Lien mot de passe oublié -->
+      <div class="text-center text-sm">
+        <a href="/Mdp_Dart/" class="text-blue-600 hover:text-blue-800 hover:underline transition-colors">
+          Mot de passe oublié ?
+        </a>
+      </div>
+    </form>
+
+    <!-- Séparateur -->
+    <div class="px-6">
+      <div class="border-t border-gray-200 relative">
+        <span class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-sm text-gray-500">OU</span>
+      </div>
+    </div>
+
+    <!-- Bouton création de compte -->
+    <div class="p-6 pt-4">
+      <a href="/login_ecommerce/" 
+         class="w-full block text-center border border-gray-300 hover:border-blue-400 text-blue-600 font-medium py-2 px-4 rounded-lg transition-all duration-300 hover:bg-blue-50 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+        </svg>
+        Créer un compte
+      </a>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Reload PAGE Mboamarket -->
+  <script>
+    // Attendre que le DOM soit complètement chargé
+    document.addEventListener('DOMContentLoaded', function() {
+      // Récupérer les éléments avec vérification
+      const loader = document.getElementById('loader');
+      const mainContent = document.getElementById('mainContent');
+      
+      // Vérifier que les éléments existent
+      if (!loader || !mainContent) {
+        console.error('Éléments introuvables ! Vérifiez les IDs dans votre HTML');
+        return;
+      }
+
+      // Fonction pour cacher le loader
+      function hideLoader() {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+          loader.style.display = 'none';
+          mainContent.style.opacity = '1';
+        }, 500);
+      }
+
+      // Cacher le loader quand la page est chargée
+      function handleLoad() {
+        // Minimum 1.5s d'affichage pour éviter le flash
+        setTimeout(hideLoader, 1500);
+      }
+
+      // Démarrer le processus
+      if (document.readyState === 'complete') {
+        handleLoad();
+      } else {
+        window.addEventListener('load', handleLoad);
+        // Timeout de sécurité après 5s
+        setTimeout(handleLoad, 5000);
+      }
+    });
+  </script>
+
+
+
+   <!-- Responsivite Navbar Sur Mobile -->
+<script>
+    // Gestion du menu mobile
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', function() {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        
+        // Basculer les icônes
+        const menuIcon = this.querySelector('svg:not(.hidden)');
+        const closeIcon = this.querySelector('svg.hidden');
+        menuIcon.classList.add('hidden');
+        menuIcon.classList.remove('block');
+        closeIcon.classList.remove('hidden');
+        closeIcon.classList.add('block');
+        
+        // Afficher/cacher le menu
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Gestion du menu utilisateur
+    function toggleMenu() {
+        const menu = document.getElementById('user-menu');
+        menu.classList.toggle('hidden');
+    }
+
+    // Fermer les menus quand on clique ailleurs
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('#user-menu-button') && !event.target.closest('#user-menu')) {
+            const menu = document.getElementById('user-menu');
+            if (!menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+            }
+        }
+        
+        if (!event.target.closest('#mobile-menu-button') && !event.target.closest('#mobile-menu')) {
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                
+                // Réinitialiser les icônes
+                const icons = mobileMenuButton.querySelectorAll('svg');
+                icons[0].classList.remove('hidden');
+                icons[0].classList.add('block');
+                icons[1].classList.add('hidden');
+                icons[1].classList.remove('block');
+            }
+        }
+    });
+</script>
+{% for message in messages %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if message.tags == 'error' %}
+ <script>
+     swal("Erreur!", "{{ message }}", "error");
+ </script>
+{% endif %}
+{% endfor %}
+
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+        <div id="success-modal" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+            <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
+                <div class="flex justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium text-center text-gray-900 mb-2">Succès !</h3>
+                <p class="text-gray-600 text-center mb-6">{{ message }} 😊</p>
+                <div class="flex justify-center">
+                    <button onclick="closeModal()" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Afficher le modal
+            document.addEventListener('DOMContentLoaded', function() {
+                const modal = document.getElementById('success-modal');
+                modal.classList.remove('hidden');
+                
+                // Fermer après 5 secondes
+                setTimeout(() => {
+                    closeModal();
+                }, 5000);
+            });
+
+            function closeModal() {
+                const modal = document.getElementById('success-modal');
+                modal.classList.add('hidden');
+                // Optionnel: Supprimer complètement le modal du DOM après fermeture
+                setTimeout(() => {
+                    modal.remove();
+                }, 300);
+            }
+        </script>
+    {% endif %}
+{% endfor %}
+</body>
+</html>

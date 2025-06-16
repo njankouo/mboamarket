@@ -1,0 +1,1208 @@
+
+<style>
+
+
+  *{
+      box-sizing: border-box;
+  }
+  svg:not(:root) {
+      overflow: hidden;
+  }
+  .main-wrapper {
+      max-width: 1170px;
+      margin: 0 auto;
+      text-align: center;
+  }
+  .upload-main-wrapper{
+      width: 220px;
+      margin: 0 auto;
+  }
+  #file-upload-name{
+      margin: 4px 0 0 0;
+      font-size: 12px;
+  }
+  .upload-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 40px auto 0;
+      position: relative;
+      cursor: pointer;
+      background-color: #bcaef5;
+      padding: 8px 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: 0.2s linear all;
+      color: #ffffff;
+  }
+  .upload-wrapper input[type="file"] {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      top: 0;
+      bottom: 0;
+      cursor: pointer;
+      z-index: 1;
+  }
+  .upload-wrapper > svg {
+      width: 50px;
+      height: auto;
+      cursor: pointer;
+  }
+  .upload-wrapper.success > svg{
+      transform: translateX(-200px);
+  }
+  .upload-wrapper.uploaded {
+      transition: 0.2s linear all;
+      width: 60px;
+      border-radius: 50%;
+      height: 60px;
+      text-align: center;
+  }
+  .upload-wrapper .file-upload-text {
+      position: absolute;
+      left: 80px;
+      opacity: 1;
+      visibility: visible;
+      transition: 0.2s linear all;
+  }
+  .upload-wrapper.uploaded .file-upload-text {
+      text-indent: -999px;
+      margin: 0;
+  }
+  .file-success-text {
+      opacity: 0;
+      transition: 0.2s linear all;
+      visibility: hidden;
+      transform: translateX(200px);
+      position: absolute;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  .file-success-text svg {
+      width: 25px;
+      height: auto;
+  }
+  .file-success-text span{
+     margin-left: 15px;
+  }
+  .upload-wrapper.success .file-success-text{
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+  }
+  .upload-wrapper.success.uploaded .file-success-text{
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+  }
+  .upload-wrapper.success.uploaded .file-success-text span{
+      display: none;
+  }
+  .upload-wrapper .file-success-text circle{
+  	  stroke-dasharray: 380;
+      stroke-dashoffset: 380;
+      transition: 1s linear all;
+      transition-delay: 1.4s;
+  }
+  .upload-wrapper.success .file-success-text  circle {
+  	stroke-dashoffset: 0;
+  }
+  .upload-wrapper .file-success-text polyline {
+  	stroke-dasharray: 380;
+  	stroke-dashoffset: 380;
+  	transition: 1s linear all;
+  	transition-delay: 2s;
+  }
+  .upload-wrapper.success .file-success-text polyline {
+      stroke-dashoffset: 0;
+  }
+  .upload-wrapper.success .file-upload-text{
+      -webkit-animation-name: bounceOutLeft;
+      animation-name: bounceOutLeft;
+      -webkit-animation-duration: 0.2s;
+      animation-duration: 0.2s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+  }
+  @-webkit-keyframes bounceOutLeft {
+      20% {
+          opacity: 1;
+          -webkit-transform: translate3d(20px, 0, 0);
+          transform: translate3d(20px, 0, 0);
+      }
+
+      to {
+          opacity: 0;
+          -webkit-transform: translate3d(-2000px, 0, 0);
+          transform: translate3d(-2000px, 0, 0);
+      }
+  }
+
+  @keyframes bounceOutLeft {
+      20% {
+          opacity: 1;
+          -webkit-transform: translate3d(20px, 0, 0);
+          transform: translate3d(20px, 0, 0);
+      }
+
+      to {
+          opacity: 0;
+          -webkit-transform: translate3d(-2000px, 0, 0);
+          transform: translate3d(-2000px, 0, 0);
+      }
+  }
+
+  input[type="file"] {
+    margin-top: 1rem;
+    padding: 1.5em;
+    border: 2px dashed grey;
+    background-color: #fff;
+  }
+
+  input[type="file"]::file-selector-button {
+    padding: 1em 1.5em;
+    border-width: 0;
+    border-radius: 1rem;
+    background-color: dodgerblue;
+    color: #FFFFFF;
+    font-weight: bold;
+    transition: all .25s ease-in-out;
+    cursor: pointer;
+    margin-right: 1em;
+  }
+
+
+
+
+/***Annimation CSS Pour Modal Bootstarp codepen**/
+.opacity-animate4{
+  animation:opt-animation4 1s;
+animation-fill-mode: forwards
+}
+@keyframes opt-animation4 {
+0% {
+  transform: scale(0) rotate(360deg);
+}
+60% {
+  transform: scale(0.8) rotate(-10deg);
+}
+100% {
+  transform: scale(1) rotate(0deg);
+}
+}
+/****Fin de l'annimation bootstarp codepen bootstarp ****/
+
+
+
+
+
+
+.myaccordion {
+  max-width: 1000px;
+  margin: 10px auto;
+  box-shadow: 0 0 1px rgba(0,0,0,0.1);
+}
+
+.myaccordion .card,
+.myaccordion .card:last-child .card-header {
+  border: none;
+}
+
+.myaccordion .card-header {
+  border-bottom-color: #EDEFF0;
+  background: transparent;
+}
+
+.myaccordion .fa-stack {
+  font-size: 18px;
+}
+
+.myaccordion .btn {
+  width: 100%;
+  font-weight: bold;
+  color: #004987;
+  padding: 0;
+}
+
+.myaccordion .btn-link:hover,
+.myaccordion .btn-link:focus {
+  text-decoration: none;
+}
+
+.myaccordion li + li {
+  margin-top: 10px;
+}
+
+
+
+body{
+    font-family: 'Ek Mukta', sans-serif;
+    height: 100%;
+    width: 100%;
+    background: #212121;
+}
+.wrap{
+    padding: 15px;
+    background-color: #424242;
+    width: 480px;
+    height: 390px;
+    border-radius: 12px;
+    position: absolute; /*it can be fixed too*/
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    /*this to solve "the content will not be cut when the window is smaller than the content": */
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+}
+label {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn:hover {
+    cursor: pointer !important;
+}
+
+.btn:active {
+    box-shadow: 0 1px #666 !important;
+    transform: translateY(2px) !important;
+}
+
+.btn-sık {
+    transition: all 0.2s ease;
+    background-color: white ;
+    border: 2px solid #f44336 !important;
+    box-shadow: 0 3px #d32f2f !important;
+    min-width: 150px;
+    border-radius: 20px;
+}
+
+
+    btn-sık::selection{
+        background: green;
+    }
+
+input[type="radio"] {
+     position: absolute;
+  visibility: hidden;
+}
+input[type="radio"] + div {
+    position: relative;
+}
+input[type="radio"]:checked + div {
+  background-color: #ef5350;
+}
+input[type="radio"]:checked + div>span {
+  color: #ef5350;
+}
+input[type="radio"] + div>span {
+position: relative;
+top: 25%;}
+
+input[type="checkbox"] {
+     position: absolute;
+  visibility: hidden;
+}
+
+input[type="checkbox"] + div {
+    position: relative;
+}
+input[type="checkbox"]:checked + div {
+  background-color: #ef5350;
+}
+input[type="checkbox"]:checked + div>span {
+  color: white;
+}
+input[type="checkbox"] + div>span {
+position: relative;
+top: 25%;}
+
+input[type="checkbox"]:checked + div::before {
+        content:"✔";
+    position: absolute;
+    bottom: 18px;
+    right: 0px;
+    font-size: 29px;
+    color: #ef5350;
+}
+
+input[type="radio"]:checked + div::before {
+    font-family: FontAwesome;
+    content: "\f08d";
+    position: absolute;
+    bottom: 31px;
+    font-size: 21px;
+    color: white;
+    right: -5px;
+    -webkit-transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+    -o-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+    animation: fall 0.5s forwards;
+}
+
+@keyframes fall {
+    100% {
+        -webkit-transform: translate(-5px,5px) rotate(30deg);
+        -moz-transform: translate(-5px,5px) rotate(30deg);
+        -o-transform: translate(-5px,5px) rotate(30deg);
+        -ms-transform: translate(-5px,5px) rotate(30deg);
+        transform: translate(-5px,5px) rotate(30deg);
+    }
+}
+
+@-moz-keyframes fall {
+    100% {
+        -webkit-transform: translate(-5px,5px) rotate(30deg);
+        -moz-transform: translate(-5px,5px) rotate(30deg);
+        -o-transform: translate(-5px,5px) rotate(30deg);
+        -ms-transform: translate(-5px,5px) rotate(30deg);
+        transform: translate(-5px,5px) rotate(30deg);
+    }
+}
+
+@-webkit-keyframes fall {
+     100% {
+        -webkit-transform: translate(-5px,5px) rotate(30deg);
+        -moz-transform: translate(-5px,5px) rotate(30deg);
+        -o-transform: translate(-5px,5px) rotate(30deg);
+        -ms-transform: translate(-5px,5px) rotate(30deg);
+        transform: translate(-5px,5px) rotate(30deg);
+    }
+}
+
+
+
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+
+{% extends './operations_details.html' %}
+{% load humanize %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="accordion" id="accordionExample">
+        <!-- <div class="card accordion-item active">
+          <h2 class="accordion-header" id="headingOne">
+            <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#accordionOne" aria-expanded="true" aria-controls="accordionOne" role="tabpanel">
+              Liste Des Actualit&eacute;es
+            </button>
+          </h2>
+      
+          <div id="accordionOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+            
+            </div>
+          </div>
+        </div> -->
+        <div class="card accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionTwo" aria-expanded="false" aria-controls="accordionTwo" role="tabpanel">
+              Gestion Des Actualit&eacute;es
+            </button>
+          </h2>
+          <div id="accordionTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <button   class="btn btn-light text-dark"  data-bs-toggle="modal" data-bs-target="#staticBackdrop_SousActualite"><i class="fa fa-star"></i> <span> Sous-Actualit&eacute;</span></button>
+                
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-plus"></i> <span>Nouvelle Actualit&eacute;</span></button>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa fa-plus"></i> <span>Rubrique</span></button>
+                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"><i class="fa fa-plus"></i> <span>Sous-Rubrique</span></button>
+                <button class="btn btn-secondary"data-bs-toggle="modal" data-bs-target="#largeModal" ><i class="fa fa-plus"></i> <span>FAQs</span></button>
+              
+                
+            </div>
+          </div>
+        </div>
+      
+      </div>
+      <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Gestion Des Faqs</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="/add_faq/" method="POST" enctype="multipart/form-data">
+                {%csrf_token%}
+              <label for="intitule">Intitule</label>
+              <input type="text" class="form-control" name="intitule" id="intitule">
+              <label for="description">Description</label>
+              <textarea class="form-control" name="description" id="description"></textarea>
+              <label for="image">image</label>
+              <input type="file" name="file" id="" class="form-control">
+              <!-- Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos. -->
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Liste Des FAQs</h5>
+                
+                <!-- Active Table -->
+                <table class="table table-borderless">
+                  <thead>
+                    <tr>
+                      <th scope="col">image</th>
+                      <th scope="col">Intitule</th>
+                      <th scope="col">Description</th>
+                   
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {%for faqs in faq%}
+                    <tr>
+                      <th scope="row">
+                        <img src='{{faqs.logo.url}}' class="img-fluid">
+                      </th>
+                      <td>{{faqs.intitule}}</td>
+                      <td>{{faqs.description}}</td>
+                     
+                      <td>
+                   <button class="btn btn"><i class="bx bx-trash"></i></button> 
+
+                  <button class="btn btn">   <i class="bx bx-edit"></i></button> 
+                      </td>
+                    </tr>
+                    {%endfor%}
+                  
+                  </tbody>
+                </table>
+                <!-- End Tables without borders -->
+  
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+              <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+
+ 
+ <!--  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel" style="font-weight:bold">Liste Des Rubriques</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+      <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel" style="font-weight:bold">Gestion  Des Rubriques</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+      <div class="modal-body">
+        ...
+        <div class="container">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-12">
+
+          <form method="POST" action="/add_rubrique/" id="rubriqueForm">  
+    {% csrf_token %}  
+    <h4>Formulaire des Rubriques</h4>  
+    <div class="form-group">  
+        <label>Nom</label>  
+        <input type="text" class="form-control" required name="nom" id="rubriqueNom">  
+        <input type="hidden" name="id" id="rubriqueId"> <!-- Hidden field for ID -->  
+ 
+  
+         
+      
+           
+            <input type="submit" class="btn btn-success my-3" value="Ajouter">
+        
+        </form>
+          <b>Liste Des  <b>Rubriques</b></b>
+        
+             </div>
+        </div>
+    </div>
+ 
+    <table class="table table-striped table-hover table-responsive">
+      <thead>
+        <tr>
+
+          <th>ID</th>
+          <th>Nom</th>
+
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for rubriques in rubrique%}
+        <tr>
+
+          <td>{{rubriques.id}}</td>
+          <td>{{rubriques.nom}}</td>
+
+          <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                <i class="icon-base bx bx-dots-vertical-rounded"></i>
+              </button>
+              <ul class="dropdown-menu">  
+                        <li><a class="dropdown-item" href="/delete_Rubrique/{{ rubriques.id }}/">Supprimer</a></li>  
+                        <li><a class="dropdown-item" href="/add_sou_rubrique/{{ rubriques.id }}/">Sous-Rubrique</a></li>  
+                        <li><a class="dropdown-item" href="javascript:void(0);" onclick="editRubrique('{{ rubriques.id }}', '{{ rubriques.nom }}')">Edition</a></li>  
+                    </ul>  
+            </div>
+           
+          </td>
+        </tr>
+     
+        {%endfor%}
+
+      </tbody>
+    </table>
+
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+   
+
+</div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content ">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel" style="font-weight:bold">Formulaire Des Actualit&eacute;s</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+      <div class="modal-body">
+        ...
+        <form method="POST" action="/valid_actualite/" enctype="multipart/form-data">
+          {%csrf_token%}
+          <input type="text" name="institution" value="{{actual_institution.id}}" style="display:none">
+  <div class="row">
+    <div class="col-md-6">
+      <label for="">Intitul&eacute; *</label>
+      <input type="text" class="form-control" placeholder="intitule" name="intitule">
+    </div>
+    <div class="col-md-6">
+      <label for="">Rubrique *</label>
+      <select class="form-control" name="rubrique" id="rubrique">
+        <option>Selectionnez La Rubrique</option>
+        {%for rubriques in rubrique%}
+        <option value="{{rubriques.id}}">{{rubriques.nom}}</option>
+        {%endfor%}
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label for="">Photos *</label>
+    <input type="file" name="photos" class="form-control" accept="images/*">
+    </div>
+
+
+
+    <div class="col-md-6">
+      <label for="">Documents *</label>
+      <input type="file" name="documents" class="form-control">
+    </div>
+    <div class="col-md-12">
+      <label for="sous-rubrique">Sous-Rubrique *</label>
+      <select class="form-control" name="sous_rubrique" id="sous_rubrique">
+
+      </select>
+    </div>
+    <div class="col-md-12">
+      <label for="">Description *</label>
+    <textarea name="description" rows="8" cols="80" class="form-control" id="tiny"></textarea>
+    </div>
+
+
+  </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+
+    
+        <div class="card">
+       
+          <table class="table table-striped table-hover table-responsive">
+            
+            <thead>
+            
+          
+              
+              <tr>
+              
+               <th></th>
+                <th>Intitul&eacute;</th>
+                <th>Date Publication</th>
+                <!-- <th>Description</th> -->
+                <!-- <th>Sous-Rubrique</th>
+                <th>Rubrique</th> -->
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%for actualites in actualite%}
+              
+              <tr>
+                <td>
+                <label>  
+                  <input type="checkbox" name="radio" value="{{ actualites.id }}" {% if actualites.is_public %}checked{% endif %} class="toggle-public">   
+                  <div class="btn btn-sık"><span>{% if actualites.is_public %}Avant-Premiere{% else %}représentation postérieure{% endif %}</span></div>  
+              </label>  </td>
+              
+                <td><a href="/add_information_actualite/{{ actualites.id }}"> {{actualites.intitule}} </a></td>
+                <td>{{ actualites.date }}</td>
+                <!-- <td>{{actualites.description|slice:":150"|safe}}</td> -->
+                <!-- <td>
+                  
+                  <span class="badge badge-success">{{actualites.sous_rubrique.nom}}</span></td>
+                <td>
+                  <span class="badge badge-primary">
+                  {{actualites.rubrique.nom}}
+                  </span>
+                </td> -->
+                <td>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                      <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <!-- <li><a class="dropdown-item" href="/edit_sous_actualite/{{ actualites.id }}/">Edition</a></li> -->
+                      <li><a class="dropdown-item" href="/actualites_del/{{ actualites.id }}/">Supprimer</a></li>
+                      <li><a class="dropdown-item" href="/actualites_modif/{{ actualites.id }}/">Modifier</a></li>
+                     
+                    </ul>
+                  </div>
+                 <!-- <a href="#"  data-toggle="modal" data-target="#exampleModal{{ actualites.id }}"><i class="fa fa-pen" data-toggle="tooltip" title="Associez Un Baniere">&#xE254;</i></a> 
+                  -->
+                 
+                 
+                 <div class="modal fade" id="exampleModal{{ actualites.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Mise A Jour Des Actualités</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        ...
+                        <form method="POST" action="/baniere_actialite/{{ actualites.id }}/">
+                          {%csrf_token%}
+                          
+                          <div class="col-md-12">
+                         
+                          <label for="baniere_{{ intitule.id }}">
+                            intitule     
+                          </label>
+                             <input type="text" name="intitule" class="form-control" value="{{ actualites.intitule }}"/>
+                         
+                        </div>
+                        <div class="col-md-12">
+                         
+                          <label for="baniere_{{ description.id }}">
+                            Description     
+                          </label>
+                          <textarea class="form-control" name="description" rows="15" cols="170" id="edition">{{ actualites.description|safe }}</textarea>
+                        </div>
+                        <div class="col-md-12">
+                         
+                          <label for="baniere_{{ Institution.id }}">
+                            Institution     
+                          </label>
+                        <select class="form-control" name="institution">
+                          <option></option>
+                          {%for institution in institutions%}
+                          {%if institution.id == actualites.institution_id%}
+                            <option value="{{ institution.id }}" selected>{{institution.sigle}}</option>
+                            {%else%}
+                            <option value="{{ institution.id }}">{{institution.sigle}}</option>
+                            {%endif%}
+                          {%endfor%}
+                        </select>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                      </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                 
+                 <!-- <a href="/actualites_del/{{ actualites.id }}/" class="delete"><i class="fa fa-trash" data-toggle="tooltip" title="Delete">&#xE872;</i></a> -->
+                </td>
+              </tr>
+             {%endfor%}
+             
+            </tbody>
+          </table>
+        
+      </div>
+    </div>
+
+            <div class="modal fade" id="staticBackdrop_SousActualite" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Associez Votre Sous-Actualit&eacute; a une Actualit&eacute;</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                      </button>
+                  </div>
+            <div class="modal-body">
+              ...
+              <form method="POST" action="/add_sous_actualite/" enctype="multipart/form-data">
+                {%csrf_token%}
+                <input type="text" name="institution" class="form-control" style="display:none" value="{{ actual_institution.id }}">
+                <div class="row">
+                  <div class="col">
+                    <label>Intitul&eacute;</label>
+                    <input type="text" class="form-control" placeholder="Intitule" name="intitule">
+                  </div>
+
+
+
+
+                  
+                    <div class="col">
+                      <label>Actualit&eacute;</label>
+                        <Select class="form-control" name="actualite" >
+                          <option></option>
+                          {%for actualites in actualite%}
+                            <option value="{{ actualites.id }}">{{actualites.intitule}}</option>
+                          {%endfor%}
+                        </select>
+                    </div>
+              
+                  {% comment %} <div class="col">
+                    <label>baniere</label>
+                    <select class="form-control " name="baniere">
+                      <option></option>
+                      {%for banieres in baniere%}
+                        <option value="{{ banieres.id }}">{{banieres.nom}}</option>
+                      {%endfor%}
+                    </select>
+                  </div>
+                   {% endcomment %}
+                  
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <label>Documents</label>
+                    <input type="file" class="form-control" name="documents">
+                  </div>
+                  <div class="col">
+                    <label>Photo</label>
+                    <input type="file" class="form-control" name="photos">
+                  </div>
+
+                </div>
+                
+                <!-- Place the first <script> tag in your HTML's <head> -->
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <label>Description</label>
+                      <textarea class="form-control" name="description" id="description"></textarea>
+                  </div>
+              </div>
+            
+           
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+              <button  class="btn btn-success" type="submit">Enregistrer</button>
+            </div>
+            
+          </form>
+          <div class="col-md-12">
+            
+            </div>
+          <hr class="bg-dark p-2"/>
+          <div class="container">
+            <div class="table-wrapper">
+              <div class="table-title">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <h5>Liste Des Sous-Actualit&eacute;</h5>
+                  </div>
+                  {% comment %} <div class="col-sm-6">
+                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+                    <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+                  </div> {% endcomment %}
+                </div>
+              </div>
+              <table class="table table-striped table-hover table-responsive">
+                <thead>
+                  <tr>
+                    <th>
+                      Image
+                    </th>
+                    <th>Intitul&eacute;</th>
+                    <th>Date Publication</th>
+                    <th>actualite Associ&eacute;e</th>
+                   
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for sous_actualites in sous_actualite%}
+                  <tr>
+                    <td>
+                      {% if sous_actualites and sous_actualites.photos %}  
+                      <img src="{{ sous_actualites.photos.url }}" alt="Logo" style="width: 45px; height: 45px; border-radius: 50%;">  
+                  {% endif %}  
+                  &nbsp; <small>{{ baners.nom }}</small>  
+                    </td>
+                    <td>{{sous_actualites.intitule}}</td>
+                    <td><span class="badge badge-success"></span></td>
+                    <td>{{sous_actualites.actualite.intitule}}</td>
+                   
+                    <td>
+                      <!-- <a href="/edit_sous_actualite/{{ sous_actualites.id }}/"><i class="fa fa-edit" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                      <a href="/delete_sous_actualite/{{ sous_actualites.id }}/" class="delete"><i class="fa fa-trash" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                       -->
+                       <div class="btn-group">
+                        <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                          <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="/edit_sous_actualite/{{ sous_actualites.id }}/">Edition</a></li>
+                          <li><a class="dropdown-item" href="/delete_sous_actualite/{{ sous_actualites.id }}/">Supprimer</a></li>
+                         
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                  {%endfor%}
+                  
+                </tbody>
+              </table>
+              
+            </div>
+          </div>
+          </div>
+          
+        </div>
+        
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="modal fade" id="staticBackdrop1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel" style="font-weight:bold">Liste Des Sous-Rubriques</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          </button>
+      </div>
+  <!-- <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog  modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="staticBackdropLabel">LISTE DES SOUS-RUBRIQUES</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div> -->
+    <div class="modal-body">
+      <div class="container">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-6">
+            <b>Liste Des Sous-Rubriques</b>
+          </div>
+
+        </div>
+      </div>
+      <table class="table table-striped table-hover table-responsive table-centered">
+        <thead>
+          <tr>
+
+            <th>Rubriques</th>
+            <th>Sous-Rubriques</th>
+
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for sous_rubriques in sous_rubrique%}
+          <tr>
+
+            <td>{{sous_rubriques.rubrique.nom}}</td>
+            <td>{{sous_rubriques.nom}}</td>
+
+            <td>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                  <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/trash_sousactualite/{{sous_rubriques.id}}/">Supprimer</a></li>
+                  
+                </ul>
+              </div>
+              <!-- <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="fa fa-edit" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+              <a href="/trash_sousactualite/{{sous_rubriques.id}}/" class="delete"><i class="fa fa-trash"></i></a> -->
+            </td>
+          </tr>
+          {%endfor%}
+
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <!-- Edit Modal HTML -->
+
+  <!-- Edit Modal HTML -->
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+
+    </div>
+  </div>
+</div>
+</div>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>  
+    function editRubrique(id, nom) {  
+        document.getElementById('rubriqueId').value = id; // Set the ID in the hidden input field  
+        document.getElementById('rubriqueNom').value = nom; // Populate the name in the input field  
+        // Optionally change the form method to PUT or PATCH if you're using RESTful principles  
+        // Or handle logic for distinguishing between create and update in your view  
+    }  
+</script>  
+<script>
+  // custom.js
+  
+  $(document).ready(function() {
+    $('#rubrique').on('change', function() {
+      var selectedId = $(this).val();
+  
+      // Effectuer une requête AJAX pour récupérer les informations de la table periodeok en fonction de l'ID de la période sélectionnée
+      $.ajax({
+        url: '/search_rubrique/',  // L'URL correspondant à la vue Django
+        method: 'GET',
+        data: { id: selectedId },
+        success: function(data) {
+          var selectInformations = $('#sous_rubrique');
+          selectInformations.empty(); // Effacer les anciennes options
+  
+          // Ajouter les nouvelles options basées sur les données récupérées via AJAX
+          data.forEach(function(ind) {
+            selectInformations.append($('<option>', {
+              value: ind.id,
+              text: ind.nom  // Remplacez 'champ1' par le nom du champ que vous souhaitez afficher
+            }));
+          });
+        },
+        error: function(xhr, status, error) {
+          console.error('Une erreur s\'est produite lors de la requête AJAX :', status, error);
+        }
+      });
+    });
+  });
+  
+  </script>
+      <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+ 
+      {% for message in messages %}
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {% if message.tags == 'success' %}
+      
+      <script type="text/javascript">
+          Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "{{message}}",
+        showConfirmButton: false,
+        timer: 2000
+      });
+      </script>
+      {%endif%}
+      {%endfor%}
+      
+      {% for message in messages %}
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {% if message.tags == 'error' %}
+      
+      <script type="text/javascript">
+          Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "{{message}}",
+        showConfirmButton: false,
+        timer: 2000
+      });
+      </script>
+      {%endif%}
+      {%endfor%}
+      
+      <script>  
+        $(document).ready(function() {  
+            $('.toggle-public').change(function() {  
+                var isChecked = $(this).is(':checked');  
+                var actualiteId = $(this).val();  
+        
+                $.ajax({  
+                    url: '/toggle_public/',  // Remplacez par votre URL de mise à jour  
+                    type: 'POST',  
+                    data: {  
+                        'id': actualiteId,  
+                        'is_public': isChecked,  
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'  // Assurez-vous d'inclure le token CSRF pour les requêtes POST  
+                    },  
+                    success: function(response) {  
+                        // Traitement en cas de succès. Pensez à mettre à jour l'interface utilisateur si nécessaire.  
+                        console.log(response);  
+                    },  
+                    error: function(xhr, status, error) {  
+                        // Traitement en cas d'erreur  
+                        console.error(xhr.responseText);  
+                    }  
+                });  
+            });  
+        });  
+        </script>  
+      <script>
+        // Ajouter des animations en JavaScript
+        const collapseItems = document.querySelectorAll('.collapse');
+        const chevronIcons = document.querySelectorAll('.chevron-icon');
+
+        chevronIcons.forEach((icon) => {
+          icon.addEventListener('click', () => {
+            $(icon).toggleClass('fa-chevron-down fa-chevron-up');
+          });
+        });
+
+        collapseItems.forEach((item) => {
+          item.addEventListener('show.bs.collapse', () => {
+            item.classList.add('animate__animated', 'animate__fadeInDown');
+          });
+          item.addEventListener('hide.bs.collapse', () => {
+            item.classList.remove('animate__animated', 'animate__fadeInDown');
+          });
+        });
+      </script>
+      <script>
+        // Replace the <textarea id="editor1"> with a CKEditor 4
+        // instance, using default configuration.
+        CKEDITOR.replace( 'description' );
+    </script>
+    <script>
+      // Replace the <textarea id="editor1"> with a CKEditor 4
+      // instance, using default configuration.
+      CKEDITOR.replace( 'tiny' );
+  </script>
+  <script>
+    // Replace the <textarea id="editor1"> with a CKEditor 4
+    // instance, using default configuration.
+    CKEDITOR.replace( 'edition' );
+</script>
+{% endblock %}
+
+{% block script %}
+
+<script src="https://cdn.tiny.cloud/1/dj2vqyaiwqvylhr8vvhcz1izi4aj40055trefsoc11whqr4p/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+  tinymce.init({
+    selector: 'textarea#tiny'
+  });
+</script>
+
+
+
+
+<script src="https://cdn.tiny.cloud/1/dj2vqyaiwqvylhr8vvhcz1izi4aj40055trefsoc11whqr4p/tinymce/7/tinymce.min.js" ></script>
+
+<!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+<script>
+  function modalAnimation(animation) {
+    $('.modal .modal-dialog').attr('class', 'modal-dialog  ' + animation + ' animated');
+  };
+  $('.modalAnimate').on('show.bs.modal', function (e) {
+    var anim = $(this).attr('data-animation-in');
+    modalAnimation(anim);
+  });
+  $('.modalAnimate').on('hide.bs.modal', function (e) {
+    var anim = $(this).attr('data-animation-out');
+    modalAnimation(anim);
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+<script>
+  $(document).ready(function() {
+    $('#multiple-checkboxes').multiselect({
+      includeSelectAllOption: true,
+    });
+});
+</script>
+
+{% endblock %}

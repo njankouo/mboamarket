@@ -1,0 +1,733 @@
+<style type="text/css">
+	body {
+    background-color: #f7f6f6
+}
+
+.card {
+    
+    border: none;
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    border-radius: 4px;
+}
+
+
+.dots{
+
+    height: 4px;
+  width: 4px;
+  margin-bottom: 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.badge{
+
+        padding: 7px;
+        padding-right: 9px;
+    padding-left: 16px;
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+}
+
+.user-img{
+
+    margin-top: 4px;
+}
+
+.check-icon{
+
+    font-size: 17px;
+    color: #c3bfbf;
+    top: 1px;
+    position: relative;
+    margin-left: 3px;
+}
+
+.form-check-input{
+    margin-top: 6px;
+    margin-left: -24px !important;
+    cursor: pointer;
+}
+
+
+.form-check-input:focus{
+    box-shadow: none;
+}
+
+
+.icons i{
+
+    margin-left: 8px;
+}
+.reply{
+
+    margin-left: 12px;
+}
+
+.reply small{
+
+    color: #b7b4b4;
+
+}
+
+
+.reply small:hover{
+
+    color: green;
+    cursor: pointer;
+
+}
+</style>
+
+{% extends './index.html' %}
+{% load static %}
+{% load humanize %}
+{% block add_title %}
+ {{personnel}}
+{% endblock %}
+
+{% block content %}
+<div  style='width:100%;padding:0px;margin:0px;overflow-x:hidden;'>
+	<div class="contain"  style='width:100%;padding:0px;margin:0px;'>
+		<div class="row pl-4 mb-4"   style='width:100%;padding:0px;'>
+			<div style="text-transform: uppercase;"> <b>Informations Générales</b> </div>
+			<div class="col-12 mt-4 d-flex flex-wrap">
+				<div class="card col-md-4 col-lg-3  d-flex justify-content-center flex-wrap" style="background:#fff;border:none;">
+					<div class="card-header d-flex justify-content-center" style="border:none;background:none;">
+						<div class="d-none d-lg-block text-center">
+							<img src="{{personnel.photo.url}}" style="border-radius:100%;width:100%;height: 200px;max-width:200px;">
+						</div>
+					</div>
+				</div>
+				<div style="width:20px;height:20px;"></div>
+				<div class="card col-lg-3" style="border:none;">
+					<center class=" p-4">
+
+						<div class="d-lg-none text-center">
+							<img src="{{personnel.photo.url}}" style="border-radius:100%;width:100%;height: 200px;max-width:200px;">
+						</div>						
+						<div class="h4 text-secondary">{{prenom}} {{nom}}</div>
+						<div class="h6 text-secondary">{{role}}</div>
+						<!-- {{entity_manage}} -->
+						<!-- <div>{{personnel.get_function.m_role.m_entities}}</div> -->
+					</center>
+					{% if personnel.permissions > 99 %}
+					<div class="text-center"><span class="badge badge-success"> Owner </span></div>
+					{% endif %}
+					<!-- <center class="p-4"> <span  data-target="#userModal" data-toggle="modal" class="btn btn-danger">Paramètres du Compte</span> </center> -->
+				</div>
+				<div style="width:20px;height:20px;"></div>
+				<div class="card col-lg-5" style="border:none;">
+					{% if personnel.get_operations == None %}
+					<article>
+						{{personnel.get_operations}}
+					</article>
+					{% elif permissions >= 0 %}
+					<canvas id='Chartrepar'></canvas>
+					{% else %}
+					<div class="text-center">Informations : </div>
+					<a href="/" class="d-block text-center text-info"><i class="fa-3x fas text-info fa-table"></i><br><span class="btn btn-info">{{entity_manage.get_name}}</span></a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="pl-4 mb-4 row" style='width:100vw;padding:0px;'>
+			
+			<div class="col-12 mt-4 d-flex flex-wrap">
+                <div class="card col-lg-3">
+                  <div class="card-body">
+                  	<div style="text-transform: uppercase;"> <b>Institution</b> </div>
+                   	<div>
+                   		Institution Actuelle : &nbsp;&nbsp;<span class="text-success">{{actual_institution}}</span>
+                   	</div>
+                   	<div><a href="/institution/" >Choix de l'Institution</a>
+                   	</div>
+                  </div>
+                </div>
+                <div style="width:20px;height:20px;"></div>
+                 
+
+                <div style="width:20px;height:20px;"></div>
+                <div class="card col-lg-2">
+                  <div class="card-body">
+                   	<div class="text-center"><a href="/admin_institution" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter Institution</a>
+                   	</div>
+                  </div>
+                </div>
+
+                <div style="width:20px;height:20px;"></div>
+
+                <div style="width:20px;height:20px;"></div>
+                <div class="card col-lg-3">
+                  <div class="card-body">
+                   	<div class="text-center"><a href="/structures" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter Structure</a>
+                   	</div>
+                  </div>
+                </div>
+
+			</div>			
+		</div>
+		{% if personnel.get_function != None %}
+		<div class="row pl-4 mb-4" style="width:100%;">
+			<div class="col-md-12">
+			<div style="text-transform: uppercase;" class="text-primary"> <b>Informations Specifiques Sur Les Op&eacute;rations Non R&eacute;alis&eacute;es De L'Institution {{actual_institution}}</b> </div>
+			<div class="row col-lg-12">
+				{% for val in personnel.get_function.get_values2 %}
+				<div class="col-12">
+					<div class="col-lg-9">
+					<div class="h5 py-3" style="border-bottom:1px solid #aaa;">{{val.field.field}}</div>
+					<div class="value_liner py-2">{{val.val}}</div>
+					</div>
+				</div>
+			</div>
+				{% endfor %}
+			</div>
+		</div>
+</div>
+</div>
+
+
+	
+<div class="col-md-12">
+<div class="card p-1">
+<div card-title>
+<h6 class="text-primary my-2 text-center" style="font-weight:bold">
+Criteres De Recherche
+</h6>
+</div>
+<div class="card-body">
+<div class="row">
+<div class="col-md-4">
+<label style="font-weight:bold">Nom Operation</label>
+<input type="search" class="form-control p-2 my-2" id="search" placeholder="recherchez Vos Operations Non Realiseés">
+</div>
+<div class="col-md-4">
+<label style="font-weight:bold">Priorit&eacute; Op&eacute;ration</label>
+<select class="form-control my-2 search-priorite">
+  <option>Recherche par priorite</option>
+  <option>Normale</option>
+  <option>Haute</option>
+  <option>Basse</option>
+</select>
+</div>
+
+<div class="col-md-4">
+<label style="font-weight:bold">Date Echeance</label>
+<input type="date" class="form-control p-2 my-2" id="search_date">
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+		<div class="container mt-5">
+
+            <div class="row">
+            		{%for operations in operation%}
+            		{%if operations.personnel.id == personnel.id%}
+                <div class="col-md-4">
+
+                
+
+
+                    <div class="card p-3  {%if operations.delai_restant == 'Le délai est écoulé !'%} bg-danger text-light{%else%} bg-light text-dark{%endif%} card-filter" style="margin: 5px;">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                      <div class="user d-flex flex-row align-items-center">
+
+                        <img src="{{operations.institution.img.url}}" width="30" class="user-img rounded-circle mr-2">
+                        <span><small class="font-weight-bold {%if operations.delai_restant == 'Le délai est écoulé !'%}  text-light{%else%}  text-primary{%endif%}">&eacute;ch&eacute;ance:{{operations.date_echeance}}</small><br/> <small class="font-weight-bold">{{operations.nom}}</small></span>
+                          
+                      </div>
+
+                      </div>
+
+
+                      <div class="action d-flex justify-content-between mt-2 align-items-center">
+
+                        <div class="reply px-4">
+                            <small data-toggle="modal" data-target="#staticBackdrop{{operations.id}}">commentaire</small>
+                            <span class="dots"></span>
+                            <small data-toggle="modal" data-target="#exampleModal{{operations.id}}">Historique</small>
+                            <span class="dots"></span>
+                          <!-- 	<small>Archiver</small>
+                          	<span class="dots"></span> -->
+                          	<small>
+                          		<span class="badge btn-danger">{{operations.priorite}}</span>
+                          	</small>
+                           
+                        </div>
+
+                          
+                      </div>
+
+
+                        
+                    </div>
+                </div>
+                <div class="modal fade" id="staticBackdrop{{operations.id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="staticBackdropLabel"><b style="font-weight: bold;font-style: italic;">{{ request.user.personnel.nom }} Faites Un Commentaire Pour L'op&eacute;ration:</b> <b class="text-primary">{{operations.nom}}</b></h6>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form method="POST" action="/save_comment/" enctype="multipart/form-data">
+                                            {%csrf_token%}
+                                        <div class="modal-body">
+                                            <label class="text-danger">Votre Commentaire *</label>
+                                            <textarea class="form-control"name="commentaire"></textarea>
+                                             <label class="text-primary">Attachez Un fichier</label>
+                                            <input type="file" class="form-control" name="file">
+    
+                                              <label class="text-danger">Destinataire *</label>
+                                            <input type="hidden" value='{{ operations.id }}' class="form-control" name="operation_id">
+                                            
+                                           <input type="text" class="form-control" name="role" value="{{ operations.personnel.nom }}" style="display: none">
+                                                  <select class="form-control" name="email">
+                                                    <option> Selectionnez Le destinataire</option>
+                                                      {%for personnels in perso%}
+                                                    <option value="{{personnels.mail}}">{{personnels.mail}}<b class="text-danger" style="font-style: italic;">|{{personnels.nom}}</b></option>
+                                                    {%endfor%}
+                                                  </select>
+                                                      
+                                                 
+                                  
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                          <button type="submit" class="btn btn-primary">Soumettre</button>
+                                        </div>
+                                    </form>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModal{{operations.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Historisation de L'operation <b class="text-primary" style="font-weight:bold">{{operations.nom}}</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-center  mb-0 bg-white table-responsive w-100 table-responsive">
+                                        <thead class="text-center bg-info text-light">
+                                          <tr>
+                                            <th style="width:75%"><h6>R: Responsible</h6></th>
+                                            <th style="width:25%"><h6>A: Accountable</h6></th>
+                                            <th style="width:25%"><h6>C: Consulted</h6></th>
+                                            <th style="width:75%"><h6>I: Informed</h6></th>
+                                            
+                                          </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                          <tr>
+                                            <td><div class="d-flex align-items-center">
+                                                <img
+                                                    src="{{ operations.personnel.photo.url }}"
+                                                    alt=""
+                                                    style="width: 45px; height: 45px"
+                                                    class="rounded-circle"
+                                                    />
+                                                    &nbsp;&nbsp;
+                                                <div class="ms-3">
+                                                  <p class="fw-bold mb-1">{{operations.personnel.nom}}</p>
+                                                
+                                                </div>
+                                              </div></td>
+                                            <td>
+                                              <div class="d-flex align-items-center">
+                                                <img
+                                                    src="{{ operations.accountable.photo.url }}"
+                                                    alt=""
+                                                    style="width: 45px; height: 45px"
+                                                    class="rounded-circle"
+                                                    />
+                                                    &nbsp;&nbsp;
+                                                <div class="ms-3">
+                                                  <p class="fw-bold mb-1">{{operations.accountable.nom}}</p>
+                                                
+                                                </div>
+                                              </div>
+                                            </td>
+                                            <td>
+                                               <div class="d-flex align-items-center">
+                                                <img
+                                                    src="{{ operations.consulted.photo.url }}"
+                                                    alt=""
+                                                    style="width: 45px; height: 45px"
+                                                    class="rounded-circle"
+                                                    />
+                                                    &nbsp;&nbsp;
+                                                <div class="ms-3">
+                                                  <p class="fw-bold mb-1">{{operations.consulted.nom}}</p>
+                                                
+                                                </div>
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="d-flex align-items-center">
+                                                <img
+                                                    src="{{ operations.informed.photo.url }}"
+                                                    alt=""
+                                                    style="width: 45px; height: 45px"
+                                                    class="rounded-circle"
+                                                    />
+                                                    &nbsp;&nbsp;
+                                                <div class="ms-3">
+                                                  <p class="fw-bold mb-1">{{operations.informed.nom}}</p>
+                                                
+                                                </div>
+                                              </div>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    <hr/>
+              <table class="table  mb-0 bg-white table-responsive w-100">
+                <thead class="bg-light">
+                  <tr>
+                    <th style="width:25%">Op&eacute;ration Attribu&eacute; &agrave; :</th>
+                    <th style="width:25%">Date Affectation</th>
+                    <th style="width:25%">Priorit&eacute</th>
+                    <th style="width:25%">Ech&eacute;nce</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                            src="{{ operations.personnel.photo.url }}"
+                            alt=""
+                            style="width: 45px; height: 45px"
+                            class="rounded-circle"
+                            />
+                            &nbsp;&nbsp;
+                        <div class="ms-3">
+                          <p class="fw-bold mb-1">{{operations.personnel.nom}}</p>
+                          <p class="text-muted mb-0">{{operations.personnel.mail}}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="fw-normal mb-1">{{operations.date_creation}}</p>
+                      <p class="text-muted mb-0"> ({{operations.date_creation|naturaltime}})</p>
+                    </td>
+                    <td>
+                      <span class="badge badge-success rounded-pill d-inline">{{operations.priorite}}</span>
+                    </td>
+                    <td>{{operations.date_echeance}}</td>
+                    
+                  </tr>
+                
+                 
+                </tbody>
+              </table>
+              <hr/>
+              <table  class="table align-middle mb-0 bg-white table-responsive">
+                <thead class="bg-light">
+                  <tr>
+                    <th style="width:25%">Commentaire(s) Faite(s) Par:</th>
+                    <th style="width:25%">Commentaire</th>
+                    <th style="width:25%">Date Commentaire</th>
+                    {%if operation_historics.file|length_is:"0"%}
+                   {%else%}
+                   <th>Fichier Joint</th>
+                    {%endif%}
+                  </tr>
+                </thead>
+                <tbody>
+              {%for operation_historics in operation_historic%}
+              {%if operation_historics.m_operation_id == operations.id%}
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                            src="{{operation_historics.personnel.photo.url}}"
+                            alt=""
+                            style="width: 45px; height: 45px"
+                            class="rounded-circle"
+                            />
+                        <div class="ms-3">
+              
+                            <p class="text-muted fw-bold mb-1" style="font-family:quartz">{{operation_historics.m_role}}</p>
+                          <p class="text-muted mb-0" style="font-family:quartz">{{operation_historics.personnel.mail}}</p>
+                 
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                     <p class="fw-normal mb-1"></p>
+                      <p class="text-muted mb-0">{{operation_historics.m_commentaire}}</p>
+                    </td>
+                    <td>
+                      <span class="d-inline">{{ operation_historics.m_date_realisation }}</span>
+                      
+                     ({{ operation_historics.m_date_realisation|naturaltime }})
+                    </td>
+                   
+                  <td>
+			<a href="/download_files/{{operation_historics.id}}"> {{operation_historics.file}}</a>
+		</td>
+                     </tr>
+              {%endif%}
+              
+              {%endfor%}
+                    
+                </tbody>
+              </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+                {%endif%}
+
+                {%endfor%}
+
+
+
+                    
+
+
+
+
+
+
+
+
+
+                    
+
+
+
+
+
+
+                    
+
+
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+		{% endif %}
+
+		<!-- Personnel RACI
+		<div>
+			<div class="card p-3" style="border:none;">
+				<div>Rôles et Attributions</div>
+				<div class="pt-4">
+					<table class="table table-responsive table-stripped">
+						<thead>
+							<td> {{actual_institution.operations_name}} </td>
+							<td> Rôle </td>
+							<td> Progression </td>
+							<td> Information </td>
+						</thead>
+						<tbody>
+							{% for op in personnel.all_raci_roles %}
+							<tr>
+								<td>{{op.m_operation}}</td>
+								<td> <span class="btn  {% if op.role_racis == 'R' %} btn-success {% elif op.role_racis == 'A' %} btn-danger {% elif op.role_racis == 'C' %} btn-warning {% elif op.role_racis == 'I' %} btn-info {% endif %}"> <i class="fas fa-user-circle"></i>&nbsp;{{op.role_racis}} </span> </td>
+								<td> {{op.m_operation.progression}} %</td>
+								<td>{{op.details_role}}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		-->
+
+		<!--
+		<div class="pl-4 row mb-4"   style='width:100vw;padding:0px;'>
+			<div style="text-transform: uppercase;"> <b>Contribution {{institution.top_entity}}</b> </div>
+			<div class="col-12 mt-4 d-flex ">
+				{% for prog in programmes %}
+                <div class="card" style="width: 23%;">
+                  <div class="card-body">
+                    <p class="card-text p-0 m-0">
+                        <div style="min-height:50px;" class="text-center">
+                            <span class='text-success'>PROGRAMME : </span>&nbsp;{{prog}}
+                        </div>
+                        <div>
+                            {{prog.objectifs}}
+                        </div>
+                        <div class="text-center text-danger"> 
+                            Evolution : {{prog.progression}} % 
+                        </div>
+                        <div class="text-center mt-2">
+                            <a href="/gestionnaire/p/{{prog.id}}/" class="btn btn-info"> Infos</a>
+                            <a href="/operations/" class="btn btn-success">Rapport</a>
+                        </div>
+                    </p>
+                  </div>
+                </div>
+                {% endfor %}
+			</div>
+		</div>
+		-->
+		<!--
+		<div class="pl-4 row"   style='width:100vw;padding:0px;'>
+				<div style="width:100%;text-transform: uppercase;"> <b>Historique</b> </div>
+			
+			<div class="card" style="width:80%;">
+
+			</div>
+		</div>
+		-->
+	</div>
+</div>
+{% endblock %}
+
+{% block modals %}
+
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+	//alertify.message("DFDFDF")
+	formDIS = document.getElementsByClassName('formDIS');
+	function launchDIS(index){
+		$(formDIS[parseInt(index)]).hide('slow',function(){
+			$(formDIS[1-parseInt(index)]).show('slow');
+		})
+	}
+
+  var barColors3 = ["green","orange","red"];
+  structures3 = ["Terminées","Attente de Validation","Non réalisé"];
+  yValues3= [{{personnel.get_operations_high}},{{personnel.get_operations_medium}},{{personnel.get_operations_low}}];
+  new Chart("Chartrepar", {
+    type: "doughnut",
+    data: {
+      labels: structures3,
+      datasets: [{
+        backgroundColor: barColors3,
+        data: yValues3
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Progression {{actual_institution.operations_name}}",
+        beginAtZero: true
+      }
+    }
+  });
+
+  function checkPassword(){
+  	value_password = document.getElementsByClassName('value_password');
+  	if (value_password[0].value == value_password[1].value){
+  		return true;
+  	}
+  	else{
+  		alert("Mots de Passe Différents");
+  		return false;
+  	}
+  }
+
+</script>
+<script type="text/javascript">
+	// Sélection de l'élément de recherche
+let searchInput = document.getElementById('search');
+
+// Ajout d'un événement input pour détecter les changements dans le champ de recherche
+searchInput.addEventListener('input', function() {
+    let filter = searchInput.value.toLowerCase(); // Convertir la valeur en minuscules pour la comparaison
+
+    // Sélection de tous les éléments à filtrer
+    let cards = document.querySelectorAll('.card-filter');
+
+    // Parcourir chaque élément à filtrer
+    cards.forEach(function(card) {
+        let cardText = card.textContent.toLowerCase(); // Récupérer le texte de l'élément en minuscules
+
+        // Vérifier si le texte de la carte contient le filtre de recherche
+        if (cardText.includes(filter)) {
+            card.style.display = ''; // Afficher l'élément s'il correspond au filtre
+        } else {
+            card.style.display = 'none'; // Masquer l'élément s'il ne correspond pas au filtre
+        }
+    });
+});
+
+</script>
+<script type="text/javascript">
+	// Sélection de l'élément de la liste déroulante
+let selectPriorite = document.querySelector('.search-priorite');
+
+// Ajout d'un événement change pour détecter les changements dans la liste déroulante
+selectPriorite.addEventListener('change', function() {
+    let selectedPriorite = selectPriorite.value; // Récupérer la valeur de la priorité sélectionnée
+
+    // Sélection de tous les éléments à filtrer
+    let cards = document.querySelectorAll('.card-filter');
+
+    // Parcourir chaque élément à filtrer
+    cards.forEach(function(card) {
+        let badge = card.querySelector('.badge').textContent; // Récupérer le texte du badge de priorité
+
+        // Vérifier si la priorité de la carte correspond à celle sélectionnée
+        if (selectedPriorite === 'Recherche par priorite' || badge === selectedPriorite) {
+            card.style.display = ''; // Afficher l'élément s'il correspond à la priorité sélectionnée
+        } else {
+            card.style.display = 'none'; // Masquer l'élément s'il ne correspond pas à la priorité sélectionnée
+        }
+    });
+});
+
+</script>
+<script type="text/javascript">
+	// Sélection de l'élément de la date
+let inputDate = document.getElementById('search_date');
+
+// Ajout d'un événement input pour détecter les changements dans le champ de date
+inputDate.addEventListener('input', function() {
+    let selectedDate = new Date(inputDate.value); // Récupérer la date sélectionnée
+
+    // Sélection de tous les éléments à filtrer
+    let cards = document.querySelectorAll('.card-filter');
+
+    // Parcourir chaque élément à filtrer
+    cards.forEach(function(card) {
+        let operationDate = new Date(card.querySelector('.font-weight-bold').textContent); // Récupérer la date de l'opération
+
+        // Vérifier si la date de l'opération correspond à celle sélectionnée
+        if (selectedDate.toDateString() === operationDate.toDateString()) {
+            card.style.display = ''; // Afficher l'élément s'il correspond à la date sélectionnée
+        } else {
+            card.style.display = 'none'; // Masquer l'élément s'il ne correspond pas à la date sélectionnée
+        }
+    });
+});
+
+</script>
+{% endblock %}

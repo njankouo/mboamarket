@@ -1,0 +1,59 @@
+
+ 
+    <div class="container"data-aos="fade-up">
+       
+      <div class="row" data-masonry='{"percentPosition": true}'>
+            {%for actualites in actualite%}
+            <div class="col-md-4">
+                <a href="/view_actuality/{{actualites.id}}/">
+                    
+              <div class="product-card bg-white rounded-4 shadow-sm h-100 position-relative mx-2">
+                <span class="badge bg-danger">{{actualites.institution.sigle}}</span>
+                <div class="overflow-hidden">
+                  <img src="{{actualites.photos.url}}" class="product-image w-100" alt="Product">
+                </div>
+                <div class="p-4">
+                  <h6 class="fw-bold mb-3">{{actualites.intitule}}</h6>
+                    <b style="font-weight: bold" class="text-success">Article disponible dans la boutique </b><b class="text-warning"><a href="/account/{{actualites.id}}/">{{actualites.institution.sigle}}</a></b>
+                   <div class="wrapper">
+                                                <a href="{{actualites.institution.lien_facebook}}"><div class="bg-ico" id="facebook"><i class="fab fa-facebook social  facebook fa-2x"></i></div></a>
+                                           
+                                             
+                                                <a href="{{actualites.institution.lien_instagram}}"><div class="bg-ico" id="instagram"><i class="fab fa-instagram social  instagram fa-2x"></i></div></a>
+                                               
+                                                <a href="https://wa.me/{{actualites.institution.numero_whatsapp}}?text=Bonjour,%20{{actualites.institution.sigle}}%20Je Suis%20Interessé%20Par%20Ce%20Produit%20:%0A%0A*Nom%20du%20produit%20:*%20{{ actualites.intitule }}%0A*Voici%20l'image%20du%20produit%20:*%20https://mboamarket.com{{actualites.photos.url}}" target="_blank">  
+
+                                                  <div class="bg-ico" id="whatsapp"><i class="fab fa-whatsapp social  whatsapp fa-2x"></i></div></a>   
+
+                                               <a href="https://wa.me/?text=Cher%20ami,%0A%0AJe%20souhaite%20vous%20recommander%20un%20produit%20exceptionnel%20que%20j'ai%20découvert.%20Découvrez-le%20ici%20:%20https://mboamarket.com{{actualites.photos.url}}%0A%0AProfitez-en%20et%20faites-moi%20savoir%20ce%20que%20vous%20en%20pensez !" target="_blank">  
+
+ 
+                                                            <div class="bg-ico" id="twitter">  
+                                                                <i class="  fab fa-cloudsmith social twitter fa-2x"></i>  
+                                                            </div>  
+                                                        </a>    
+
+                                                  
+
+                                                </div>
+                       <a href="/initial_command/{{actualites.id}}/" class="btn-commander">
+                                        <span class="btn-commander-content">
+                                            <i class="fas fa-shopping-cart btn-icon"></i>
+                                            <span class="btn-text">Commander maintenant</span>
+                                        </span>
+                                        <span class="btn-pulse"></span>
+                                            </a>
+                 
+                </div>
+              </div>
+            </a>
+            </div>
+          
+           {%endfor%}
+     
+        </div>
+     </div>
+   
+
+  </section><!-- /About Section -->
+  </main>

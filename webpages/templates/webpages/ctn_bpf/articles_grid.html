@@ -1,0 +1,187 @@
+{% for rubriques in rubrique %}
+    {% if rubriques.actualite_set.all %}
+    <div class="{% if not forloop.first %}mt-16 my-3 pt-5{% else %}mt-10{% endif %} relative">
+        <!-- Ligne de séparation animée -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 via-yellow-400 to-red-500 rounded-full shadow-lg animate-pulse"></div>
+        
+        <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+            {{ rubriques.nom }}
+            <span class="ml-2 px-2 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-full animate-bounce">
+                {{ rubriques.actualite_set.all|length }} offre(s)
+            </span>
+        </h2>
+        
+        <!-- Conteneur principal pour les éléments -->
+        <div id="items-container-{{ rubriques.id }}" class="grid grid-cols-2 gap-6 lg:gap-4 lg:grid-cols-5">
+            {% for actualite in rubriques.actualite_set.all|slice:":9" %}
+            {% include './actualite_item.html' with actualite=actualite %}
+            {% endfor %}
+        </div>
+
+        <!-- Conteneur masqué pour éléments supplémentaires -->
+        <div id="more-{{ rubriques.id }}" class="hidden">
+            {% for actualite in rubriques.actualite_set.all|slice:"9:" %}
+            {% include './actualite_item.html' with actualite=actualite %}
+            {% endfor %}
+        </div>
+
+        <!-- Bouton "Voir plus" animé -->
+        {% if rubriques.actualite_set.all|length > 9 %}
+        <div class="mt-8 text-center">
+            <button onclick="loadMore('{{ rubriques.id }}', 9)" 
+                    id="toggle-{{ rubriques.id }}"
+                    class="relative inline-flex items-center px-6 py-3 bg-white text-gray-800 font-medium rounded-full shadow-md hover:shadow-lg transition-all
+                           border border-gray-200 hover:border-blue-300 overflow-hidden group">
+                <span class="relative z-10 flex items-center">
+                    <span>Voir plus d'offres</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </span>
+                <span class="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+{% endfor %}
+
+<!-- Template séparé pour les éléments d'actualité (actualite_item.html) -->
+{% comment %}
+<div class="block group transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+    <div class="relative group">
+        <!-- Conteneur d'image avec overlay -->
+        <div class="relative overflow-hidden aspect-square rounded-xl bg-gray-100 shadow-md">
+            {% if actualite.photos %}
+            <img 
+                class="absolute inset-0 object-cover w-full h-full transition-all duration-500 group-hover:scale-110" 
+                src="{{ actualite.photos.url }}" 
+                alt="{{ actualite.intitule }}" 
+                loading="lazy"
+            />
+            {% endif %}
+            
+            <!-- Overlay au survol -->
+            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            
+            <!-- Badge sigle animé -->
+            <div class="absolute left-2 top-2 transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                <p class="px-2 py-1 text-xs font-bold tracking-wide text-gray-900 uppercase bg-white rounded-full shadow-md whitespace-nowrap flex items-center">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 mr-1 animate-pulse"></span>
+                    {{ actualite.institution.sigle }}
+                </p>
+            </div>
+            
+            <!-- Bouton "Voir" caché -->
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span class="bg-white/90 backdrop-blur-sm text-gray-900 font-medium px-4 py-2 rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    Voir l'offre
+                </span>
+            </div>
+            
+            <!-- Cœur favoris animé -->
+            <button class="absolute right-2 top-2 p-2 bg-white/80 rounded-full shadow-md transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 hover:bg-red-100 hover:text-red-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 hover:text-red-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Contenu texte -->
+        <div class="mt-3 space-y-2 px-1">
+            <!-- Titre -->
+            <h4 class="text-sm font-semibold text-gray-900 line-clamp-2 text-center group-hover:text-blue-600 transition-colors h-[2.8em] leading-tight">
+                {{ actualite.intitule }}
+            </h4>
+            
+            <!-- Étoiles de notation -->
+            <div class="flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="flex">
+                    {% with rating=actualite.rating|default:4 %}
+                    {% for i in "12345"|make_list %}
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 {% if forloop.counter <= rating %}text-amber-400{% else %}text-gray-300{% endif %}" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                    {% endfor %}
+                    {% endwith %}
+                </div>
+                <span class="ml-1 text-xs text-gray-500">({{ actualite.review_count|default:"20" }})</span>
+            </div>
+            
+            <!-- Prix et localisation -->
+            <div class="flex items-center justify-between text-xs">
+                <!-- Prix animé -->
+                <span class="font-bold bg-gradient-to-r 
+                    {% if actualite.prix < 50000 %}from-green-500 to-green-600
+                    {% elif actualite.prix < 100000 %}from-yellow-500 to-yellow-600
+                    {% else %}from-red-500 to-red-600{% endif %} 
+                    bg-clip-text text-transparent transform transition-transform duration-300 group-hover:scale-110">
+                    {{ actualite.prix|floatformat:"0" }} FCFA
+                </span>
+                
+                <!-- Localisation -->
+                <div class="flex items-center space-x-1 text-gray-600 truncate max-w-[50%]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span class="truncate">{{ actualite.institution.address|default:"Non spécifié" }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endcomment %}
+
+<script>
+// Variable pour suivre le nombre d'éléments chargés
+const loadedCounts = {};
+
+function loadMore(rubriqueId, batchSize = 9) {
+    const container = document.getElementById(`items-container-${rubriqueId}`);
+    const moreContent = document.getElementById(`more-${rubriqueId}`);
+    const toggleButton = document.getElementById(`toggle-${rubriqueId}`);
+    
+    // Initialiser le compteur si nécessaire
+    if (!loadedCounts[rubriqueId]) {
+        loadedCounts[rubriqueId] = 0;
+    }
+    
+    // Calculer les indices de début et fin
+    const start = 9 + loadedCounts[rubriqueId];
+    const end = start + batchSize;
+    
+    // Sélectionner les éléments à ajouter
+    const itemsToAdd = Array.from(moreContent.children).slice(loadedCounts[rubriqueId], loadedCounts[rubriqueId] + batchSize);
+    
+    if (itemsToAdd.length > 0) {
+        // Ajouter les éléments avec animation
+        itemsToAdd.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = `opacity 0.3s ease ${index * 0.1}s, transform 0.3s ease ${index * 0.1}s`;
+            container.appendChild(item);
+            
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, 10);
+        });
+        
+        // Mettre à jour le compteur
+        loadedCounts[rubriqueId] += batchSize;
+        
+        // Vérifier s'il reste des éléments à charger
+        if (loadedCounts[rubriqueId] >= moreContent.children.length) {
+            toggleButton.style.display = 'none';
+            moreContent.remove();
+        }
+    } else {
+        toggleButton.style.display = 'none';
+    }
+}
+
+function toggleMore(rubriqueId) {
+    loadMore(rubriqueId);
+}
+</script>

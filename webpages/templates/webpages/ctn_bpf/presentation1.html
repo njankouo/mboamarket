@@ -1,0 +1,1694 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>MboaMarket</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  {%load static%}
+
+  <!-- Favicons -->
+  <link href="{%static 'styles/assets/img/favicon.png'%}" rel="icon">
+  <link href="{%static 'styles/assets/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{%static 'styles/assets/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+  <link href="{%static 'styles/assets/vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
+  <link href="{%static 'styles/assets/vendor/aos/aos.css'%}" rel="stylesheet">
+  <link href="{%static 'styles/assets/vendor/glightbox/css/glightbox.min.css'%}" rel="stylesheet">
+  <link href="{%static 'styles/assets/vendor/swiper/swiper-bundle.min.css'%}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{%static 'styles/assets/css/main.css'%}" rel="stylesheet">
+  
+  
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500|Yellowtail");
+      .overlay_bg {
+         display: block;
+         position: absolute;
+         top: 0;
+         width: 100%;
+         height: 100%;
+         background: url(https://images.pexels.com/photos/262713/pexels-photo-262713.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb)
+            no-repeat center;
+         background-size: cover;
+         filter: blur(0px);
+         z-index: -1;
+      }
+      .title {
+         padding: 60px 0px;
+      }
+      .card {
+         padding-bottom: 10px;
+      }
+      .card-title {
+         font-family: "Yellowtail", cursive;
+         background: linear-gradient(40deg, #2096ff, #05ffa3);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+      }
+      .card-text {
+         color: #777;
+         font-size: 0.9rem;
+      }
+      .btn_grad_blgr {
+         margin: 0 auto;
+         margin-bottom: 0px;
+         border: 0;
+         border-radius: 10em;
+         padding: 15px 15px;
+         font-size: 14px;
+         font-weight: 300;
+         background: linear-gradient(40deg, #2096ff, #05ffa3) !important;
+         color: #fff;
+      }
+      
+      .btn_grad_blgr:focus,
+      .btn_grad_blgr:active {
+         box-shadow: none !important;
+         border-color: none;
+      }
+      .shine_fx {
+        width: 405px;
+        height: 605px;
+        position: absolute;
+        top: -256px;
+        left: 250px;
+        transition: .5s;
+        transform: rotate(40deg);
+        background: linear-gradient(90deg, rgba(255,255,255, 0)50%, rgba(255,255,255,0.7)100%);
+         
+      }
+      .shiny {
+         position: relative;   
+         overflow: hidden;
+         transition: ease .3s;
+      }
+      .card:hover .shine_fx {  
+        transform: rotate(0);
+        left: -560px;
+        top: -445px;
+      }
+      /* .btn {
+        margin: 0 auto;
+        margin-bottom: 30px;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 600;    
+      } */
+      /*
+      .card {
+         border: solid 12px rgba(255,255,255,0.2);
+         background-clip: padding-box;
+      }
+      */
+      /*Profile Card 5*/
+.profile-card-5 {
+   margin-top: 20px;
+ 
+}
+
+.profile-card-5 .btn {
+   border-radius: 2px;
+   text-transform: uppercase;
+   font-size: 12px;
+   padding: 7px 20px;
+}
+
+.profile-card-5 .card-img-block {
+   width: 100%;
+   margin: 0 auto;
+   position: relative;
+   top: -20px;
+   height: 90%;
+}
+
+.profile-card-5 .card-img-block img {
+   border-radius: 5px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.63);
+}
+
+.profile-card-5 h5 {
+   color: #4e5e30;
+   font-weight: 600;
+}
+
+.profile-card-5 p {
+   font-size: 14px;
+   font-weight: 300;
+}
+
+.profile-card-5 .btn-primary {
+   background-color: #4e5e30;
+   border-color: #4e5e30;
+}
+
+
+</style>
+<style>
+  .profile-card-5 {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .profile-card-5:hover {
+      transform: translateY(-10px); /* Légère élévation de la carte */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Ombre portée pour un effet de profondeur */
+  }
+
+  .card-img-block img {
+      transition: transform 0.3s ease;
+  }
+
+  .profile-card-5:hover .card-img-block img {
+      transform: scale(1.05); /* Légère mise à l'échelle de l'image */
+  }
+
+  .card-body {
+      transition: opacity 0.3s ease;
+  }
+
+  .profile-card-5:hover .card-body {
+      opacity: 0.9; /* Légère réduction de l'opacité pour un effet subtil */
+  }
+
+
+
+
+
+
+  .product-card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    transition: all 0.5s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #6366f1;
+}
+
+.btn-custom {
+    background: linear-gradient(45deg, #6366f1, #8b5cf6);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+
+
+
+#cards .card {
+    border-radius: 20px;
+    min-height: 100%;
+}
+
+#cards .heading-border {
+    position: absolute;
+    width: 100%;
+    top: 60%;
+}
+
+#cards .card .user-picture img {
+    position: absolute;
+    top: -20%;
+    right: 10%;
+    background: #f8f9fa!important;
+    padding: 10px;
+}
+
+#cards .card .user-content .user-name {
+    margin-right: 150px;
+}
+</style>
+ <style>
+      
+     .animated-text {  
+        font-size: 1.2rem;  
+/*        text-align: center;  */
+/*        position: relative;  */
+        height: 2rem; /* Ajustez selon vos besoins */  
+    }  
+    
+    .highlight {  
+        font-size: 1.2rem;  
+        font-weight: 800;  
+        color: #0056b3;  
+        display: inline-block;  
+        text-shadow: 0 0 8px rgba(0, 150, 255, 0.3);  
+        animation: highlightPulse 4s infinite, colorWave 19s infinite;  
+        padding: 0 10px;  
+        border-radius: 8px;  
+        background: linear-gradient(135deg, rgba(230, 245, 255, 0.7) 0%, rgba(200, 235, 255, 0.9) 100%);  
+        box-shadow: 0 4px 15px rgba(0, 120, 215, 0.2);  
+        position: relative; /* Position absolute pour chevaucher */  
+        opacity: 1;  
+        transition: opacity 1.5s ease;  
+    }  
+    
+    .rest-of-text {  
+        color: #333;  
+        font-weight: 500;  
+        position: absolute; /* Position absolute pour chevaucher */  
+        opacity: 0; /* Commencer caché */  
+        transition: opacity 1.8s ease;   
+        left: 0; /* Assurez-vous qu'il soit au bon endroit */  
+        right: 0; /* Assurez-vous qu'il soit au bon endroit */  
+        font-style: italic;
+           font-size: 1.2rem;  
+              display: inline-block; 
+                     padding: 0 10px;   
+    }  
+
+    @keyframes highlightPulse {  
+        0% { transform: scale(1); }  
+        50% { transform: scale(1.05); }  
+        100% { transform: scale(1); }  
+    }  
+    
+    @keyframes colorWave {  
+        0% { color: #0056b3; }  
+        25% { color: #0078d7; }  
+        50% { color: #0099cc; }  
+        75% { color: #0078d7; }  
+        100% { color: #0056b3; }  
+    }  
+    </style>
+
+
+
+ <style type="text/css">
+
+
+
+
+.fab {
+margin: auto;
+
+}
+.social{
+  color: #FFF;
+  transition: all 0.35s;
+  transition-timing-function: cubic-bezier(0.31, -0.105, 0.43, 1.59);
+}
+.social:hover {
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+  transition: all ease 0.5s;
+  -moz-transition: all ease-in 0.5s;
+  -webkit-transition: all ease-in 0.5s;
+  -o-transition: all ease-in 0.5s;
+  
+}
+
+.facebook {
+ color:#4267B2;
+}
+
+.twitter {
+color:#1DA1F2;
+
+}
+.youtube {
+      color:#c4302b;
+}
+.pinterest {
+   color:#c8232c;
+}
+.instagram {
+ color: transparent;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+
+}
+.tumblr {
+        color: #34526f;
+}
+.whatsapp {
+        color:#25D366;
+}
+
+.bg-ico {
+  display: flex;
+  background-color: #FFF;
+  width: 60px;
+  height: 60px;
+  line-height: 90px;
+  margin: 0 5px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 28%;
+  box-shadow: 0 5px 15px -5px rgba(0,0,0,0.1);
+  opacity: 0.99;
+  -webkit-transition: background-color 2s ease-out;
+  -moz-transition: background-color 2s ease-out;
+  -o-transition: background-color 2s ease-out;
+  transition: background-color 2s ease-out;
+  
+}
+.bg-ico:hover{
+     box-shadow: 0 5px 15px -5px rgba(0,0,0,0.8);
+}
+
+#facebook:hover {
+  background-color: #4267B2;
+}
+
+#twitter:hover {
+background-color: #1DA1F2;
+
+}
+#youtube:hover {
+      background-color: #c4302b;
+}
+#pinterest:hover {
+   background-color:#c8232c;
+}
+#instagram:hover {
+ background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  
+
+}
+#tumblr:hover {
+    background-color: #34526f;
+}
+#whatsapp:hover {
+       background-color:#25D366;
+}
+
+.facebook:hover, 
+.twitter:hover, 
+.youtube:hover, 
+.pinterest:hover,
+.instagram:hover, 
+.tumblr:hover,
+.whatsapp:hover {
+ color:#fff;
+ transform: scale(1.3);
+
+}
+  </style>
+
+  <style type="text/css">
+  @import url("https://fonts.googleapis.com/css2?family=Corben:wght@700&display=swap");
+
+
+
+.marquee {
+  --duration: 60s;
+  --gap: var(--space);
+
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+
+}
+
+.marquee__group {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--gap);
+
+  animation: scroll var(--duration) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__group {
+    animation-play-state: paused;
+  }
+}
+
+.marquee__group img {
+  max-width: clamp(10rem, 1rem + 28vmin, 20rem);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 2rem;
+}
+
+.marquee__group p {  
+  background-image: linear-gradient(  
+    to left,  
+    hsl(144deg, 70%, 45%) 0%,         /* Vert */  
+    hsl(0deg, 100%, 40%) 50%,          /* Rouge */  
+    hsl(60deg, 100%, 50%) 100%         /* Jaune */  
+  );  
+  -webkit-background-clip: text;  
+  -webkit-text-fill-color: transparent;  
+  font-size: 1em; /* Ajustez la taille du texte si nécessaire */  
+  font-weight: bold; /* Rendre le texte plus épais pour plus d'impact */  
+}  
+.marquee--borders {
+  border-block: 1px solid white;
+  padding-block: 0.25rem;
+}
+
+.marquee--reverse .marquee__group {
+  animation-direction: reverse;
+  animation-delay: calc(var(--duration) / -2);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+
+.banniere-container {  
+    width: 100%; /* large de votre choix */  
+    overflow: hidden;   
+    white-space: nowrap; /* Les éléments ne passent pas à la ligne */  
+}  
+
+.banniere {  
+    display: inline-block;   
+    padding: 10px;  
+    animation: scroll 10s linear infinite; /* Durée et type d'animation */  
+}  
+
+@keyframes scroll {  
+    from {  
+        transform: translateX(100%); /* Commence hors de l'écran à droite */  
+    }  
+    to {  
+        transform: translateX(-100%); /* Fin hors de l'écran à gauche */  
+    }  
+}  
+
+/* Style des éléments défilants */  
+.marquee-item {  
+    transition: transform 0.3s ease, color 0.3s ease; /* Transition douce */  
+    display: inline-block; /* Assure un comportement en ligne */  
+}  
+
+/* Effet survol */  
+.marquee-item:hover {  
+    transform: scale(1.05); /* Agrandir légèrement sur le survol */  
+    color: #007bff; /* Change la couleur sur le survol */  
+}  
+
+/* Style pour le texte en mode mobile */  
+@media (max-width: 768px) {  
+    .marquee-item {  
+        font-size: 14px; /* Ajustez la taille de la police sur mobile */  
+    }  
+
+    .marquee-item img {  
+        height: 40px; /* Ajustez la taille de l'image si nécessaire */  
+        width: 32px; /* Ajustez la taille de l'image si nécessaire */  
+    }  
+}  
+  </style>
+<style>  
+    .marquee {  
+        --duration: 40s; /* Durée par défaut pour les ordinateurs */  
+    }  
+
+    @media (max-width: 768px) { /* Pour les écrans inférieurs à 768px */  
+        .marquee {  
+            --duration: 25s; /* Durée réduite pour les mobiles */  
+        }  
+    }  
+
+</style>  
+
+<style type="text/css">
+    /* Style de base du bouton */
+.btn-commander {
+    position: relative;
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+    color: white;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+/* Animation au survol */
+.btn-commander:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #224abe 0%, #4e73df 100%);
+}
+
+/* Effet de clic */
+.btn-commander:active {
+    transform: translateY(1px);
+}
+
+/* Animation de l'icône */
+.btn-icon {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.btn-commander:hover .btn-icon {
+    transform: scale(1.2) rotate(-10deg);
+}
+
+/* Effet de pulsation */
+.btn-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.btn-commander:hover .btn-pulse {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Effet de remplissage au survol */
+.btn-commander::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn-commander:hover::before {
+    left: 100%;
+}
+ 
+</style>
+  <style>
+        /* Styles pour le loader */
+        .loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loader-container {
+            text-align: center;
+        }
+        
+        .loader {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+        
+        .loader-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 8px solid transparent;
+            border-radius: 50%;
+            animation: rotate 2s linear infinite;
+            box-sizing: border-box;
+        }
+        
+        .loader-circle:nth-child(1) {
+            border-top-color: #28a745; /* Vert */
+            border-bottom-color: #28a745;
+        }
+        
+        .loader-circle:nth-child(2) {
+            border-left-color: #dc3545; /* Rouge */
+            border-right-color: #dc3545;
+            animation-delay: 0.5s;
+        }
+        
+        .loader-circle:nth-child(3) {
+            border-top-color: #ffc107; /* Jaune */
+            border-bottom-color: #ffc107;
+            animation-delay: 1s;
+            width: 60px;
+            height: 60px;
+            top: 10px;
+            left: 10px;
+        }
+        
+     .logo-text {  
+    font-size: 2.5rem;  
+    font-weight: bold;  
+    letter-spacing: 1px;  
+    font-style: italic;  
+   
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Ombre du texte */  
+    transition: transform 0.3s; /* Transition pour un effet dynamique */  
+}  
+
+.logo-text:hover {  
+    transform: scale(1.05); /* Légère augmentation de taille au survol */  
+}  
+        
+        .logo-text span:nth-child(1) { color: #28a745; } /* M - Vert */
+        .logo-text span:nth-child(2) { color: #dc3545; } /* b - Rouge */
+        .logo-text span:nth-child(3) { color: #ffc107; } /* o - Jaune */
+        .logo-text span:nth-child(4) { color: #28a745; } /* a - Vert */
+        .logo-text span:nth-child(5) { color: #dc3545; } /* M - Rouge */
+        .logo-text span:nth-child(6) { color: #ffc107; } /* a - Jaune */
+        .logo-text span:nth-child(7) { color: #28a745; } /* r - Vert */
+        .logo-text span:nth-child(8) { color: #dc3545; } /* k - Rouge */
+        .logo-text span:nth-child(9) { color: #ffc107; } /* e - Jaune */
+        .logo-text span:nth-child(10) { color: #28a745; } /* t - Vert */
+        
+        .loading-text {
+            margin-top: 15px;
+            color: #6c757d;
+            font-size: 1rem;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* Masquer le contenu de la page pendant le chargement */
+        .page-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in, visibility 0.5s;
+        }
+        
+        .page-content.loaded {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+
+  
+  --badge-color: #37633f;
+  --checkmark-color: white;
+}
+
+.bypostauthor > article .fn {  
+  font-family: Montserrat, Verdana, sans-serif;
+  font-weight: 500;
+    position: relative;
+    padding-left: 22px;
+}
+
+.bypostauthor > article .fn:before,
+.bypostauthor > article .fn:after {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    content: "\2713";
+    color: var(--checkmark-color);
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    background-color: var(--badge-color);
+    border-radius: 20%;
+}
+
+.bypostauthor > article .fn:before {
+    transform: rotate(45deg);
+}
+    </style>
+
+    <style type="text/css">
+        .btn-view {  
+    display: inline-block;  
+    padding: 10px 15px; /* Un padding confortable */  
+    background-color: #007bff; /* Couleur du bouton, bleu primaire */  
+    color: white; /* Couleur du texte en blanc */  
+    border: none; /* Pas de bordure */  
+    border-radius: 5px; /* Coins arrondis */  
+    text-decoration: none; /* Pas de soulignement sur le texte */  
+    font-size: 16px; /* Taille de police */  
+    font-weight: bold; /* Texte en gras */  
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre pour profondeur */  
+    transition: background-color 0.3s, transform 0.3s; /* Transition lisse pour le changement de couleur */  
+    margin: 0 5px; /* Espacement autour du bouton */  
+}  
+
+.btn-view:hover {  
+    background-color: white; /* Couleur au survol, bleu plus foncé */  
+    transform: translateY(-2px); /* Légère élévation au survol */  
+}  
+
+.btn-view:active {  
+    transform: translateY(0); /* Retrouver la position normale au clic */  
+}  
+
+
+@media (max-width: 767.98px) {  
+    .product-card {  
+        font-size: 0.9rem; /* Adjusts all text to a slightly smaller size on mobile */  
+    }  
+    
+    .badge {  
+        font-size: 0.8rem; /* Smaller badge size */  
+    }  
+    
+    .product-image {  
+        max-width: 100%; /* Ensures the image does not overflow */  
+        height: auto; /* Maintains aspect ratio */  
+    }  
+}  
+.dashed-link {  
+    display: inline-block;  /* Permet d'appliquer des styles de padding et de bordure */  
+    padding: 10px 20px;  /* Espacement intérieur pour le lien */  
+    margin-top: 10px;   /* Espace au-dessus du lien */  
+    color: #007bff;     /* Couleur du texte */  
+    border: 2px dashed #007bff;  /* Bordure en pointillé de couleur bleue */  
+    border-radius: 25px; /* Coins arrondis */  
+    text-decoration: none; /* Pas de soulignement pour le lien */  
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition douce pour les effets */  
+}  
+
+.dashed-link:hover {  
+    background-color: #007bff; /* Couleur de fond bleue au survol */  
+    color: #ffffff;             /* Couleur du texte blanche au survol */  
+}  
+    </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
+
+</head>
+ <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
+<body class="index-page">
+<div class="loader-overlay" id="loader">
+        <div class="loader-container">
+            <div class="loader">
+                <div class="loader-circle"></div>
+                <div class="loader-circle"></div>
+                <div class="loader-circle"></div>
+            </div>
+            <div class="logo-text">
+                <span>M</span>
+                <span>b</span>
+                <span>o</span>
+                <span>a</span>
+                <span>M</span>
+                <span>a</span>
+                <span>r</span>
+                <span>k</span>
+                <span>e</span>
+                <span>t</span>
+            </div>
+            <div class="loading-text">Chargement en cours...</div>
+        </div>
+    </div>
+
+   
+<!-- 
+
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
+     
+
+        <h4 class="animated-text ">  
+
+            <span class="highlight" id="portal" style="font-weight: bold;">
+<b class="text-success">Mboa</b><b class="text-danger">M</b><b class="text-warning">arket</b>  
+
+        </span>  
+            <span class="rest-of-text fade-out" id="chamber" style="font-weight: bold;">
+
+                <b class="text-success">Boutique</b>&nbsp;<b class="text-danger">En</b>&nbsp;<b class="text-warning"> Ligne</b></span>   
+        </h4>  
+
+      </a>
+      &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/" class="active">Acceuil</a></li>
+            <li><a href="#">A Propos</a></li>
+        
+          <li><a href="/all_actuality_site/">Articles</a></li>
+          <li><a href="/all_actuality/">M&eacute;diatheque</a></li>
+          <li class="dropdown"><a href="#"><span>Boutiques</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="/login_ecommerce/">Creez Votre Boutique</a></li>
+              <li class="dropdown"><a href="/register/"><span>Managez Vos Articles</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="/register/">Ajoutez Vos Articles</a></li>
+               
+                </ul>
+              </li>
+        </ul>
+    </li>
+          <li><a href="#contact">Contact</a></li>
+         
+        </ul>
+        
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+   
+
+    </div>
+   
+  </header> -->
+
+  <br><br><br><br/>
+  <main class="main">
+    
+    
+    <section id="about" class="about section">
+  <h6 style="font-weight: bold; text-align: justify; text-transform:uppercase;" class="text-center text-primary  " id="flow">  
+    Creez Votre Boutique En Moins De 5 Minutes EN Cliquant Ici  
+<a href="/login_ecommerce/" class="dashed-link">Nouvelle Boutique</a>   
+</h6>  
+
+<div class="container" style="display: none;">  
+    <div class="marquee marquee_hoverpause marquee--borders" style="transform: skewY(-0deg); color: dark;" id="header">  
+        <div class="marquee__group">  
+            {% if baniere|length == '0' %}  
+                <!-- Aucune bannière à afficher -->  
+            {% else %}  
+                {% for baniers in baniere %}  
+                    <a href="/edit_baniere_institution/{{baniers.id}}/">  
+                        <p class="text-primary mx-3 marquee-item" aria-hidden="true">  
+                            <img src="{{ baniers.logo.url }}" height="30" width="40" class="img-responsive rounded" alt="" style="border-radius: 35px" />  
+                            &nbsp;  
+                            <b class="text-primary">{{ baniers.nom }}</b>  
+                        </p>  
+                    </a>  
+                {% endfor %}  
+            {% endif %}  
+        </div>  
+    </div>  
+</div>  
+
+
+     
+<!-- <div class="col-12 col-sm-6 col-md-4 mb-4"> 
+    <a href="view_actuality/{{ last_actualitys.id }}/">  
+        <div class="product-card bg-white rounded-4 shadow-sm mx-2 my-2">  
+            <span class="badge bg-primary">{{ last_actualitys.institution.sigle }}
+
+            </span>  
+            <div class="overflow-hidden">  
+                <img src="{{ last_actualitys.photos.url }}" class="product-image img-fluid" alt="Product">  
+            </div>  
+            <div class="p-2 p-md-4">  
+                <h6 class="fw-bold mb-2 text-muted text-truncate" style="font-size: 1.5rem;">{{ last_actualitys.intitule }}</h6> 
+                
+                <b class="text-primary" style="font-size: 1rem;">Article disponible dans la boutique </b>  
+                <b class="text-warning">  
+                    <a href="/account/{{ last_actualitys.institution.id }}" class="text-dark">{{ last_actualitys.institution.sigle }}</a>  
+                </b>  
+              
+            </div>  
+        </div>  
+    </a>  
+</div>   -->
+
+
+
+         
+    
+
+
+
+
+ 
+
+
+      <!-- Section Title -->
+    <!--   <div class="container section-title" data-aos="fade-up">
+        <h2>Nos Boutiques</h2>
+         <p>Nos Boutiques Actuelles</p> 
+   
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+         <div class="row" data-masonry='{"percentPosition": true}'>
+
+     {% for groupes in groupe %}       
+          <div class="col-md-4"> 
+
+            <a href="/groupe_link/{{ groupes.id }}" style="text-decoration:none">
+
+           
+              <div class="card m-5 bg-light text-white" style="width: 23rem;">
+<a href="#">
+  <img src="{{groupes.icone.url}}" class="card-img-top" alt="..."></a>
+  <div class="card-body">
+   
+    <a href="#" class="card-title  mt-1 mb-3 d-block text-dark">{{groupes.nom}}</a>
+    <p class="card-text text-muted">{{groupes.description}}</p>
+    
+  </div>
+</div>
+              </a>
+          </div>  
+          {% endfor %}  
+
+        
+        
+
+        </div>
+
+      </div> -->
+
+    
+  <!--   <section id="testimonials" class="testimonials section light-background">
+
+    
+
+    </section>
+   
+ -->
+
+  
+        <!-- Section Title -->
+        <section class="py-12 bg-white sm:py-16 lg:py-20">
+    <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+        <div class="max-w-md mx-auto text-center">
+            <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">Our featured items</h2>
+            <p class="mt-4 text-base font-normal leading-7 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus faucibus massa dignissim tempus.</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6 mt-10 lg:mt-16 lg:gap-4 lg:grid-cols-4">
+            <div class="relative group">
+                <div class="overflow-hidden aspect-w-1 aspect-h-1">
+                    <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-125" src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/item-cards/4/product-1.png" alt="" />
+                </div>
+                <div class="absolute left-3 top-3">
+                    <p class="sm:px-3 sm:py-1.5 px-1.5 py-1 text-[8px] sm:text-xs font-bold tracking-wide text-gray-900 uppercase bg-white rounded-full">New</p>
+                </div>
+                <div class="flex items-start justify-between mt-4 space-x-4">
+                    <div>
+                        <h3 class="text-xs font-bold text-gray-900 sm:text-sm md:text-base">
+                            <a href="#" title="">
+                                Beoplay M5 Bluetooth Speaker
+                                <span class="absolute inset-0" aria-hidden="true"></span>
+                            </a>
+                        </h3>
+                        <div class="flex items-center mt-2.5 space-x-px">
+                            <svg class="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-gray-300 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="text-right">
+                        <p class="text-xs font-bold text-gray-900 sm:text-sm md:text-base">$99.00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group">
+                <div class="overflow-hidden aspect-w-1 aspect-h-1">
+                    <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-125" src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/item-cards/4/product-2.png" alt="" />
+                </div>
+                <div class="flex items-start justify-between mt-4 space-x-4">
+                    <div>
+                        <h3 class="text-xs font-bold text-gray-900 sm:text-sm md:text-base">
+                            <a href="#" title="">
+                                Apple Smart Watch 6 - Special Edition
+                                <span class="absolute inset-0" aria-hidden="true"></span>
+                            </a>
+                        </h3>
+                        <div class="flex items-center mt-2.5 space-x-px">
+                            <svg class="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="text-right">
+                        <p class="text-xs font-bold text-gray-900 sm:text-sm md:text-base">$299.00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group">
+                <div class="overflow-hidden aspect-w-1 aspect-h-1">
+                    <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-125" src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/item-cards/4/product-3.png" alt="" />
+                </div>
+                <div class="absolute left-3 top-3">
+                    <p class="sm:px-3 sm:py-1.5 px-1.5 py-1 text-[8px] sm:text-xs font-bold tracking-wide text-white uppercase bg-gray-900 rounded-full">Sale</p>
+                </div>
+                <div class="flex items-start justify-between mt-4 space-x-4">
+                    <div>
+                        <h3 class="text-xs font-bold text-gray-900 sm:text-sm md:text-base">
+                            <a href="#" title="">
+                                Beylob 90 Speaker
+                                <span class="absolute inset-0" aria-hidden="true"></span>
+                            </a>
+                        </h3>
+                        <div class="flex items-center mt-2.5 space-x-px">
+                            <svg class="w-3 h-3 text-gray-300 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-gray-300 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-gray-300 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-gray-300 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-gray-300 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="text-right">
+                        <p class="text-xs font-bold text-gray-900 sm:text-sm md:text-base">$49.00</p>
+                        <del class="mt-0.5 text-xs sm:text-sm font-bold text-gray-500"> $99.00 </del>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group">
+                <div class="overflow-hidden aspect-w-1 aspect-h-1">
+                    <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-125" src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/item-cards/4/product-4.png" alt="" />
+                </div>
+                <div class="flex items-start justify-between mt-4 space-x-4">
+                    <div>
+                        <h3 class="text-xs font-bold text-gray-900 sm:text-sm md:text-base">
+                            <a href="#" title="">
+                                Martino 75 Bluetooth
+                                <span class="absolute inset-0" aria-hidden="true"></span>
+                            </a>
+                        </h3>
+                        <div class="flex items-center mt-2.5 space-x-px">
+                            <svg class="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-yellow-400 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-gray-300 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                            <svg class="w-3 h-3 text-gray-300 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="text-right">
+                        <p class="text-xs font-bold text-gray-900 sm:text-sm md:text-base">$79.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <div class="container section-title" data-aos="fade-up">
+          <h2>M&eacute;diatheques</h2>
+          <p>Videos Rendues Publics</p>
+        </div><!-- End Section Title -->
+  
+        <div class="container">
+  
+     
+  
+          <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+  
+            <div class="tab-pane fade active show" id="features-tab-1">
+              <div class="row">
+             {% for video in videos %}  
+    <div class="col-lg-4 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">  
+        <h5>{{ video.titre }}</h5>  
+        <video id="video-{{ forloop.counter }}"   
+               class="video"   
+               controls   
+               muted   
+               loop   
+               style="object-fit: cover; border-top-left-radius: 10px; border-top-right-radius: 10px;">  
+            <source src="{{ video.file.url }}" type="video/mp4">  
+            Votre navigateur ne prend pas en charge la lecture des vidéos.  
+        </video>  
+    </div>  
+{% endfor %}  
+
+<script>  
+    document.querySelectorAll('.video').forEach(video => {  
+        video.addEventListener('mouseover', () => {  
+            playVideo(video);  
+        });  
+
+        video.addEventListener('mouseleave', () => {  
+            pauseVideo(video);  
+        });  
+
+        // Événements tactiles pour les appareils mobiles  
+        video.addEventListener('touchstart', () => {  
+            playVideo(video);  
+        });  
+
+        video.addEventListener('touchend', () => {  
+            pauseVideo(video);  
+        });  
+    });  
+
+    function playVideo(video) {  
+        video.play(); // Commence à jouer la vidéo  
+        setTimeout(() => {  
+            video.pause(); // Arrête la vidéo après 30 secondes  
+        }, 30000); // 30000 millisecondes = 30 secondes  
+    }  
+
+    function pauseVideo(video) {  
+        video.pause(); // Arrête la vidéo lorsque la souris quitte l'élément ou relâche le doigt  
+        video.currentTime = 0; // Remet la vidéo au début  
+    }  
+</script>          
+                
+              </div>
+            </div><!-- End tab content item -->
+  
+        
+          </div>
+  
+        </div>
+ 
+      <!-- Section Title -->
+       <br><br>
+      <div class="container section-title " data-aos="fade-up">
+        <h2>Documents Utiles</h2>
+        <p>Vous Avez Ici Les Documents Rendus Publics</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row g-4">
+          {%if archives_s|length == 0%}
+          <img src="{%static 'found.png'%}" alt="found" class="img-fluid " style="width: 40%; height: 40%; border-radius: 25%; margin-left: 25px;">
+         
+          {%else%}
+          {% for arch in archives_s %}  
+          {% if arch.is_public == True %}  
+            <!-- <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000" data-aos-easing="ease-in-out">  
+              <div class="service-card d-flex">  
+                <div class="icon flex-shrink-0">  
+                  <img src="{%static 'pdf.jpeg'%}" class="img-fluid img-responsive" style="height: 80%; width: 60%;">
+                </div>  
+                <div>  
+                  <h5>{{arch.titre}}</h5>  
+                  <p>{{arch.description}}</p>  
+                  <a href="{{arch.file.url}}" class="read-more">T&eacute;lecharger <i class="bi bi-arrow-right"></i></a>  
+                </div>  
+              </div>  
+            </div> -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000" data-aos-easing="ease-in-out">  
+
+                   <div class="card shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="user-picture d-flex">
+                                    <img src="{%static 'im1.jpeg'%}" class="shadow-sm rounded" height="60" width="60"/>
+                                    &nbsp;
+                                     <h5 class="text-capitalize user-name">{{arch.titre}}</h5>
+                                     
+                                </div>
+                                <div class="user-content">
+                                   
+                                    <p class="small text-muted mb-0">{{arch.description}}</p>
+                                    <div class="small">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star-half-alt text-warning"></i>
+                                        <i class="fas fa-star text-light"></i>
+                                    </div>
+                                   
+                                    <a href="{{arch.file.url}}" class="read-more btn btn-primary">T&eacute;lecharger </a> 
+                                </div>
+                            </div>
+                        </div>
+                   
+            </div>
+          {% endif %}  
+        {% endfor %}  
+          {%endif%}
+        
+        </div>
+
+      </div>
+
+   
+    <!-- Contact Section -->
+    <section class="faq-9 faq section light-background" id="faq">
+
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-5" data-aos="fade-up">
+            <h2 class="faq-title">Vous avez une question ? Consultez la FAQ</h2>
+            <!-- <p class="faq-description">Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero sit amet adipiscing sem neque sed ipsum.</p> -->
+            <div class="faq-arrow d-none d-lg-block" data-aos="fade-up" data-aos-delay="200">
+              <svg class="faq-arrow" width="200" height="211" viewBox="0 0 200 211" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M198.804 194.488C189.279 189.596 179.529 185.52 169.407 182.07L169.384 182.049C169.227 181.994 169.07 181.939 168.912 181.884C166.669 181.139 165.906 184.546 167.669 185.615C174.053 189.473 182.761 191.837 189.146 195.695C156.603 195.912 119.781 196.591 91.266 179.049C62.5221 161.368 48.1094 130.695 56.934 98.891C84.5539 98.7247 112.556 84.0176 129.508 62.667C136.396 53.9724 146.193 35.1448 129.773 30.2717C114.292 25.6624 93.7109 41.8875 83.1971 51.3147C70.1109 63.039 59.63 78.433 54.2039 95.0087C52.1221 94.9842 50.0776 94.8683 48.0703 94.6608C30.1803 92.8027 11.2197 83.6338 5.44902 65.1074C-1.88449 41.5699 14.4994 19.0183 27.9202 1.56641C28.6411 0.625793 27.2862 -0.561638 26.5419 0.358501C13.4588 16.4098 -0.221091 34.5242 0.896608 56.5659C1.8218 74.6941 14.221 87.9401 30.4121 94.2058C37.7076 97.0203 45.3454 98.5003 53.0334 98.8449C47.8679 117.532 49.2961 137.487 60.7729 155.283C87.7615 197.081 139.616 201.147 184.786 201.155L174.332 206.827C172.119 208.033 174.345 211.287 176.537 210.105C182.06 207.125 187.582 204.122 193.084 201.144C193.346 201.147 195.161 199.887 195.423 199.868C197.08 198.548 193.084 201.144 195.528 199.81C196.688 199.192 197.846 198.552 199.006 197.935C200.397 197.167 200.007 195.087 198.804 194.488ZM60.8213 88.0427C67.6894 72.648 78.8538 59.1566 92.1207 49.0388C98.8475 43.9065 106.334 39.2953 114.188 36.1439C117.295 34.8947 120.798 33.6609 124.168 33.635C134.365 33.5511 136.354 42.9911 132.638 51.031C120.47 77.4222 86.8639 93.9837 58.0983 94.9666C58.8971 92.6666 59.783 90.3603 60.8213 88.0427Z" fill="currentColor"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="col-lg-7" data-aos="fade-up" data-aos-delay="300">
+            <div class="faq-container">
+              {%if faq|length == 0%}
+              <img src="{%static 'found.png'%}" alt="found" class="img-fluid " style="width: 70%; height: 70%; border-radius: 25%; margin-left: 25px;">
+              {%else%}
+              {%for faqs in faq%}
+           <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="font-weight:bold; font-style: italic;">
+                  {{faqs.intitule}}
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">{{faqs.description|safe}}</div>
+              </div>
+            </div>
+
+
+          </div>
+
+           {%endfor%}
+           {%endif%}
+          
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /Faq Section -->
+    <section id="contact" class="contact section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> -->
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row g-4 g-lg-5">
+          <div class="col-lg-5">
+            <div class="info-box" data-aos="fade-up" data-aos-delay="200">
+              <h3>Contact Info</h3>
+              <!-- <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis.</p> -->
+
+              <div class="info-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box">
+                  <i class="bi bi-geo-alt"></i>
+                </div>
+                <div class="content">
+                  <h4>Localisation</h4>
+                  <p>Yaounde-Cameroun</p>
+                 
+                </div>
+              </div>
+
+              <div class="info-item" data-aos="fade-up" data-aos-delay="400">
+                <div class="icon-box">
+                  <i class="bi bi-telephone"></i>
+                </div>
+                <div class="content">
+                  <h4>Telephone </h4>
+                  <p>+237 699 07 25 61</p>
+                  
+                </div>
+              </div>
+
+              <div class="info-item" data-aos="fade-up" data-aos-delay="500">
+                <div class="icon-box">
+                  <i class="bi bi-envelope"></i>
+                </div>
+                <div class="content">
+                  <h4>Email Address</h4>
+                  <!-- <p>info@example.com</p> -->
+                  <p>mboamarketbeininfo@gmail.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="contact-form" data-aos="fade-up" data-aos-delay="300">
+              <h3>Établir une communication avec quelqu'un.</h3>
+              <!-- <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis.</p> -->
+
+              <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+                <div class="row gy-4">
+
+                  <div class="col-md-6">
+                    <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                  </div>
+
+                  <div class="col-md-6 ">
+                    <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                  </div>
+
+                  <div class="col-12">
+                    <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  </div>
+
+                  <div class="col-12">
+                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                  </div>
+
+                  <div class="col-12 text-center">
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                    <button type="submit" class="btn">Envoyer</button>
+                  </div>
+
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-4 footer-about">
+          <a href="/" class="logo d-flex align-items-center">
+            <span class="sitename">BeinInfo+</span>
+          </a>
+          <div class="footer-contact pt-3">
+            
+            <p>Yaounde</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+237 699 07 25 61</span></p>
+            <p><strong>Email:</strong> <span>beinInfo@gmail.com</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 footer-links">
+          <h4>Liens Utilis&eacute;s</h4>
+          <ul>
+            <li><a href="#">Acceuil</a></li>
+          
+            <li><a href="#">Articles</a></li>
+            <li><a href="#">M&eacute;diatheque</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-4 footer-links">
+          <h4>Nos Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+     
+
+     
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">BeinInfo+</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="operaplus.org">BeinInfo+</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
+<!-- JS -->  
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>  
+  <!-- Vendor JS Files -->
+  <script src="{%static 'styles/assets/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/php-email-form/validate.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/aos/aos.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/glightbox/js/glightbox.min.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/swiper/swiper-bundle.min.js'%}"></script>
+  <script src="{%static 'styles/assets/vendor/purecounter/purecounter_vanilla.js'%}"></script>
+  <script>
+        // Simuler le chargement de la page
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loader = document.getElementById('loader');
+                const pageContent = document.getElementById('pageContent');
+                
+                // Faire disparaître le loader
+                loader.style.opacity = '0';
+                
+                // Après la disparition du loader, afficher le contenu
+                setTimeout(function() {
+                    loader.style.display = 'none';
+                    pageContent.classList.add('loaded');
+                }, 500); // Correspond à la durée de la transition (0.5s)
+            }, 1500); // Durée minimale d'affichage du loader
+        });
+    </script>
+  <!-- Main JS File -->
+  <script src="{%static 'styles/assets/js/main.js'%}"></script>
+ <script>  
+    const portal = document.getElementById('portal');  
+    const chamber = document.getElementById('chamber');  
+
+    let isPortalVisible = true;  
+    
+    function animateText() {  
+        if (isPortalVisible) {  
+            // Fade out PORTAIL NUMERIQUE and fade in CHR-BERTOUA  
+            portal.style.opacity = '0'; // Fait disparaître le portail numérique  
+            chamber.style.opacity = '1'; // Fait apparaître CHR-BERTOUA  
+        } else {  
+            // Fade out CHR-BERTOUA and fade in PORTAIL NUMERIQUE  
+            chamber.style.opacity = '0'; // Fait disparaître CHR-BERTOUA  
+            portal.style.opacity = '1'; // Fait apparaître le portail numérique  
+        }  
+        
+        isPortalVisible = !isPortalVisible;  
+        setTimeout(animateText, 5000);  
+    }  
+
+    // Démarrer l'animation après 1 seconde  
+    setTimeout(animateText, 1000);  
+</script>  
+<script>  
+       const marquee = document.querySelector('.marquee');  
+const isMobile = window.matchMedia("(max-width: 768px)").matches;  
+
+marquee.style.setProperty('--duration', isMobile ? '25s' : '40s');  
+    </script> 
+
+<script>  
+    document.addEventListener("DOMContentLoaded", function () {  
+        const title = document.getElementById("flow");  
+        const container = document.querySelector(".container");  
+        const marqueeGroup = document.querySelector(".marquee__group");  
+
+        const displayDuration = 10000; // Durée d'affichage du titre (5 secondes)  
+        const totalDuration = parseFloat(getComputedStyle(marqueeGroup).getPropertyValue('--duration')) * 1000; // Durée de la bannière en ms  
+
+        function showTitleAndBanner() {  
+            // Afficher le titre  
+            title.style.display = "block";  
+            title.style.opacity = "1"; // Rendre visible  
+            setTimeout(() => {  
+                title.style.opacity = "0"; // Rendre invisible doucement  
+                setTimeout(() => {  
+                    title.style.display = "none"; // Masquer le titre  
+                    container.style.display = "flex"; // Afficher la bannière  
+                    container.style.opacity = "1"; // S'assurer que la bannière est visible  
+                    setTimeout(() => {  
+                        container.style.display = "none"; // Masquer la bannière  
+                        showTitleAndBanner(); // Appel récursif pour recommencer le cycle  
+                    }, totalDuration); // Durée de la bannière défilante  
+                }, 100); // Temps pour rendre le titre invisible (plus court pour un affichage rapide de la bannière)  
+            }, displayDuration); // Temps d'affichage du titre  
+        }  
+
+        // Démarrer le cycle d'affichage  
+        showTitleAndBanner();  
+    });  
+</script>  
+
+</body>
+
+</html>

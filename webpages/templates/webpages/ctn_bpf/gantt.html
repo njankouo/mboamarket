@@ -1,0 +1,84 @@
+{%extends './operations_details.html'%}
+{%block content%}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+              <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="/">
+                    <img style="width:40px;height:40px;border-radius:100%; " src="{{actual_institution.img.url}}">
+            
+
+                    {{actual_institution.sigle}}</a>
+            
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                   
+                      <li class="nav-item">
+                        <a class="nav-link" href="#" style="font-weight:bold;font-family:forte">Diagramme De Gantt</a>
+                      </li>                           
+                    </ul> 
+                      <button class="btn btn-outline-success" type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Menu</button>
+                      <!-- Modal -->
+                      
+                  </div>
+                </div>
+              </nav>
+             
+       
+    <div class="card my-4">
+        <div class="card-body">
+            <div id="containts"></div>
+        </div>
+    </div>
+</div>
+</div>
+    </div>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">© 2024 Company, Inc</p>
+    
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+    
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Dashboard</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Deconnexion</a></li>
+          
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+      
+        </ul>
+      </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/gantt/modules/gantt.js"></script>
+<script src="https://code.highcharts.com/gantt/modules/exporting.js"></script>
+	
+<script>
+    $(document).ready(function() {
+        $.getJSON('/gantt_planification/', function(data) {
+            if (data.length === 0) {
+                // Display an empty message or handle the case gracefully
+                console.warn("No data received from server");
+                return;
+            }
+            
+            Highcharts.ganttChart('containts', {
+                title: {
+                    text: 'Planification Des Operations Par Periode'
+                },
+                series: [{
+                    name: 'Project 1',
+                    data: data.map(op => ({
+                        name: `${op.nom} (Début: ${new Date(op.date_debut).toLocaleDateString()}, Fin: ${new Date(op.date_echeance).toLocaleDateString()})`,
+                        start: Date.parse(op.date_debut), // Parse the ISO date string
+                        end: Date.parse(op.date_echeance)  // Parse the ISO date string
+                    }))
+                }]
+            });
+        });
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{%endblock%}

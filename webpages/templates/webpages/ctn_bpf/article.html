@@ -1,0 +1,40 @@
+{% for actualites in actualite|slice:":20"  %}
+ <a href="view_actuality/{{ actualites.id }}/" class="group relative block overflow-hidden rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-blue-100 transform hover:-translate-y-1">
+<div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow transition-shadow duration-200" >
+  <!-- Image container -->
+  <div class="relative aspect-[4/3] bg-gray-100">
+    <img src="{{actualites.photos.url}}" 
+         alt="{{actualites.intitule}}"
+         class="w-full h-full object-cover">
+    
+    <!-- Micro-badge institution -->
+    <span class="absolute top-1 left-1 px-1 py-0.5 text-[9px] font-bold text-white rounded 
+                bg-gray-800 bg-opacity-80">
+        {{ actualites.institution.sigle|truncatechars:4 }}
+    </span>
+  </div>
+
+  <!-- Content -->
+  <div class="p-2">
+    <!-- Title -->
+    <h3 class="text-xs font-medium text-gray-800 line-clamp-2 leading-tight mb-1">
+      {{actualites.intitule}}
+    </h3>
+    
+    <!-- Price -->
+    <div class="flex items-baseline justify-between">
+      <span class="text-xs font-bold text-gray-900">{{actualites.prix|default:'0'}} FCFA</span>
+      
+      <!-- Micro-location -->
+      <div class="flex items-center text-[10px] text-gray-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-2.5 w-2.5 mr-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        <span>{{actualites.institution.address|truncatechars:8}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+</a>
+{% endfor %}

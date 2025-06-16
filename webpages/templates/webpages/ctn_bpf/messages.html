@@ -1,0 +1,178 @@
+<div  class="justify-content-center row ">
+    <div style="" class=" d-flex flex-wrap col-lg-6 col-md-6 col-12">
+        <div class='section_canver pt-1 col-12 col-lg-12'>
+            
+             
+        
+
+
+
+<div class="card" style="height: 90%;">
+    <div class="card-body">
+        <!-- <div class="pl-2 h3"><img src="{{actual_institution.img.url}}" style="width:40px;height:40px;border-radius:100%;">&nbsp;Evolution Globale</div> -->
+            <div class="card-title">
+                <h5 style="font-weight: bold;">EVOLUTION GLOBALE</h5>
+            </div>
+        <div id="chartdiv"></div>
+        <div class="card-footer">
+            Du <small id="date_d">******</small> Au  <small id="date_f">********</small>
+      
+           <label> Progression : </label> <label class="progr_btn {% if actual_progression < 25 %} text-danger {% elif actual_progression < 75 %} text-warning {% else %} text-success {% endif %}" >
+               
+           <small id="progressions">**** % </small></label>
+       </div>
+    </div>
+</div>
+
+            
+        </div>
+
+        <div style="display:nonse;" class='section_canver pt-1 col-12 col-lg-12'>
+            <label style="width:100%;" class="text-center"> <a class="text-secondary" href="#">Couverture des Indicateurs</a></label>
+            <canvas style="width:100%;" class="barometer_indic"></canvas>
+            <div>
+                <div class="d-flex w-100 justify-content-around flex-wrap">
+                    <div class="d-flex mb-2">
+                        <div class='' style="width:10px;height:10px;background:red"></div><div style="font-size:12px;">&nbsp;Critique</div>
+                    </div>
+                    <div class="d-flex mb-2">
+                        <div style="width:10px;height:10px;background:orange"></div><div style="font-size:12px;"> &nbsp; Faible </div>
+                    </div>
+                    <div class="d-flex mb-2">
+                        <div style="width:10px;height:10px;background:#d06910;"></div><div style="font-size:12px;"> &nbsp;Moyen </div>
+                    </div>
+                    <div class="d-flex mb-2">
+                        <div style="width:10px;height:10px;background:#a0a345"></div><div style="font-size:12px;"> &nbsp;Bon </div>
+                    </div>
+                    <div class="d-flex">
+                        <div style="width:10px;height:10px;background:green"></div><div style="font-size:12px;">&nbsp;Excellent</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="display:nonse;" class='section_canver pt-1 col-12 col-lg-12'>
+            <label style="width:100%;" class="text-center"> <a class="text-secondary" href="#">Gestion du Budget</a></label>
+            <div></div>
+            <canvas style="width:100%;" class="barometer_budget"></canvas>
+            <div>
+                <div>
+                    <small>Budget consomme : </small>
+                    <small id="budget_consum_val"> </small>
+                </div>
+                <div class="d-flex w-100 justify-content-around flex-wrap">
+                    <div class="d-flex mb-2">
+                        <div class='' style="width:10px;height:10px;background:red"></div><div style="font-size:12px;">&nbsp;Critique</div>
+                    </div>
+<div class="d-flex mb-2">
+                        <div style="width:10px;height:10px;background:#d06910;"></div><div style="font-size:12px;"> &nbsp;Moyen </div>
+                    </div>
+                    <div class="d-flex mb-2">
+                        <div style="width:10px;height:10px;background:orange"></div><div style="font-size:12px;"> &nbsp; Faible </div>
+                    </div>
+
+                    <div class="d-flex mb-2">
+                        <div style="width:10px;height:10px;background:#a0a345"></div><div style="font-size:12px;"> &nbsp;Bon </div>
+                    </div>
+                    <div class="d-flex">
+                        <div style="width:10px;height:10px;background:green"></div><div style="font-size:12px;">&nbsp;Excellent</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="card col-md-6 d-flex flex-column justify-content-center" style="height: 100%;">
+        <div class="card-body">
+            <div class="card-title">
+
+            
+            <div class="pl-2 h3"><img src="{{actual_institution.img.url}}" style="width:40px;height:40px;border-radius:100%;">&nbsp;{{actual_institution}}</div>
+            <div class="pl-2 h5"> {{actual_institution.nom}}</div>
+        </div>
+            <div class="section_div">
+                <div class="d-flex justify-content-between  flex-wrap">
+                    
+                    <div>
+                        <div class="">
+                            <small> G&eacute;n&eacute;ral</small>
+                        </div>
+                        <div class="">
+                            
+                            <label> Progression : </label> <label class="{% if actual_progression < 25 %} text-danger {% elif actual_progression < 75 %} text-warning {% else %} text-success {% endif %}"> {{operations_calcul}}% </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="section_div" style="display:none;">
+                <div><small>Atteinte des Objectifs</small></div>
+                <div class="col-12 d-flex flex-wrap justify-content-between">
+                    <div class="col-lg-12">
+                        <div class="flex-wrap col-md-12 d-flex ">
+                            <div class=" col-md-12">
+                                <div class="d-flex col-12">
+                                    <div><i class="fas fa-square text-danger"></i>&nbsp;<label><small>Objectifs en faible progression</small>&nbsp;<span class="text-danger indi_faibles"></span>&nbsp;%</label></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div  class="d-flex col-12">
+                                    <div><i class="fas fa-square text-success"></i>&nbsp;<label><small>Objectifs en bonne realisation</small>&nbsp;<span class="indi_forts text-success"></span>&nbsp;%</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section_div" style="display:none">
+                <div> <small> Gestion Budgetaire </small> </div>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="">
+                            <small> </small>
+                        </div>
+                        <div class="">
+                            <label> Budget Prevu : </label> <label class="text-success"> {{finances}} {{finan_options}} </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="">
+                            <small> </small>
+                        </div>
+                        <div class="">
+                            <label> Depenses effectives : </label> <label class=" {% if depenses_eff <= finances %} text-success {% else %} text-danger {% endif %}"> {{depenses_eff}} {{finan_options}} </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        <div class="card-footer p-4 d-flex flex-wrap justify-content-between">
+            <div class="col-md-3 col-6 p-2">
+                <a href="/evaluer/0/" class="text-center text-primary">
+                    <div><i class="fas fa-flag fa-3x"></i></div>
+                    <div><small>Objectifs et Indicateurs</small></div>
+                </a>
+            </div>
+            <div class="col-md-3 col-6 p-2">
+                <a href="/chaine_indicateurs/" class="d-block text-center text-primary">
+                    <div><i class="fas fa-globe fa-3x"></i></div>
+                    <div><small>Chaine de Resultats</small></div>
+                </a>
+            </div>
+            <div class="col-md-3 col-6 p-2">
+                <a href="/gestionnaire/0/" class="d-block text-center text-primary">
+                    <div><i class="fas fa-table fa-3x"></i></div>
+                    <div><small>Gestionnaire {{type_entity}}</small></div>
+                </a>
+            </div>
+            <div class="col-md-3 col-6 p-2">
+                <a href="/personnels/" class="text-center text-primary">
+                    <div><i class="fas fa-users fa-3x"></i></div>
+                    <div><small>Ressources Humaines</small></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

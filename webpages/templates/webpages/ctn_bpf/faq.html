@@ -1,0 +1,350 @@
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#a5b4fc',
+                            DEFAULT: '#6366f1',
+                            dark: '#4f46e5',
+                        },
+                        secondary: {
+                            light: '#fbcfe8',
+                            DEFAULT: '#ec4899',
+                            dark: '#db2777',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        display: ['"Bebas Neue"', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        .faq-item {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .faq-item.open .faq-content {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            filter: blur(40px);
+        }
+    </style>
+ <!-- Formes flottantes décoratives -->
+    <div class="floating-shapes">
+        <div class="shape bg-primary-light w-64 h-64 rounded-full animate-float1 top-1/4 left-10"></div>
+        <div class="shape bg-secondary-light w-80 h-80 rounded-full animate-float2 top-2/3 right-20"></div>
+        <div class="shape bg-primary-dark w-72 h-72 rounded-full animate-float3 top-1/3 right-1/4"></div>
+    </div>
+
+    <div class="container mx-auto px-4 py-4 max-w-6xl">
+        <!-- En-tête créative -->
+        <div class="text-center mb-16 animate__animated animate__fadeIn">
+            <h1 class="text-5xl md:text-7xl font-display tracking-wide text-gray-900 mb-4">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-dark to-secondary-dark">
+                    Questions Fréquentes
+                </span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Trouvez les réponses à toutes vos questions sur notre service.
+            </p>
+            <div class="mt-8 relative max-w-md mx-auto">
+                <input type="text" placeholder="Rechercher dans les FAQ..." 
+                       class="w-full px-6 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary-light focus:outline-none shadow-sm transition">
+                <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary text-white p-2 rounded-full hover:bg-primary-dark transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- FAQ en accordéon créatif -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Question 1 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden border-l-8 border-primary hover:shadow-xl transition">
+                <div class="p-6 cursor-pointer flex items-start" onclick="toggleFaq(this)">
+                    <div class="flex-shrink-0 bg-primary-light p-3 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800">Comment créer un compte sur votre plateforme ?</h3>
+                        <div class="faq-content mt-2">
+                            <p class="text-gray-600">
+                                Pour créer un compte, cliquez sur le bouton "S'inscrire" en haut à droite de la page d'accueil. 
+                                Remplissez le formulaire avec vos informations personnelles et validez votre adresse email 
+                                en cliquant sur le lien que vous recevrez par mail.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden border-l-8 border-secondary hover:shadow-xl transition">
+                <div class="p-6 cursor-pointer flex items-start" onclick="toggleFaq(this)">
+                    <div class="flex-shrink-0 bg-secondary-light p-3 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-secondary-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800">Comment sécuriser mon compte ?</h3>
+                        <div class="faq-content mt-2">
+                            <p class="text-gray-600">
+                                Nous recommandons fortement d'activer l'authentification à deux facteurs (2FA) dans les paramètres de votre compte. 
+                                Utilisez également un mot de passe unique et complexe, et ne le partagez jamais avec qui que ce soit.
+                            </p>
+                            <ul class="mt-2 list-disc list-inside text-gray-600">
+                                <li>Mot de passe de 12 caractères minimum</li>
+                                <li>Combinaison de lettres, chiffres et caractères spéciaux</li>
+                                <li>Ne pas utiliser le même mot de passe sur plusieurs sites</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden border-l-8 border-primary hover:shadow-xl transition">
+                <div class="p-6 cursor-pointer flex items-start" onclick="toggleFaq(this)">
+                    <div class="flex-shrink-0 bg-primary-light p-3 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800">Quels sont vos modes de paiement acceptés ?</h3>
+                        <div class="faq-content mt-2">
+                            <p class="text-gray-600">
+                                Nous acceptons les paiements par carte de crédit (Visa, MasterCard, American Express), PayPal, 
+                                et virements bancaires pour les entreprises. Tous les paiements sont sécurisés via un cryptage SSL.
+                            </p>
+                            <div class="flex space-x-4 mt-3">
+                                <div class="bg-gray-100 p-2 rounded-lg">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" class="h-6">
+                                </div>
+                                <div class="bg-gray-100 p-2 rounded-lg">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="h-6">
+                                </div>
+                                <div class="bg-gray-100 p-2 rounded-lg">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="Amex" class="h-6">
+                                </div>
+                                <div class="bg-gray-100 p-2 rounded-lg">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="h-6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden border-l-8 border-secondary hover:shadow-xl transition">
+                <div class="p-6 cursor-pointer flex items-start" onclick="toggleFaq(this)">
+                    <div class="flex-shrink-0 bg-secondary-light p-3 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-secondary-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800">Quels sont vos horaires de support technique ?</h3>
+                        <div class="faq-content mt-2">
+                            <p class="text-gray-600">
+                                Notre équipe de support est disponible 24h/24 et 7j/7 pour les urgences critiques. 
+                                Pour les questions non urgentes, nous répondons généralement dans les 2 heures ouvrables.
+                            </p>
+                            <div class="mt-3 p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center text-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                    <span>Support téléphonique: 24/7</span>
+                                </div>
+                                <div class="flex items-center mt-2 text-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    <span>Email: réponse sous 2h (8h-20h)</span>
+                                </div>
+                                <div class="flex items-center mt-2 text-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                    </svg>
+                                    <span>Chat en direct: 8h-22h</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden border-l-8 border-primary hover:shadow-xl transition">
+                <div class="p-6 cursor-pointer flex items-start" onclick="toggleFaq(this)">
+                    <div class="flex-shrink-0 bg-primary-light p-3 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800">Puis-je essayer votre service gratuitement ?</h3>
+                        <div class="faq-content mt-2">
+                            <p class="text-gray-600">
+                                Oui! Nous offrons un essai gratuit de 14 jours sans engagement. Vous n'avez pas besoin de fournir 
+                                vos informations de paiement pour commencer l'essai.
+                            </p>
+                            <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-100">
+                                <h4 class="font-medium text-blue-800 mb-2">Ce qui est inclus dans l'essai gratuit:</h4>
+                                <ul class="space-y-2 text-blue-700">
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span>Accès à toutes les fonctionnalités premium</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span>Support technique prioritaire</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span>Jusqu'à 5 utilisateurs</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span>10GB de stockage</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden border-l-8 border-secondary hover:shadow-xl transition">
+                <div class="p-6 cursor-pointer flex items-start" onclick="toggleFaq(this)">
+                    <div class="flex-shrink-0 bg-secondary-light p-3 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-secondary-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800">Comment puis-je annuler mon abonnement ?</h3>
+                        <div class="faq-content mt-2">
+                            <p class="text-gray-600">
+                                Vous pouvez annuler votre abonnement à tout moment sans frais supplémentaires. 
+                                Votre accès continuera jusqu'à la fin de la période de facturation en cours.
+                            </p>
+                            <div class="mt-3 bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-gray-800 mb-2">Pour annuler:</h4>
+                                <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                                    <li>Connectez-vous à votre compte</li>
+                                    <li>Allez dans "Paramètres du compte"</li>
+                                    <li>Sélectionnez "Abonnement"</li>
+                                    <li>Cliquez sur "Annuler l'abonnement"</li>
+                                    <li>Confirmez votre choix</li>
+                                </ol>
+                                <p class="mt-3 text-sm text-gray-600">
+                                    Vous recevrez un email de confirmation une fois l'annulation effectuée.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section de contact -->
+        <div class="mt-16 text-center animate__animated animate__fadeIn animate__delay-1s">
+            <div class="bg-gradient-to-r from-primary to-secondary p-1 rounded-2xl inline-block">
+                <div class="bg-white rounded-xl px-8 py-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">Vous ne trouvez pas votre réponse ?</h2>
+                    <p class="text-gray-600 mb-4">Notre équipe est là pour vous aider</p>
+                    <a href="/support/" class="px-6 py-3 bg-gradient-to-r from-gray-800 to-amber-900 text-white rounded-lg font-medium hover:opacity-90 transition transform hover:-translate-y-1 shadow-lg">
+                        Contactez notre support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFaq(element) {
+            const faqItem = element.closest('.faq-item');
+            const isOpen = faqItem.classList.contains('open');
+            
+            // Fermer tous les autres éléments FAQ
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('open');
+                }
+            });
+            
+            // Basculer l'état de l'élément actuel
+            if (!isOpen) {
+                faqItem.classList.add('open');
+            } else {
+                faqItem.classList.remove('open');
+            }
+        }
+        
+        // Animation des formes flottantes
+        const shapes = document.querySelectorAll('.shape');
+        shapes.forEach((shape, index) => {
+            shape.style.animation = `float${index+1} ${15 + index*5}s ease-in-out infinite`;
+        });
+    </script>
+    
+    <style>
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-30px) translateX(20px); }
+        }
+        
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(20px) translateX(-15px); }
+        }
+        
+        @keyframes float3 {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-20px) translateX(-25px); }
+        }
+    </style>

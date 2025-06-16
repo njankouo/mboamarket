@@ -1,0 +1,271 @@
+{%extends './dashboard.html'%}
+
+{%block content%}
+
+
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg">
+    <!-- En-tête avec bouton retour -->
+    <div class="flex items-center justify-between mb-8">
+      <a href="/" class="flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
+        Retour au tableau de bord
+      </a>
+      <h2 class="text-2xl font-bold text-gray-800">Modifier ma boutique</h2>
+    </div>
+  
+    <form class="space-y-8 divide-y divide-gray-200" method="POST" action="/edit_boutique/{{institution.id}}/" enctype='multipart/form-data'>
+        {% csrf_token %}
+      <!-- Section Informations de base -->
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-lg font-medium text-gray-900">Informations principales</h3>
+          <p class="mt-1 text-sm text-gray-500">Identifiez votre boutique avec des informations claires.</p>
+        </div>
+  
+        <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+          <!-- Nom de la boutique -->
+          <div class="sm:col-span-4">
+            <label for="shop-name" class="block text-sm font-medium text-gray-700">Nom de la boutique</label>
+            <div class="mt-1">
+              <input type="text" name="nom" id="shop-name" value="{{institution.nom}}" 
+                     class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-3 px-4 border">
+            </div>
+          </div>
+  
+          <!-- Sigle/Abbréviation -->
+          <div class="sm:col-span-2">
+            <label for="shop-sigle" class="block text-sm font-medium text-gray-700">Sigle</label>
+            <div class="mt-1">
+              <input type="text" name="sigle" id="shop-sigle" value="{{institution.sigle}}" 
+                     class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-3 px-4 border">
+            </div>
+          </div>
+  
+          <!-- Description -->
+          <div class="sm:col-span-6">
+            <label for="shop-description" class="block text-sm font-medium text-gray-700">Description</label>
+            <div class="mt-1">
+              <textarea id="shop-description" name="description" rows="4" 
+                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-3 px-4 border">{{institution.description}}</textarea>
+            </div>
+            <p class="mt-2 text-sm text-gray-500">Décrivez votre boutique en quelques phrases.</p>
+          </div>
+  
+          <!-- Logo -->
+          <div class="sm:col-span-6">
+            <label class="block text-sm font-medium text-gray-700">Logo</label>
+            <div class="mt-1 flex items-center">
+              <span class="h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+                <img class="h-full w-full object-cover" src="{{institution.img.url}}" alt="Logo actuel">
+              </span>
+             
+            </div>
+          </div>
+  
+          <!-- Bannière -->
+          <div class="sm:col-span-6">
+            <div class="border-t-2 border-dotted border-gray-400 pt-4 mt-4">
+                <p class="text-sm font-medium text-gray-700 mb-3">Selectionnez Vos Images</p>
+                
+                <div class="relative w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden cursor-pointer" id="image-upload-container">
+                    <!-- Image Preview -->
+                    <div class="absolute inset-0 flex items-center justify-center" id="image-preview">
+                        <p class="text-gray-500 text-center text-sm p-2">Cliquer pour ajouter des images</p>
+                    </div>
+                    
+                    <!-- File Input -->
+                    <input type="file" name="img" accept=".png, .jpg, .jpeg" multiple id="file-input" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                    
+                    <!-- Edit Button -->
+                    <div class="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow-md hover:bg-gray-100">
+                        <i class="fas fa-pen text-gray-600"></i>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-2 mt-2" id="thumbnail-container">
+                    <!-- Thumbnails will appear here -->
+                </div>
+            </div>
+      </div>
+    </div>
+  
+      <!-- Section Localisation -->
+      <div class="pt-8 space-y-6">
+        <div>
+          <h3 class="text-lg font-medium text-gray-900">Localisation</h3>
+          <p class="mt-1 text-sm text-gray-500">Où se trouve votre boutique physique ?</p>
+        </div>
+  
+        <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+          <!-- Adresse -->
+          <div class="sm:col-span-4">
+            <label for="address" class="block text-sm font-medium text-gray-700">Dans Quel Quartier Se Trouve Votre Boutique?</label>
+            <div class="mt-1">
+              <input type="text" name="address" id="address" value="{{institution.address}}" 
+                     class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-3 px-4 border">
+            </div>
+          </div>
+  
+          <!-- Ville -->
+          <div class="sm:col-span-2">
+            <label for="city" class="block text-sm font-medium text-gray-700">Ville</label>
+            <div class="mt-1">
+                <select id="baniere" name="baniere" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-3 px-4 border">
+                    {%for baniers in baniere%}
+                    {%if baniers.id == institution.baniere_id%}
+                    <option value="{{baniers.id}}" selected>{{baniers.nom}}</option>
+                    {%else%}
+                    <option value="{{baniers.id}}" >{{baniers.nom}}</option>
+                    {%endif%}
+                    {%endfor%}
+                   
+                  </select>
+            </div>
+          </div>
+  
+          <!-- Pays -->
+          <div class="sm:col-span-3">
+            <label for="country" class="block text-sm font-medium text-gray-700">Pays</label>
+            <div class="mt-1">
+              <select id="country" name="country" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-3 px-4 border">
+                <option value="Cameroun">Cameroun</option>
+                
+                <option>Autre</option>
+              </select>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label for="country" class="block text-sm font-medium text-gray-700">Groupe</label>
+            <div class="mt-1">
+              <select id="groupe" name="groupe" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-3 px-4 border">
+                {%for groupes in groupe%}
+                {%if groupes.id == institution.groupe_id%}
+                <option value="{{groupes.id}}" selected>{{groupes.nom}}</option>
+                {%else%}
+                <option value="{{groupes.id}}" >{{groupes.nom}}</option>
+                {%endif%}
+                {%endfor%}
+                
+               
+              </select>
+            </div>
+          </div>
+          
+  
+         
+        </div>
+      </div>
+  
+      <!-- Section Contact -->
+      <div class="pt-8 space-y-6">
+        <div>
+          <h3 class="text-lg font-medium text-gray-900">Coordonnées</h3>
+          <p class="mt-1 text-sm text-gray-500">Comment vos clients peuvent-ils vous contacter ?</p>
+        </div>
+  
+        <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+          <!-- Email -->
+          <div class="sm:col-span-3">
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <div class="mt-1">
+              <input type="email" name="email" id="email" value="{{institution.email}}" 
+                     class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-3 px-4 border">
+            </div>
+          </div>
+  
+          <!-- Téléphone -->
+          <div class="sm:col-span-3">
+            <label for="phone" class="block text-sm font-medium text-gray-700">Téléphone</label>
+            <div class="mt-1">
+              <input type="tel" name="phone" id="phone" value="{{institution.numero_whatsapp}}" 
+                     class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-3 px-4 border">
+            </div>
+          </div>
+  
+          <!-- Site web -->
+        
+  
+          <!-- Réseaux sociaux -->
+        
+        </div>
+      </div>
+  
+    
+      <!-- Boutons de soumission -->
+      <div class="pt-3 flex justify-end space-x-4">
+        <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          Annuler
+        </button>
+        <button type="submit" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          Enregistrer les modifications
+        </button>
+      </div>
+    </form>
+  </div>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('file-input');
+            const imagePreview = document.getElementById('image-preview');
+            const thumbnailContainer = document.getElementById('thumbnail-container');
+            const uploadContainer = document.getElementById('image-upload-container');
+            
+            fileInput.addEventListener('change', function(e) {
+                imagePreview.innerHTML = '';
+                thumbnailContainer.innerHTML = '';
+                
+                if (this.files && this.files.length > 0) {
+                    // Afficher la première image en aperçu principal
+                    const firstFile = this.files[0];
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'w-full h-full object-cover';
+                        imagePreview.appendChild(img);
+                    }
+                    reader.readAsDataURL(firstFile);
+                    
+                    // Créer des miniatures pour toutes les images
+                    Array.from(this.files).forEach((file, index) => {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const thumb = document.createElement('div');
+                            thumb.className = 'w-16 h-16 relative border rounded overflow-hidden';
+                            
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.className = 'w-full h-full object-cover';
+                            thumb.appendChild(img);
+                            
+                            // Bouton de suppression
+                            const removeBtn = document.createElement('button');
+                            removeBtn.className = 'absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center';
+                            removeBtn.innerHTML = '×';
+                            removeBtn.onclick = function() {
+                                thumb.remove();
+                                // TODO: Supprimer le fichier de l'input
+                            };
+                            
+                            thumb.appendChild(removeBtn);
+                            thumbnailContainer.appendChild(thumb);
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                } else {
+                    imagePreview.innerHTML = '<p class="text-gray-500 text-center text-sm p-2">Cliquez pour ajouter des images</p>';
+                }
+            });
+            
+            // Effet visuel au clic
+            uploadContainer.addEventListener('click', function() {
+                this.classList.add('ring-2', 'ring-indigo-500');
+                setTimeout(() => {
+                    this.classList.remove('ring-2', 'ring-indigo-500');
+                }, 300);
+            });
+        });
+  </script>
+{%endblock%}

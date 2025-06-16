@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">  
+    <link rel="stylesheet"href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css"/>
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>  
+        @keyframes marquee {  
+            0% { transform: translateX(100%); opacity: 1; }  
+            80% { opacity: 1; }  
+            100% { transform: translateX(-100%); opacity: 0; }  
+        }  
+
+        .marquee {  
+            display: flex;  
+            animation: marquee 30s linear infinite; /* La durée totale de l'animation */  
+        }  
+
+        .marquee-item {  
+            flex: 0 0 auto; /* Prevent flex items from shrinking */  
+            padding-right: 50px; /* Espace supplémentaire pour le clic */  
+        }  
+        
+        @media (prefers-reduced-motion: reduce) {  
+            .marquee {  
+                animation: none;  
+            }  
+        }  
+        
+    </style>  
+    <style>
+         @keyframes progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+  .animate-progress {
+    animation: progress 2s ease-in-out infinite;
+  }
+      </style>
+      <style>
+        @keyframes starTravel {
+            0% { transform: translateX(0) translateY(-10px); }
+            25% { transform: translateX(25%) translateY(-5px); }
+            50% { transform: translateX(50%) translateY(-15px); }
+            75% { transform: translateX(75%) translateY(-5px); }
+            100% { transform: translateX(100%) translateY(-10px); }
+        }
+        .animate-star-travel {
+            animation: starTravel 8s ease-in-out infinite alternate;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .hover-float:hover {
+            animation: float 2s ease-in-out infinite;
+        }
+        
+        /* Animation pour le menu mobile */
+        .menu-enter {
+            transition: all 0.3s ease-out;
+        }
+        .menu-enter-from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        .menu-enter-to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .menu-leave {
+            transition: all 0.3s ease-in;
+        }
+        .menu-leave-from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .menu-leave-to {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+    </style>
+
+
+ <!-- slide Institution -->
+<style>  
+    @keyframes scrollUp {  
+      0% {  
+        transform: translateY(0);  
+      }  
+      100% {  
+        transform: translateY(-50%);  
+      }  
+    }  
+    
+    .animate-scroll-up {  
+      animation: scrollUp 90s linear infinite;  
+    }  
+    </style>  
+<!-- Annimation etoile MboaMarket -->
+<style>
+    /* Dégradé pour "MBOA MARKET" */
+.logo-gradient {
+background: linear-gradient(to right, green, red, yellow);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+-webkit-text-fill-color: transparent;
+}
+    /* Animation de l'étoile */
+    @keyframes star-bounce {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-5px) scale(1.1); }
+    }
+    .animate-star-bounce {
+        animation: star-bounce 2s infinite ease-in-out;
+    }
+    
+    /* Effet de lueur sur le logo */
+    .drop-shadow-md {
+        filter: drop-shadow(0 4px 3px rgba(0,0,0,0.15));
+    }
+    
+    /* Transition douce pour le menu mobile */
+    #mobile-menu {
+        transition: all 0.3s ease-out;
+    }
+</style>
+
+<style>  
+    /* Animation fluide pour le carrousel */  
+    .carousel-item {  
+        scroll-snap-align: start;  
+    }  
+    
+    /* Effet de profondeur au survol */  
+    .hover\:translate-y-1 {  
+        transition: transform 0.3s ease;  
+    }  
+    
+    /* Adaptation mobile améliorée */  
+    @media (max-width: 640px) {  
+        .carousel-item {  
+            width: 85%;  
+            padding-left: 1rem;  
+            padding-right: 1rem;  
+        }  
+    }  
+</style>  
+
+<style>
+    /* Animation subtile au survol */
+    .rubrique-carousel div:hover {
+      transform: translateY(-2px);
+    }
+    
+    /* Apparition des flèches au survol du conteneur */
+    .relative:hover .rubrique-prev,
+    .relative:hover .rubrique-next {
+      opacity: 1;
+    }
+  </style>
+
+
+<style>
+    /* Animation personnalisée pour le chargement */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .animate__fadeInUp {
+        animation-name: fadeInUp;
+        animation-duration: 1s;
+    }
+    
+    /* Délai d'animation pour chaque élément */
+    .group:nth-child(1) { animation-delay: 0.1s; }
+    .group:nth-child(2) { animation-delay: 0.2s; }
+    .group:nth-child(3) { animation-delay: 0.3s; }
+    .group:nth-child(4) { animation-delay: 0.4s; }
+    .group:nth-child(5) { animation-delay: 0.5s; }
+    .group:nth-child(6) { animation-delay: 0.6s; }
+</style>
+
+<style>
+    @keyframes titleFade {
+      0%, 33.3% { opacity: 1; transform: translateY(0); }
+      36.6%, 100% { opacity: 0; transform: translateY(-10px); }
+    }
+    
+    @keyframes buttonGroupFade {
+      0%, 30% { opacity: 0; transform: translateY(10px); }
+      33.3%, 96.6% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-10px); }
+    }
+  </style>
+
+ <!-- CSS pour défilement vertical -->  
+ <style>  
+    @keyframes slideDown {  
+      0% {  
+        transform: translateY(-50%);  
+      }  
+      100% {  
+        transform: translateY(0);  
+      }  
+    }  
+    
+    .animate-slide-down {  
+      animation: slideDown 80s linear infinite;  
+    }  
+    </style>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+</head>  
+   
+  
+   
+
+<!-- script -->
+
+<!--     
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+    <title>MboaMarket</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" /> -->
+
+</head>
+
+<body>
+   
+    <div class="fixed inset-0 flex items-center justify-center bg-white bg-opacity-90 z-50" id="loader">
+        <div class="text-center">
+            <!-- Logo animé -->
+            <div class="relative w-48 h-48 mx-auto mb-8">
+                <!-- Cercle extérieur animé aux couleurs camerounaises -->
+                <div class="absolute inset-0 border-4 border-t-green-600 border-r-red-600 border-b-yellow-400 border-l-green-600 rounded-full animate-spin"></div>
+                
+                <!-- Logo texte avec dégradé camerounais -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-3xl font-bold bg-gradient-to-r from-green-600 via-red-600 to-yellow-400 bg-clip-text text-transparent">
+                        MBOAMARKET
+                    </span>
+                </div>
+            </div>
+        
+            <!-- Barre de progression aux couleurs camerounaises -->
+            <div class="w-64 h-2 bg-gray-200 rounded-full overflow-hidden mx-auto">
+                <div class="h-full bg-gradient-to-r from-green-600 via-red-600 to-yellow-400 rounded-full animate-progress"></div>
+            </div>
+        
+            <!-- Texte -->
+            <p class="mt-4 text-gray-600 font-medium">Chargement de votre boutique...</p>
+        </div>
+    </div>
+    
+    
+      <!-- Contenu Principal -->
+   
+        <!-- Votre contenu ici -->
+       
+    
+      
+    
+      <nav class="bg-gray-700 p-4">
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div class="relative flex h- items-center justify-between">
+                <!-- Bouton menu mobile -->
+                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-black hover:bg-opacity-20 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                        <span class="sr-only">Ouvrir le menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+    
+                <!-- Logo et navigation principale -->
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="flex shrink-0 items-center">
+                        <div class="relative">
+                            <!-- Logo avec effet amélioré -->
+                            <div class="relative inline-block">
+                                <div class="relative">
+                                    <!-- Étoile animée -->
+                                    <div class="absolute top-[-20px] left-[5.0rem] md:left-[6rem] z-10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" 
+                                             class="h-6 w-6 text-white animate-star-bounce"
+                                             viewBox="0 0 20 20" 
+                                             fill="currentColor">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                    </div>
+                              
+                                    <!-- Texte MBOAMARKET avec contraste blanc -->
+                                    <a href="/" class="logo-gradient text-2xl md:text-3xl font-bold tracking-wide drop-shadow-md">
+                                        MBOAMARKET
+                                     
+                                      </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Boutons côté droit -->
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <!-- Bouton panier avec badge -->
+                    <div class="relative ml-3">
+                        <div>
+                            <button type="button" class="flex rounded-full bg-black bg-opacity-20 p-1 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent" id="user-menu-button" onclick="toggleMenu()">
+                                <span class="sr-only">Panier</span>
+                                <!-- <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                </svg> -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                </svg>
+
+                                <!-- <span class="absolute -top-1 -right-1 bg-white text-yellow-600 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span> -->
+                            </button>
+                        </div>
+                        
+                        <!-- Menu déroulant stylisé -->
+                        <div id="user-menu" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu">
+                            <a href="/register/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:via-red-50 hover:to-yellow-50" role="menuitem">Mon compte</a>
+                            <a href="/register/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:via-red-50 hover:to-yellow-50" role="menuitem">Mes Articles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Menu mobile avec fond dégradé -->
+        <div id="mobile-menu" class="hidden sm:hidden bg-gradient-to-b from-green-600 via-red-600 to-yellow-400 transition-all duration-300">
+            <div class="space-y-1 px-2 pb-3 pt-2">
+                <a href="/" class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-black hover:bg-opacity-20">Accueil</a>
+                <!-- <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-black hover:bg-opacity-20">Articles</a> -->
+                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-black hover:bg-opacity-20">Catégories</a>
+                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-black hover:bg-opacity-20">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+  
+   <!-- Modal -->  
+   {%block content%}
+   <div class="overflow-hidden whitespace-nowrap bg-white p-2 shadow-md rounded-md">  
+    {% if baniere|length == 0 %}  
+        <!-- Aucune bannière à afficher -->  
+        <p class="text-gray-500 text-center">Aucune bannière à afficher.</p>  
+    {% else %}  
+        <div class="marquee flex items-center gap-1">  <!-- Utilisation de gap pour contrôler l'espacement -->  
+            {% for banieres in baniere %}    
+            {%if banieres.logo%}
+                <a href="#" class="marquee-item flex items-center transition-transform duration-200 transform hover:scale-105">  
+                    <!-- Image avec dimensions contrôlées et bordures arrondies -->  
+                    <img class="object-cover w-10 h-10 rounded-full transition-all duration-300 group-hover:scale-125" src="{{banieres.logo.url}}" alt="{{ banieres.nom }}" />  
+                    <span class="text-primary ml-1 text-sm font-semibold">{{banieres.nom}}</span>  <!-- Réduction de ml-2 à ml-1 -->  
+                </a>  
+                {%endif%}
+            {% endfor %}  
+        </div>  
+    {% endif %} 
+ 
+</div>  
+<div class="sticky top-0 z-20 p-4 bg-gray-600 border-b border-gray-100 shadow-sm">
+  <div class="container mx-auto px-2">
+    <div class="relative">
+      <div class="overflow-x-auto hide-scrollbar">
+      {%include './rubriques.html'%}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .filter-btn {
+    animation: fadeIn 0.3s ease-out forwards;
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+</style>
+
+<script>
+  // Script optionnel pour le défilement horizontal
+  document.querySelectorAll('.nav-arrow').forEach(arrow => {
+    arrow.addEventListener('click', () => {
+      const container = arrow.closest('.relative').querySelector('.overflow-x-auto');
+      const scrollAmount = arrow.classList.contains('left-0') ? -200 : 200;
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+  });
+  
+  // Animation d'ordre pour les boutons
+  document.querySelectorAll('.filter-btn').forEach((btn, index) => {
+    btn.style.setProperty('--order', index);
+  });
+</script>
+  
+<div class="max-w-2xl mx-auto px-4 py-4 bg-white rounded-xl shadow-sm my-6 relative" >
+    <!-- Titre -->
+    <h3 
+  class="absolute inset-x-0 top-2 flex items-center justify-center font-bold text-lg sm:text-2xl transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)] px-2 whitespace-nowrap overflow-hidden text-ellipsis bg-clip-text text-transparent"
+  style="animation: titleFade 15s infinite; height: auto; background-image: linear-gradient(to right, #16a34a, #dc2626, #ca8a04);">
+  Prêt à lancer votre boutique en ligne ?
+</h3>
+
+    
+    <!-- Bouton et texte secondaire groupés -->
+    <div 
+    class="absolute inset-x-0 top-0 flex flex-col items-center justify-center transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)] px-4 sm:my-4 mt-8 sm:mt-0"
+    style="animation: buttonGroupFade 15s infinite; height: 100%">
+    
+    <!-- Bouton -->
+    <a 
+      href="/espace/" 
+      class="inline-flex items-center justify-center font-medium bg-gradient-to-r from-green-600 via-red-600 to-yellow-500 hover:opacity-90 text-white rounded-full shadow-sm px-6 py-2 text-sm sm:text-base transition-all duration-300 transform hover:scale-[1.02] hover:shadow-md mx-auto mb-3 sm:my-4"
+      style="min-width: 260px">
+      Créer ma boutique en moins de 5 minutes →
+    </a>
+    
+    <!-- Texte secondaire -->
+    <p class="text-xs text-gray-500 text-center w-full">
+      Aucune connaissance technique requise • 100% clé en main • Support 7j/7
+    </p>
+  </div>
+  </div>
+  
+<div class="grid grid-cols-1 md:grid-cols-5 gap-2 ">  
+    <div class="flex flex-col items-center p-2 md:col-span-1">  
+        <!-- Titre -->  
+        <!-- <div class="max-w-md mx-auto text-center mb-4">  
+          <h4 class="text-xl font-bold text-gray-900 md:text-2xl sm:text-2xl">Nos Articles Les Plus Commandés</h4>  
+          <p class="mt-2 text-gray-600 text-sm">Découvrez nos articles populaires et cliquez pour en savoir plus !</p>  
+        </div>   -->
+      
+        <!-- Conteneur du slider du haut vers le bas -->  
+        <div class="relative w-full max-w-4xl h-250 overflow-hidden rounded-lg shadow-lg cursor-pointer" id="verticalSlider">  
+          <!-- Contenu animé -->  
+          <div class="absolute top-0 w-full animate-slide-down" style="animation: slideDown 80s linear infinite;">  
+            <div class="flex flex-col items-center space-y-4 px-4" id="sliderContent">  
+{% for institution in institution_status %}
+<a href="/account/{{ institution.id }}/" class="block group" title="{{ institution.baniere.nom }}">
+    <div class="w-full bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition-all duration-200 flex flex-col items-center" style="width: 280px; height: 260px;">
+        <!-- Conteneur image qui respecte les proportions naturelles -->
+        <div class="w-full max-h-40 flex items-center justify-center bg-gray-50 rounded-lg p-2 border border-gray-100">
+            {%if institution.img%}
+            <img class="max-h-full max-w-full object-scale-down rounded-lg" 
+                 src=" 
+                 
+                 {{ institution.img.url }}" 
+                 alt="{{ institution.sigle }}"
+                 loading="lazy"
+                 style="max-height: 144px; width: auto;"
+                 onerror="this.src='/static/images/default-institution.jpg'">{%endif%}
+        </div>
+        
+        <!-- Espace texte avec gestion de l'espace dynamique -->
+        <div class="w-full mt-4 flex flex-col items-center flex-grow">
+            <!-- Localisation avec conteneur de largeur fixe -->
+            <div class="w-full flex items-center justify-center text-gray-600 text-sm mb-2 px-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5 flex-shrink-0 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span class="truncate text-center font-medium text-gray-700">{{ institution.baniere.nom|default:"Localisation non précisée" }}</span>
+            </div>
+            
+            <!-- Sigle avec espace réservé -->
+            {% if institution.sigle %}
+            <div class="w-full mt-auto">
+                <p class="text-gray-500 text-sm text-center italic font-medium truncate px-2 py-1 bg-gray-50 rounded-md">
+                    {{ institution.sigle }}
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</a>
+{% endfor %}
+            </div>  
+          </div>  
+        </div>  
+      </div>  
+      
+      <div class="flex flex-col items-center sm:gap-4 md:col-span-3 md:order-none order-first">
+        <div class="relative w-full overflow-hidden rounded-lg shadow-lg gap-3 mt-10 lg:mt-10 lg:gap-4">
+           
+            <div class="relative max-w-xl mx-auto my-2" id="luxury-search-container">
+                <!-- Champ de recherche -->
+                <div class="relative group">
+                  <input 
+                    type="text"
+                    id="luxury-search-input"
+                    placeholder="Rechercher des articles, Boutiques,Prix,Rubriques..."
+                    class="w-full py-4 pl-14 pr-6 text-gray-700 bg-white/90 backdrop-blur-sm border border-gray-200/70 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400/50 focus:border-transparent transition-all duration-300 placeholder-gray-400/80 hover:shadow-md hover:border-gray-300/50"
+                    autocomplete="off"
+                  >
+                  
+                  <!-- Icône de recherche -->
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none">
+                    <svg class="h-6 w-6 text-gray-400 group-focus-within:text-emerald-500 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  </div>
+                  
+                  <!-- Indicateur de chargement -->
+                  <div id="luxury-search-loading" class="absolute inset-y-0 right-0 flex items-center pr-12 hidden">
+                    <svg class="animate-spin h-5 w-5 text-emerald-500" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  </div>
+                </div>
+                
+                <!-- Suggestions - Version Luxe -->
+                <div id="luxury-search-suggestions" class="absolute z-20 w-full mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 hidden overflow-hidden">
+                  <div class="max-h-96 overflow-y-auto" id="luxury-suggestions-list">
+                    <!-- Les suggestions seront injectées ici -->
+                  </div>
+                </div>
+              </div>
+              
+              <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                  const searchInput = document.getElementById('luxury-search-input');
+                  const suggestionsContainer = document.getElementById('luxury-search-suggestions');
+                  const loadingIndicator = document.getElementById('luxury-search-loading');
+                  const suggestionsList = document.getElementById('luxury-suggestions-list');
+                  let currentRequest = null;
+                  
+                  // Gestion de la recherche
+                  searchInput.addEventListener('input', function() {
+                      const query = this.value.trim();
+                      
+                      if (currentRequest) {
+                          currentRequest.abort();
+                      }
+                      
+                      if (query.length < 2) {
+                          suggestionsContainer.classList.add('hidden');
+                          return;
+                      }
+                      
+                      loadingIndicator.classList.remove('hidden');
+                      suggestionsContainer.classList.remove('hidden');
+                      
+                      currentRequest = new XMLHttpRequest();
+                      currentRequest.open('GET', `/recherche/suggestions/?q=${encodeURIComponent(query)}`, true);
+                      currentRequest.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                      
+                      currentRequest.onload = function() {
+                          if (this.status >= 200 && this.status < 400) {
+                              try {
+                                  const data = JSON.parse(this.responseText);
+                                  displayLuxurySuggestions(data.suggestions);
+                              } catch (e) {
+                                  console.error('Error parsing JSON:', e);
+                                  showErrorState();
+                              }
+                          } else {
+                              showErrorState();
+                          }
+                          loadingIndicator.classList.add('hidden');
+                      };
+                      
+                      currentRequest.onerror = function() {
+                          showErrorState();
+                          loadingIndicator.classList.add('hidden');
+                      };
+                      
+                      currentRequest.send();
+                  });
+                  
+                  // Affichage des suggestions de luxe
+                  function displayLuxurySuggestions(suggestions) {
+                      if (!suggestions || suggestions.length === 0) {
+                          suggestionsList.innerHTML = `
+                              <div class="p-6 text-center">
+                                  <svg class="h-12 w-12 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path stroke-linecap="round" strokeC-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  </svg>
+                                  <h3 class="mt-2 text-sm font-medium text-gray-900">Aucun résultat</h3>
+                                  <p class="mt-1 text-sm text-gray-500">Essayez avec d'autres termes de recherche</p>
+                              </div>
+                          `;
+                          return;
+                      }
+                      
+                      let html = '';
+                      suggestions.forEach(item => {
+                          html += `
+                              <div class="border-b border-gray-100 last:border-0">
+                                  <a href="/sousActuality/${item.id}/" class="flex items-start p-4 hover:bg-gray-50/80 transition-colors duration-150 group">
+                                      <div class="flex-shrink-0 h-16 w-16 rounded-lg overflow-hidden bg-gray-100">
+                                          <img src="${item.photo}" alt="${item.intitule}" class="h-full w-full object-cover">
+                                      </div>
+                                      <div class="ml-4 flex-1">
+                                          <div class="flex items-center justify-between">
+                                              <h3 class="text-base font-medium text-emerald-900 group-hover:text-emerald-600">${item.intitule}</h3>
+                                              <span class="text-xs font-semibold bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">${item.prix}</span>
+                                          </div>
+                                          ${item.institution ? `<p class="text-xs text-emerald-600 mt-1">${item.institution}</p>` : ''}
+                                          <p class="text-sm text-gray-500 mt-1">${item.description}</p>
+                                      </div>
+                                  </a>
+                              </div>
+                          `;
+                      });
+                      
+                      suggestionsList.innerHTML = html;
+                  }
+                  
+                  function showErrorState() {
+                      suggestionsList.innerHTML = `
+                          <div class="p-6 text-center">
+                              <svg class="h-12 w-12 mx-auto text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                              </svg>
+                              <h3 class="mt-2 text-sm font-medium text-gray-900">Erreur de recherche</h3>
+                              <p class="mt-1 text-sm text-gray-500">Impossible de charger les suggestions. Réessayez.</p>
+                          </div>
+                      `;
+                      suggestionsContainer.classList.remove('hidden');
+                  }
+                  
+                  // Fermeture des suggestions
+                  document.addEventListener('click', function(e) {
+                      if (!e.target.closest('#luxury-search-container')) {
+                          suggestionsContainer.classList.add('hidden');
+                      }
+                  });
+                  
+                  // Touche Échap pour fermer
+                  document.addEventListener('keydown', function(e) {
+                      if (e.key === 'Escape') {
+                          suggestionsContainer.classList.add('hidden');
+                      }
+                  });
+              });
+              </script>
+            <div class="px-4 sm:px-6 py-4">
+             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="articles_container">
+ 
+                {%include './article.html'%}
+</div>
+<!-- {%if actualite.count > 12%}
+<div class="mt-10 text-center">
+            <button class="inline-flex items-center px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300 hover:shadow-lg transform hover:-translate-y-0.5" id="load-more-btn">
+               Plus D'articles
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div> 
+    {%endif%} -->
+            </div>
+        </div>
+     
+        
+    </div>
+
+<div class="flex flex-col items-center p-2 md:col-span-1">  
+    <!-- Titre -->  
+    <!-- <div class="max-w-md mx-auto text-center mb-4">  
+      <h4 class="text-xl font-bold text-gray-900 sm:text-2xl lg:text-2xl">Nos Boutiques Phares</h4>  
+    </div>   -->
+  
+    <!-- Conteneur du carrousel -->  
+    <div class="relative w-full max-w-4xl mx-auto h-250 overflow-hidden rounded-lg shadow-lg bg-white">  
+      <!-- Animation de défilement automatique -->  
+      <div class="absolute top-0 w-full animate-scroll-up hover:-translate-y-1" style="animation: scrollUp infinite linear 80s;">  
+        <div class="flex flex-col items-center space-y-4 px-4" id="autoLoop">  
+ {% for institution in institution_status %}
+<a href="/account/{{ institution.id }}/" class="block group" title="{{ institution.baniere.nom }}">
+    <div class="w-full bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition-all duration-200 flex flex-col items-center" style="width: 280px; height: 260px;">
+        <!-- Conteneur image qui respecte les proportions naturelles -->
+        <div class="w-full max-h-40 flex items-center justify-center bg-gray-50 rounded-lg p-2 border border-gray-100">
+            <img class="max-h-full max-w-full object-scale-down rounded-lg" 
+                 src="{%if institution.img%}{{ institution.img.url }}{%endif%}" 
+                 alt="{{ institution.sigle }}"
+                 loading="lazy"
+                 style="max-height: 144px; width: auto;"
+                 onerror="this.src='/static/images/default-institution.jpg'">
+        </div>
+        
+        <!-- Espace texte avec gestion de l'espace dynamique -->
+        <div class="w-full mt-4 flex flex-col items-center flex-grow">
+            <!-- Localisation avec conteneur de largeur fixe -->
+            <div class="w-full flex items-center justify-center text-gray-600 text-sm mb-2 px-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5 flex-shrink-0 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span class="truncate text-center font-medium text-gray-700">{{ institution.baniere.nom|default:"Localisation non précisée" }}</span>
+            </div>
+            
+            <!-- Sigle avec espace réservé -->
+            {% if institution.sigle %}
+            <div class="w-full mt-auto">
+                <p class="text-gray-500 text-sm text-center italic font-medium truncate px-2 py-1 bg-gray-50 rounded-md">
+                    {{ institution.sigle }}
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</a>
+{% endfor %}
+        </div>  
+      </div>  
+    </div>  
+  </div>  
+  
+  <!-- Style CSS pour animation -->  
+  
+</div>  
+<div class="container mx-auto px-4">
+    <!-- Titre de la rubrique -->
+    <section class="bg-white py-12" id="mainContent">
+        <div class="px-4 mx-auto max-w-7xl">
+            <!-- En-tête avec titre et indicateur -->
+            <div class="max-w-3xl mx-auto text-center mb-12">
+              
+                <h5 class="mt-4 text-lg text-gray-800 font-bold text-2xl">
+                    Découvrez notre sélection exclusive classée par catégories
+                </h5>
+            </div>
+    
+            
+<div class="sticky top-0 z-10 bg-white py-4 mb-8 border-b border-gray-100">
+    <div class="flex flex-col px-2">
+        <!-- Boutons rubriques -->
+        <div class="flex overflow-x-auto pb-2 hide-scrollbar">
+            <div class="flex space-x-3">
+                <!-- Bouton "Tous" -->
+                <button class="filter-btn flex-shrink-0 px-6 py-2 rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center"
+                        data-rubrique="all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
+                    </svg>
+                    Tous
+                </button>
+                <!-- Autres boutons rubriques ici -->
+            </div>
+        </div>
+        
+        <!-- Conteneur sous-rubriques avec défilement horizontal -->
+        <div id="sousrubrique" class="mt-2 overflow-x-auto hide-scrollbar w-full"></div>
+    </div>
+</div>
+            <!-- Conteneur des articles -->
+            <div id="articles-container" class="transition-opacity duration-300 up">
+                {% include './articles_grid.html'  %}
+            </div>
+    
+            <!-- Loader amélioré -->
+            <div id="loading-indicator" class="hidden fixed inset-0 bg-white bg-opacity-80 flex items-center justify-center z-50 transition-opacity">
+                <div class="text-center">
+                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-emerald-500 border-t-transparent"></div>
+                    <p class="mt-4 text-lg font-medium text-gray-700">Chargement en cours...</p>
+                    <p class="text-sm text-gray-500">Veuillez patienter</p>
+                </div>
+            </div>
+    
+            <!-- Feedback vide -->
+            <div id="empty-results" class="hidden text-center py-16">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 class="mt-4 text-lg font-medium text-gray-900">Aucun article trouvé</h3>
+                <p class="mt-2 text-gray-500">Essayez de modifier vos critères de recherche</p>
+            </div>
+        </div>
+    </section>
+        <section class="py-5 bg-gray-50 sm:pt-5 lg:pt-24">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+      {%include './faq.html'%}
+  </div>
+</section>
+    <style>
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Animation pour le bouton actif */
+    .filter-btn.active {
+        @apply bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-lg scale-105 border-transparent;
+    }
+    </style>
+    
+  {%endblock%}
+
+    <section class="py-10 bg-gray-50 sm:pt-16 lg:pt-24">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div class="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
+                <div class="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
+              
+    
+                    <p class="text-base leading-relaxed text-gray-600 mt-7">Nos Medias Sociaux</p>
+    
+                    <ul class="flex items-center space-x-3 mt-9">
+                        <li>
+                            <a href="#" title="" class="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 focus:bg-blue-600">
+                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M19.633 7.997c.013.175.013.349.013.523 0 5.325-4.053 11.461-11.46 11.461-2.282 0-4.402-.661-6.186-1.809.324.037.636.05.973.05a8.07 8.07 0 0 0 5.001-1.721 4.036 4.036 0 0 1-3.767-2.793c.249.037.499.062.761.062.361 0 .724-.05 1.061-.137a4.027 4.027 0 0 1-3.23-3.953v-.05c.537.299 1.16.486 1.82.511a4.022 4.022 0 0 1-1.796-3.354c0-.748.199-1.434.548-2.032a11.457 11.457 0 0 0 8.306 4.215c-.062-.3-.1-.611-.1-.923a4.026 4.026 0 0 1 4.028-4.028c1.16 0 2.207.486 2.943 1.272a7.957 7.957 0 0 0 2.556-.973 4.02 4.02 0 0 1-1.771 2.22 8.073 8.073 0 0 0 2.319-.624 8.645 8.645 0 0 1-2.019 2.083z"
+                                    ></path>
+                                </svg>
+                            </a>
+                        </li>
+    
+                        <li>
+                            <a href="#" title="" class="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 focus:bg-blue-600">
+                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"></path>
+                                </svg>
+                            </a>
+                        </li>
+    
+                        <li>
+                            <a href="#" title="" class="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 focus:bg-blue-600">
+                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M11.999 7.377a4.623 4.623 0 1 0 0 9.248 4.623 4.623 0 0 0 0-9.248zm0 7.627a3.004 3.004 0 1 1 0-6.008 3.004 3.004 0 0 1 0 6.008z"></path>
+                                    <circle cx="16.806" cy="7.207" r="1.078"></circle>
+                                    <path
+                                        d="M20.533 6.111A4.605 4.605 0 0 0 17.9 3.479a6.606 6.606 0 0 0-2.186-.42c-.963-.042-1.268-.054-3.71-.054s-2.755 0-3.71.054a6.554 6.554 0 0 0-2.184.42 4.6 4.6 0 0 0-2.633 2.632 6.585 6.585 0 0 0-.419 2.186c-.043.962-.056 1.267-.056 3.71 0 2.442 0 2.753.056 3.71.015.748.156 1.486.419 2.187a4.61 4.61 0 0 0 2.634 2.632 6.584 6.584 0 0 0 2.185.45c.963.042 1.268.055 3.71.055s2.755 0 3.71-.055a6.615 6.615 0 0 0 2.186-.419 4.613 4.613 0 0 0 2.633-2.633c.263-.7.404-1.438.419-2.186.043-.962.056-1.267.056-3.71s0-2.753-.056-3.71a6.581 6.581 0 0 0-.421-2.217zm-1.218 9.532a5.043 5.043 0 0 1-.311 1.688 2.987 2.987 0 0 1-1.712 1.711 4.985 4.985 0 0 1-1.67.311c-.95.044-1.218.055-3.654.055-2.438 0-2.687 0-3.655-.055a4.96 4.96 0 0 1-1.669-.311 2.985 2.985 0 0 1-1.719-1.711 5.08 5.08 0 0 1-.311-1.669c-.043-.95-.053-1.218-.053-3.654 0-2.437 0-2.686.053-3.655a5.038 5.038 0 0 1 .311-1.687c.305-.789.93-1.41 1.719-1.712a5.01 5.01 0 0 1 1.669-.311c.951-.043 1.218-.055 3.655-.055s2.687 0 3.654.055a4.96 4.96 0 0 1 1.67.311 2.991 2.991 0 0 1 1.712 1.712 5.08 5.08 0 0 1 .311 1.669c.043.951.054 1.218.054 3.655 0 2.436 0 2.698-.043 3.654h-.011z"
+                                    ></path>
+                                </svg>
+                            </a>
+                        </li>
+    
+                        <li>
+                            <a href="#" title="" class="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 focus:bg-blue-600">
+                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z"
+                                    ></path>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            
+                <div>
+                    <p class="text-sm font-semibold tracking-widest text-gray-400 uppercase">Nos Liens</p>
+    
+                    <ul class="mt-6 space-y-4">
+                        <li>
+                            <a href="#" title="" class="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Articles </a>
+                        </li>
+    
+                        <li>
+                            <a href="#" title="" class="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Videos </a>
+                        </li>
+    
+                        <li>
+                            <a href="#" title="" class="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Nos Boutiques </a>
+                        </li>
+    
+                        
+                    </ul>
+                </div>
+    
+                <div>
+                    <p class="text-sm font-semibold tracking-widest text-gray-400 uppercase">Aide</p>
+    
+                    <ul class="mt-6 space-y-4">
+                        <li>
+                            <a href="#" title="" class="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">  Support Technique </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#" title="" class="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Détails de livraison </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#" title="" class="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Conditions générales</a>
+                        </li>
+    
+                        <li>
+                            <a href="#" title="" class="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">politique de confidentialité</a>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="col-span-2 md:col-span-1 lg:col-span-2 lg:pl-8">
+                    <p class="text-sm font-semibold tracking-widest text-gray-400 uppercase">Souscrire A Nos Newlestter</p>
+    
+                    <form action="#" method="POST" class="mt-6">
+                        <div>
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="email" name="email" id="email" placeholder="Entrez Votre Email" class="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600" />
+                        </div>
+    
+                        <button type="submit" class="inline-flex items-center justify-center px-6 py-4 mt-3 font-semibold text-white transition-all duration-200 bg-blue-600 rounded-md hover:bg-blue-700 focus:bg-blue-700">Souscrire</button>
+                    </form>
+                </div>
+            </div>
+    
+            <hr class="mt-16 mb-10 border-gray-200" />
+    
+            <p class="text-sm text-center text-gray-600">© Copyright 2025, All Rights Reserved by BeiInfo+</p>
+        </div>
+    </section>
+    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/script-name.js"></script>
+    <script>  
+        const modalBackdrop = document.getElementById('modal-backdrop');  
+        const modal = document.getElementById('modal');  
+    
+        // Fonction pour ouvrir le modal  
+        function openModal() {  
+            modalBackdrop.classList.remove('opacity-0', 'pointer-events-none');  
+            modalBackdrop.classList.add('opacity-100', 'pointer-events-auto');  
+            modal.classList.remove('opacity-0');  
+            modal.classList.add('opacity-100');  
+        }  
+    
+        // Fonction pour fermer le modal  
+        function closeModal() {  
+            modalBackdrop.classList.remove('opacity-100', 'pointer-events-auto');  
+            modalBackdrop.classList.add('opacity-0', 'pointer-events-none');  
+            modal.classList.remove('opacity-100');  
+            modal.classList.add('opacity-0');  
+        }  
+    
+        // Listener pour le bouton de notification  
+        document.getElementById('open-modal-button').addEventListener('click', openModal);  
+    
+        // Listener pour fermer le modal  
+        document.getElementById('close-modal-button').addEventListener('click', closeModal);  
+        modalBackdrop.addEventListener('click', (e) => {  
+            if (e.target === modalBackdrop) {  
+                closeModal();  
+            }  
+        });  
+    </script>  
+     <script>  
+        const mobileMenuButton = document.getElementById('mobile-menu-button');  
+        const mobileMenu = document.getElementById('mobile-menu');  
+        mobileMenu.classList.add('hidden');
+      
+        mobileMenuButton.addEventListener('click', () => {  
+          const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'false' || false;  
+          mobileMenuButton.setAttribute('aria-expanded', !expanded);  
+          mobileMenu.classList.toggle('hidden');  
+        });  
+      </script>  
+<script>  
+        function toggleMenu() {  
+            const menu = document.getElementById('user-menu');  
+            menu.classList.toggle('hidden'); // Toggle the hidden class to show/hide the menu  
+        }  
+        </script>  
+<script>
+let currentSlide = 0;  
+const slides = document.querySelectorAll('.carousel-item');  
+const totalSlides = slides.length;  
+
+// Affiche les cartes par groupe de 4  
+function showSlide(index) {  
+    const carousel = document.getElementById('carouselSlides');  
+    const offset = -index * 25; // 100% / 4 pour chaque groupe de 4 cartes  
+    carousel.style.transform = `translateX(${offset}%)`;  
+}  
+
+function nextSlide() {  
+    if (currentSlide < Math.ceil(totalSlides / 4) - 1) {  
+        currentSlide++;  
+    } else {  
+        currentSlide = 0; // Retourner au début si on atteint la fin  
+    }  
+    showSlide(currentSlide);  
+}  
+
+function prevSlide() {  
+    if (currentSlide > 0) {  
+        currentSlide--;  
+    } else {  
+        currentSlide = Math.ceil(totalSlides / 4) - 1; // Aller à la dernière si on est au début  
+    }  
+    showSlide(currentSlide);  
+}  
+
+// Optionnel : changement automatique des diapositives  
+setInterval(nextSlide, 3000); // Changer toutes les 3 secondes        
+</script>
+<script>
+    // Simule le chargement de la page (à remplacer par votre vraie logique)
+    window.addEventListener('load', function() {
+      // Cache le loader après un délai
+      setTimeout(function() {
+        document.getElementById('loader').classList.add('opacity-0');
+        document.getElementById('content').classList.remove('opacity-0');
+        
+        // Retire complètement le loader du DOM après l'animation
+        setTimeout(function() {
+          document.getElementById('loader').style.display = 'none';
+        }, 500); // Doit correspondre à la durée de la transition (500ms)
+      }, 2000); // Durée minimale d'affichage du loader (2 secondes)
+    });
+
+    // Solution alternative si la page est déjà chargée
+    document.addEventListener('DOMContentLoaded', function() {
+      if (document.readyState === 'complete') {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('content').classList.remove('opacity-0');
+      }
+    });
+  </script>
+
+
+
+  <!-- Reload PAGE Mboamarket -->
+<script>
+    // Attendre que le DOM soit complètement chargé
+    document.addEventListener('DOMContentLoaded', function() {
+      // Récupérer les éléments avec vérification
+      const loader = document.getElementById('loader');
+      const mainContent = document.getElementById('mainContent');
+      
+      // Vérifier que les éléments existent
+      if (!loader || !mainContent) {
+        console.error('Éléments introuvables ! Vérifiez les IDs dans votre HTML');
+        return;
+      }
+
+      // Fonction pour cacher le loader
+      function hideLoader() {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+          loader.style.display = 'none';
+          mainContent.style.opacity = '1';
+        }, 500);
+      }
+
+      // Cacher le loader quand la page est chargée
+      function handleLoad() {
+        // Minimum 1.5s d'affichage pour éviter le flash
+        setTimeout(hideLoader, 1500);
+      }
+
+      // Démarrer le processus
+      if (document.readyState === 'complete') {
+        handleLoad();
+      } else {
+        window.addEventListener('load', handleLoad);
+        // Timeout de sécurité après 5s
+        setTimeout(handleLoad, 5000);
+      }
+    });
+  </script>
+
+
+
+   <!-- Responsivite Navbar Sur Mobile -->
+<script>
+    // Gestion du menu mobile
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', function() {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        
+        // Basculer les icônes
+        const menuIcon = this.querySelector('svg:not(.hidden)');
+        const closeIcon = this.querySelector('svg.hidden');
+        menuIcon.classList.add('hidden');
+        menuIcon.classList.remove('block');
+        closeIcon.classList.remove('hidden');
+        closeIcon.classList.add('block');
+        
+        // Afficher/cacher le menu
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Gestion du menu utilisateur
+    function toggleMenu() {
+        const menu = document.getElementById('user-menu');
+        menu.classList.toggle('hidden');
+    }
+
+    // Fermer les menus quand on clique ailleurs
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('#user-menu-button') && !event.target.closest('#user-menu')) {
+            const menu = document.getElementById('user-menu');
+            if (!menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+            }
+        }
+        
+        if (!event.target.closest('#mobile-menu-button') && !event.target.closest('#mobile-menu')) {
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                
+                // Réinitialiser les icônes
+                const icons = mobileMenuButton.querySelectorAll('svg');
+                icons[0].classList.remove('hidden');
+                icons[0].classList.add('block');
+                icons[1].classList.add('hidden');
+                icons[1].classList.remove('block');
+            }
+        }
+    });
+</script>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const carousel = document.querySelector('.rubrique-carousel');
+      const prevBtn = document.querySelector('.rubrique-prev');
+      const nextBtn = document.querySelector('.rubrique-next');
+      const items = document.querySelectorAll('.rubrique-carousel div');
+      
+      let currentPosition = 0;
+      const itemWidth = items[0]?.offsetWidth + 16; // Largeur d'un item + espacement
+      
+      function updateCarousel() {
+        carousel.style.transform = `translateX(-${currentPosition}px)`;
+      }
+      
+      nextBtn.addEventListener('click', () => {
+        currentPosition = Math.min(currentPosition + itemWidth * 3, carousel.scrollWidth - carousel.offsetWidth);
+        updateCarousel();
+      });
+      
+      prevBtn.addEventListener('click', () => {
+        currentPosition = Math.max(currentPosition - itemWidth * 3, 0);
+        updateCarousel();
+      });
+      
+      // Adaptation responsive
+      window.addEventListener('resize', () => {
+        itemWidth = items[0]?.offsetWidth + 16;
+        currentPosition = 0;
+        updateCarousel();
+      });
+    });
+    </script>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Initialisation des éléments
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const container = document.getElementById('articles-container');
+            const loader = document.getElementById('loading-indicator');
+            const countElement = document.getElementById('articles-count');
+            
+            // 2. Vérification des éléments critiques
+            if (!container) {
+                console.error("Erreur: Element 'articles-container' introuvable");
+                return;
+            }
+            
+            // 3. Gestion des clics sur les boutons de filtre
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Mettre à jour l'état visuel des boutons
+                    updateActiveButton(this);
+                    
+                    // Charger les articles
+                    const rubriqueId = this.dataset.rubrique;
+                    loadArticles(rubriqueId);
+                });
+            });
+            
+            // 4. Fonction pour mettre à jour le bouton actif
+            function updateActiveButton(activeButton) {
+                filterButtons.forEach(btn => {
+                    const isActive = btn === activeButton;
+                    btn.classList.toggle('bg-gradient-to-r', isActive);
+                    btn.classList.toggle('from-green-400', isActive);
+                    btn.classList.toggle('via-yellow-400', isActive);
+                    btn.classList.toggle('to-red-500', isActive);
+                    btn.classList.toggle('text-white', isActive);
+                    btn.classList.toggle('shadow-md', isActive);
+                    btn.classList.toggle('bg-gray-100', !isActive);
+                    btn.classList.toggle('hover:bg-gray-200', !isActive);
+                });
+            }
+            
+            // 5. Fonction de chargement des articles
+            function loadArticles(rubriqueId) {
+                // Vérification du loader
+                if (loader) loader.classList.remove('hidden');
+                container.classList.add('opacity-50');
+                
+                fetch(`/api/articles/filter/?rubrique_id=${encodeURIComponent(rubriqueId)}`)
+                    .then(response => {
+                        if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.status === 'success') {
+                            container.innerHTML = data.html;
+                            
+                            // Mise à jour optionnelle du compteur
+                            if (countElement && data.count !== undefined) {
+                                countElement.textContent = `${data.count} articles`;
+                            }
+                        } else {
+                            throw new Error(data.message || 'Erreur inconnue du serveur');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                        container.innerHTML = `
+                            <div class="col-span-full text-center py-12 text-red-500">
+                                Erreur lors du chargement: ${error.message.replace(/</g, '&lt;')}
+                            </div>
+                        `;
+                    })
+                    .finally(() => {
+                        if (loader) loader.classList.add('hidden');
+                        container.classList.remove('opacity-50');
+                    });
+            }
+            
+            // Chargement initial
+            const defaultFilter = document.querySelector('.filter-btn[data-rubrique="all"]');
+            if (defaultFilter) defaultFilter.click();
+        });
+        </script>
+
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('articles_container');
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    let currentPage = 1;
+    const articlesPerPage = 10;
+    const totalArticles = {{ actualite.count }};
+    const allArticles = [
+        {% for actualites in actualite %}
+        {
+            id: "{{ actualites.id }}",
+            photos_url: "{{ actualites.photos.url }}",
+            intitule: "{{ actualites.intitule|escapejs }}",
+            institution_sigle: "{{ actualites.institution.sigle|escapejs }}",
+            prix: "{{ actualites.prix }}",
+            address: "{{ actualites.address|escapejs }}"
+        },
+        {% endfor %}
+    ];
+
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+            currentPage++;
+            const start = (currentPage - 1) * articlesPerPage;
+            const end = start + articlesPerPage;
+            const nextArticles = allArticles.slice(start, end);
+
+            nextArticles.forEach(article => {
+                const articleHtml = `
+                <a href="view_actuality/${article.id}/" class="group relative block overflow-hidden rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-blue-100 transform hover:-translate-y-1">
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow transition-shadow duration-200">
+                        <div class="relative aspect-[4/3] bg-gray-100">
+                            <img src="${article.photos_url}" 
+                                 alt="${article.intitule}"
+                                 class="w-full h-full object-cover">
+                            
+                            <span class="absolute top-1 left-1 px-1 py-0.5 text-[9px] font-bold text-white rounded 
+                                        bg-gray-800 bg-opacity-80">
+                                ${article.institution_sigle.substring(0, 4)}
+                            </span>
+                        </div>
+
+                        <div class="p-2">
+                            <h3 class="text-xs font-medium text-gray-800 line-clamp-2 leading-tight mb-1">
+                                ${article.intitule}
+                            </h3>
+                            
+                            <div class="flex items-baseline justify-between">
+                                <span class="text-xs font-bold text-gray-900">${article.prix} FCFA</span>
+                                
+                                <div class="flex items-center text-[10px] text-gray-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-2.5 w-2.5 mr-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    <span>${article.address.substring(0, 8)}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                `;
+                container.insertAdjacentHTML('beforeend', articleHtml);
+            });
+
+            // Hide button if no more articles
+            if (end >= totalArticles) {
+                loadMoreBtn.style.display = 'none';
+            }
+        });
+    }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function() {
+$(".down").click(function() {
+     $('html, body').animate({
+         scrollTop: $(".up").offset().top
+     }, 1500);
+ });
+});
+
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const rubriqueButtons = document.querySelectorAll('.filter-btn[data-rubrique]');
+
+    rubriqueButtons.forEach(button => {
+        button.addEventListener('click', async function() {
+            const rubriqueId = this.getAttribute('data-rubrique');
+            const buttonText = this.querySelector('span').textContent;
+            
+            // Show loading state
+            const originalContent = this.innerHTML;
+            this.innerHTML = '<span class="animate-pulse">Chargement...</span>';
+            this.classList.add('opacity-75');
+            this.disabled = true;
+            
+            try {
+                const response = await fetch(`/select_rubrique?rubrique=${rubriqueId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP! statut: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('Données reçues:', data);
+
+                // Récupérer l'élément où afficher les sous-rubriques
+                const sousRubriqueContainer = document.getElementById('sousrubrique');
+                
+                if (sousRubriqueContainer) {
+                    // Animation de fade out avant de vider
+                    sousRubriqueContainer.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                    
+                    // Attendre la fin de l'animation avant de vider
+                    setTimeout(() => {
+                        sousRubriqueContainer.innerHTML = '';
+                        
+                        // Vérifier si des sous-rubriques existent
+                        if (data.sous_rubriques && data.sous_rubriques.length > 0) {
+                            // Créer un conteneur scrollable pour mobile
+                            const scrollContainer = document.createElement('div');
+                            scrollContainer.className = 'mt-4 overflow-x-auto pb-2'; // pb-2 pour l'espace sous la scrollbar
+                            
+                            // Conteneur flex pour les boutons avec maintenantrap
+                            const buttonsContainer = document.createElement('div');
+                            buttonsContainer.className = 'flex flex-nowrap gap-3 w-max'; // w-max pour éviter le wrapping
+                            
+                            // Ajouter chaque sous-rubrique comme bouton
+                            data.sous_rubriques.forEach((sousRubrique, index) => {
+                                const btn = document.createElement('button');
+                                
+                                // Alternance des couleurs
+                                const colorClasses = [
+                                    'bg-green-500 hover:bg-green-600', 
+                                    'bg-red-500 hover:bg-red-600', 
+                                    'bg-yellow-500 hover:bg-yellow-600'
+                                ];
+                                const colorIndex = index % colorClasses.length;
+                                
+                                btn.className = `px-4 py-2 rounded-lg text-white font-medium transform transition-all duration-300 hover:scale-105 ${colorClasses[colorIndex]} opacity-0 translate-y-4 flex-shrink-0`; // flex-shrink-0 pour empêcher le rétrécissement
+                                btn.textContent = sousRubrique.nom;
+                                btn.dataset.id = sousRubrique.id;
+                                
+                                // Animation d'entrée avec délai progressif
+                                setTimeout(() => {
+                                    btn.classList.remove('opacity-0', 'translate-y-4');
+                                    btn.classList.add('opacity-100', 'translate-y-0');
+                                }, 100 * index);
+                                
+                                // Event listener pour les interactions
+                                btn.addEventListener('click', () => {
+                                    console.log('Sous-rubrique sélectionnée:', sousRubrique.id);
+                                    // Animation de sortie au clic
+                                    btn.classList.add('opacity-0', 'translate-x-20');
+                                    setTimeout(() => {
+                                        btn.remove();
+                                    }, 300);
+                                });
+                                
+                                buttonsContainer.appendChild(btn);
+                            });
+                            
+                            scrollContainer.appendChild(buttonsContainer);
+                            sousRubriqueContainer.appendChild(scrollContainer);
+                            sousRubriqueContainer.classList.remove('opacity-0');
+                        } else {
+                            sousRubriqueContainer.textContent = 'Aucune sous-rubrique disponible';
+                            sousRubriqueContainer.classList.remove('opacity-0');
+                        }
+                    }, 300);
+                } else {
+                    console.error("Element avec ID 'sousrubrique' non trouvé");
+                }
+                
+            } catch (error) {
+                console.error('Erreur de fetch:', error);
+            } finally {
+                // Restaurer l'état initial du bouton
+                this.innerHTML = originalContent;
+                this.classList.remove('opacity-75');
+                this.disabled = false;
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

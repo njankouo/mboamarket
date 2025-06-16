@@ -1,0 +1,767 @@
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap4.css">
+{% extends './operations_details.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+
+	
+						
+						
+							<div class="accordion" id="accordionExample">
+								<div class="card accordion-item active">
+								  <h2 class="accordion-header" id="headingOne">
+									<button type="button" class="accordion-button btn btn-danger text-light" data-bs-toggle="collapse" data-bs-target="#accordionOne" aria-expanded="true" aria-controls="accordionOne" role="tabpanel">
+									Informations Sur La Licence
+									</button>
+								  </h2>
+							  
+								  <div id="accordionOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+									<div class="accordion-body">
+									  La Cr&eacute;ation est limit&eacute;e avec le type de licence que vous possedez
+									</div>
+								  </div>
+								</div>
+								<div class="card accordion-item">
+								  <h2 class="accordion-header" id="headingTwo">
+									<button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionTwo" aria-expanded="false" aria-controls="accordionTwo" role="tabpanel">
+									Gestion Des Utilisateurs Et R&ocirc;les
+									</button>
+								  </h2>
+								  <div id="accordionTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+									<div class="accordion-body">
+										<a data-bs-target="#exampleModalpersonnel"  data-bs-toggle="modal"  class="btn btn-dark"> Ajouter Personnel </a>
+										<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalRole">
+											Ajouter Des R&ocirc;les
+										  </button>
+
+
+										  <a type="button" class="btn btn-success"href='/roles_personnels/' >
+											Liste Des R&ocirc;les
+										  </a>
+									</div>
+								  </div>
+								</div>
+								
+								</div>
+							  </div>
+							<div class="card">
+								<div class="card-body">
+
+									<div class="modal fade" id="exampleModalpersonnel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+										  <div class="modal-content ">
+											<div class="modal-header">
+											  <h5 class="modal-title" id="exampleModalLabel">Ajouter Personnel</h5>
+											  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+												</button>
+											</div>
+											<div class="modal-body">
+											  <!-- <p>Croissant jelly beans donut apple pie. Caramels bonbon lemon drops. Sesame snaps lemon drops lemon drops liquorice icing bonbon pastry pastry carrot cake. Dragée sweet sweet roll sugar plum.</p>
+											  <p>Jelly-o cookie jelly gummies pudding cheesecake lollipop macaroon. Sweet chocolate bar sweet roll carrot cake. Sweet roll sesame snaps fruitcake brownie bear claw toffee bonbon brownie.</p> -->
+											  <form class="form-horizontal bordered-row" action="/save_gestion/" id="addFormPerso" enctype="multipart/form-data" data-toggle="validator" role="form" method="post">
+												{% csrf_token %}
+												<input type="hidden" name="edit_or_create" id="edit_or_create">
+												<input type='hidden' name='generator' value='p2'>
+												<input type="hidden" name="edit_id" id="edit_id">
+												<div class="row">
+													<div class="col-sm-12">
+														<div class="form-group">
+							<label style="font-family: quartz" class="text-danger">		Photo  </label>
+															<input type="file" name="photo" class="form-control" >
+														</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="form-group">
+							<label style="font-family: quartz" class="text-danger">Nom * </label>
+															<input type="text" class="form-control nom" name="nom"  required="" id="codeAct">
+														</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="form-group">
+										<label style="font-family: quartz" class="text-danger">	Prenom * </label>
+															<input type="text" class="form-control prenom" name="prenom"  required="" id="nomAct">
+														</div>
+													</div>
+													
+													
+													<div class="col-sm-12">
+														<div class="form-group">
+							<label style="font-family: quartz" class="text-danger">	Email *</label>
+
+															<input type="email" name="mail" class="form-control" id="mail">
+														</div>
+													
+												</div>
+												<div class="col-sm-12">
+													<div class="form-group">
+					<label style="font-family: quartz" class="text-danger">	Num&eacute;ro T&eacute;l&eacute;phone * </label>
+				<input type="text" name="tel" class="form-control my-2 telephone" id='tel'>
+				</div>
+				</div>
+
+					<div class="col-sm-12">
+													<div class="form-group">
+				<label class="text-danger" style="font-family: quartz">Genre *</label>		
+				<select class="form-control" name="sexe">
+					<option>Selectionnez Le sexe</option>
+					<option value="M">Masculin</option>
+					<option value="F">Feminin</option>
+				</select>
+				</div>
+				</div>
+
+													{% for search in searches %}
+													<div class="col-sm-12">
+														<div class="form-group">
+							<label for="exampleFormControlSelect1" class="text-danger" style="font-family: quartz">{{search.label}} *</label>
+															{% if search.values != None %}
+															<select class="form-control" name="{{search.label}}" id="exampleFormControlSelect1">
+																{% for v in search.values %}<option value="{{v.id}}">{{v.nom}}</option>{% endfor %}
+															</select>
+															{% endif %}
+														</div>
+													</div>
+													{% endfor %}
+
+											</div>
+											<div class="modal-footer">
+											  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+											  <button type="submit" class="btn btn-primary">Enregistrer</button>
+											</div>
+											</form>
+										  </div>
+										</div>
+									  </div>
+									  </div>
+							<div class="table-wrapper">
+								<div class="table-title">
+								  <div class="row">
+									<div class="col-sm-6">
+									  <h4 style="font-weight:bold">Liste Des Personnels</h4>
+									</div>
+								  </div>
+								</div>
+							   
+
+
+
+
+
+
+
+								
+
+
+
+
+																					<div class="modal fade" id="exampleModalRole" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																						<div class="modal-dialog" role="document">
+																						  <div class="modal-content">
+																							<div class="modal-header">
+																							  <h5 class="modal-title" id="exampleModalLabel">Ajouter R&ocirc;les</h5>
+																							  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+																								</button>
+																							</div>
+																							<div class="modal-body">
+																								<form class="form-horizontal bordered-row" action="/save_gestion/" onsubmit="saveRoles()" id="addFormAction" data-toggle="validator" role="form" method="post">
+																									{% csrf_token %}
+																									<input type="hidden" id="edit_or_create" value="c" name="edit_or_create">
+																									<input type="hidden" id="edit_id" name="edit_id" value="">
+																									<input type='hidden' name='generator' value='r'>
+																									<input type="hidden" value="{{actual_institution.id}}" name="institution">
+																									<div class="row">
+																				
+																										<div class="col-sm-12">
+																											<div class="form-group">
+																												Nom
+																												<input type="text" class="form-control" name="nom" id="nomAct" required="">
+																											</div>
+																										</div>
+																										<div class="col-sm-12">
+																											<div class="form-group">
+																												Description
+																												<textarea class="form-control" name="description"></textarea>
+																											</div>
+																										</div>
+																										<div class="col-sm-12">
+																											<div>
+																												<div><small> Champs Supplementaires</small></div>
+																												<div></div>
+																											</div>
+																											<div class=" form-group">
+																												Permissions
+																												<div class="d-flex mb-3">
+																													<div class="px-1"><span data-elt='0' class="ros_btn btn btn-success">G&eacute;n&eacute;lrique</span></div>
+																													<div class="px-1"><span data-elt='1' class="ros_btn btn btn-light">Sp&eacute;cifique</span></div>
+																													<div class="px-1"><span data-elt='2' class="ros_btn btn btn-light">Utilisateur Simple</span></div>
+																													<input type="hidden" name="ros_click" id="ros_click">
+																												</div>
+																												<div class="ros_div">
+																													<select class="form-control" name="permission">
+																														<option value='-1'><span class="text-success">Operant :</span> Charg&eacute; d'Executer les Taches </option>
+																				
+																																									   <!--
+																																									   <option value='1'>Superviseur de TÃƒÂ¢ches : Supervise les Taches  </option>
+																																								   -->
+																																								   {% for role in actual_institution.get_entities.reverse %}
+																																								   <option  value="{{role.m_hierachie}}"> Charg&eacute; {{role}} : Supervise L'Evolution {{role}}</option>
+																																								   {% endfor %}
+																																								   <option value='99'> Administrateur : Aide &agrave;  l'Administration de l'Institution </option>
+																																								</select>
+																																							</div>
+																				
+																																							<input type="hidden" name="entity_administr" id="entity_administr">
+																																							<div class="ros_div" style="display:none;">
+																																								<div>Supervise</div>
+																																								<div>
+																																									<select id="entiRole_select" class="form-control" name="permission_entity">
+																				
+																																										{% for role in actual_institution.get_entities.reverse %}
+																																										<option value="{{role.id}}"> {{role}}</option>
+																																										{% endfor %}
+																																		</select>
+																				
+																																	<div class="p-4">
+																																										<ul style="max-height:100px;overflow-y:auto;" class="list-group" id="rol_list">
+																				
+																																										</ul>
+																				
+																																									</div>
+																																								</div>
+																																							</div>
+																																							<!-- <div class="ros_div" style="display:none;">
+																																								<div>
+																																									<small>Relier &acirc;  une entit&eacute;</small>
+																																								</div>
+																																								<div>
+																																									<select name="user_simple_entity" class="form-control">
+																																										{% for simp in actual_institution.get_entities.reverse %}
+																																										<option  value="{{simp.m_entity_type.id}}"> {{simp}}</option>
+																																										{% endfor %}
+																																									</select>
+																																								</div>
+																																							</div> -->
+																																							<!-- <div><small class="text-success">Ajouter Role</small></div> -->
+																																						</div>
+																																					</div>
+																																						</div>
+																																					</div>
+																																					<div class="modal-footer">
+																																						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+																																						<button type="submit" class="btn btn-primary">Enregistrer</button>
+																																					  </div>
+																
+																							  <!-- <p>Croissant jelly beans donut apple pie. Caramels bonbon lemon drops. Sesame snaps lemon drops lemon drops liquorice icing bonbon pastry pastry carrot cake. Dragée sweet sweet roll sugar plum.</p>
+																							  <p>Jelly-o cookie jelly gummies pudding cheesecake lollipop macaroon. Sweet chocolate bar sweet roll carrot cake. Sweet roll sesame snaps fruitcake brownie bear claw toffee bonbon brownie.</p> -->
+																							</div>
+																							
+																						</form>
+																						  </div>
+																						</div>
+																					  </div>
+								<table class="table table-striped table-hover table-responsive" id="example">
+									<thead>
+										<tr>
+											<th>Nom</th>
+											<th>Prenom</th>
+											<th>Email</th>
+											<th>Roles</th>
+											<th>Status</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% if g_vs == 'p2' %}
+											{% for line in pages_o %}
+												<tr style="cursor:pointer;">
+													<td>{{ line.nom }}</td>
+													<td>{{ line.prenom }}</td>
+													<td>{{ line.mail }}</td>
+													<td class="line_func" {% if line.get_function != None %} data-id="{{line.get_function.m_role.id}}" {% endif %}>
+														{% if line.get_function == None %}
+															<span data-nom="{{line.prenom}} {{line.nom}}" class="text-success">Aucun Rôle Défini</span>
+														{% else %}
+															<b class="text-dark">{{ line.get_function }}</b>
+														{% endif %}
+													</td>
+													<td>
+														<button type="button" class="btn btn-primary">
+															Actif <span class="badge badge-light"></span>
+															<span class="sr-only">unread messages</span>
+														  </button>
+													</td>
+													<td>
+														<div class="btn-group">
+															<button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+															  <i class="icon-base bx bx-dots-vertical-rounded"></i>
+															</button>
+															<ul class="dropdown-menu">
+															  <li><a class="dropdown-item" href="/edit_personnel/{{ line.id }}">Edition</a></li>
+															  <li><a class="dropdown-item"  onclick="document.location='/perso/{{line.id}}/'">Informations </a></li>
+															 <li><a class="dropdown-item" href="/deleted_personnel/{{line.id}}/">Supprimer</a></li>
+															  <!-- <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li> -->
+															  <!-- <li>
+																<hr class="dropdown-divider">
+															  </li>
+															  <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li> -->
+															</ul>
+														  </div>
+														<!-- <a href="/edit_personnel/{{ line.id }}" title="Edit"><i class="fas fa-pencil-alt"></i></a> -->
+														<!-- Uncomment to enable delete functionality -->
+														<!-- <button class="btn btn-danger delete-btn" onclick='merde(this);' data-target="#deleteModal" data-id="{{line.id}}" data-toggle="modal" title="Delete"><i class="fas fa-trash-alt"></i></button> -->
+													</td>
+												</tr>
+											{% endfor %}
+										{% endif %}
+									</tbody>
+								</table>
+								
+							</div>
+						</div>
+						</div>
+{% if num_pages > 1 %}
+<nav style="text-align: center;">
+	<ul class="pagination justify-content-center">
+		<li>
+			{% if pages.number > 1 %}
+			<a href="?page={{pages_o.previous_page_number}}" aria-label="Previous" class="btn btn-light rounded-circle">&laquo; Prev
+			</a>
+			{% endif %}
+		</li>
+		{% for num in page_range %}
+		<li><a {% if pages_o.number == num %} class="btn btn-info rounded-circle"  {% else %} class="btn btn-light text-secondary rounded-circle"  {% endif %} href="?page={{num}}">{{num}}</a></li>
+		{% endfor %}
+		<li>
+			{% if pages.number < num_pages %}
+			<a href="?page={{pages_o.next_page_number}}" aria-label="Next" class="btn btn-light rounded-circle">
+				Next &raquo;
+			</a>
+			{% endif %}
+		</li>
+	</ul>
+</nav>
+{% endif %}
+
+						</div>
+</div>
+
+</div>
+
+
+<!-- 
+<div class="modal fade bd-example-modal-xl" id="addActionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div style='max-width:450px;' class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+
+				<h4 class="modal-title">Ajouter un R&ocirc;le </h4>
+				<button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">x</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				
+                                                                </div>
+											</div>
+										</div>
+									</div> -->
+									
+								
+									<!-- <div class="modal fade" id="exampleModalpersonnel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+										  <div class="modal-content">
+											<div class="modal-header">
+											  <h5 class="modal-title" id="exampleModalLabel">Ajouter Personnel</h5>
+											  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+												</button>
+											</div>
+
+												<div class="modal-body">
+													
+
+
+
+														</div>
+														<div class="modal-footer">
+														<button type="submit" class="btn btn-primary">Enregistrer
+														</button>
+													</div>
+													</form>
+												</div>
+												
+										</div>
+									</div> -->
+								
+									{% if perso_saved == True %}
+									<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<form class="form-horizontal bordered-row" action="/delete/" id="tooMUCHFormAction" method="post">
+													{% csrf_token %}
+													<div class="modal-body">
+														<div class="text-center mb-4">
+															<img src="{%if not perso_get.photo%}{%else%}{{perso_get.photo.url}}{%endif%}" style="width:85px;height:85px;border-radius:100%;">
+														</div>
+														<div class="text-center">
+															<b>{{perso_get}}</b> [ {{perso_get.mail}} ] a d&eacute;ja un compte au sein d'Opera, ses informations ont juste &eacute;t&eacute; conserv&eacute;es.
+														</div>
+													</div>
+													<div class="modal-footer">
+														<div class="px-2">
+															<span> 2024 Solution BeinInfo. </span>
+														</div>
+													</div>
+												</form>
+
+											</div>
+										</div>
+									</div>
+									<script type="text/javascript">
+										$("#exampleModal").modal('show')
+									</script>
+									{% endif %}
+
+									
+									<div class="modal fade" id="addSimpUser" tabindex="-1" role="dialog" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<form class="form-horizontal bordered-row" action="/save_gestion/" id="tooMUCHFormAction" method="post">
+													{% csrf_token %}
+													<input type="hidden" name="generator" value="p2">
+													<input type="hidden" name="edit_or_create" value="c">
+
+													<div class="modal-body">
+														<div class="text-center mb-4">
+															Ajouter un Nouvel Utilisateur Simple
+														</div>
+														{% if lines.count > 0 %}
+														<div>
+															<div>
+																<label>Compte</label>
+																<select name="Fonction" id="account_roles_lines" class="form-control">
+																	{% for r in lines %}
+																	<option value="{{r.id}}">{{r}}</option>
+																	{% endfor %}
+																</select>
+															</div>
+															<div class="my-2">
+																<label>Entit&eacute; :</label>
+																<div class="d-flex flex-wrap" id="entities_roles_desc"> 
+
+																</div>
+															</div>
+															<div class="d-flex">
+																<div class="px-1">
+																	<label>Pr&eacute;nom</label>
+																	<input type="text" class="form-control" name="prenom">
+																</div>
+																<div class="px-1">
+																	<label>Nom</label>
+																	<input type="text" class="form-control" name="nom">
+																</div>
+															</div>
+															<div class="py-2">
+																<label>Adresse Mail</label>
+																<input type="text" class="form-control" name="mail">
+															</div>
+															<div class="py-2">
+																<label>Telephone</label>
+																<input type="text" class="form-control" name="tel">
+															</div>
+															<input type="hidden" name="simple_user" id="simple_user" value="1">
+															<div>
+																<input type="submit" class="btn btn-success" value="Enregistrer l'Utilisateur" name="">
+															</div>
+														</div>
+														{% else %}
+														<div class="text-center">
+															Aucun Role defini, veuillez au prealable en creer <a href="/roles/">ici</a>
+														</div>
+														{% endif %}
+													</div>
+													<div class="modal-footer">
+														<div class="px-2">
+															<span style="font-family:quartz"> 2023,Solution BeinInfo. </span>
+														</div>
+													</div>
+												</form>
+
+											</div>
+										</div>
+									</div>
+
+									<div class="modal fade bd-example-modal-xl" id="modifyRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div style='max-width:450px;' class="modal-dialog modal-xl">
+											<div class="modal-content">
+												<div class="modal-header">
+													<!--button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button-->
+													<h4 class="modal-title">Attribuer un RÃƒÂ´le </h4>
+													<button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">Ãƒâ€”</span>
+													</button>
+												</div>
+
+												<div class="modal-body">
+													<form class="form-horizontal bordered-row" action="/modify/rol_emp/" id="addFormPerso" enctype="multipart/form-data" data-toggle="validator" role="form" method="post">
+														{% csrf_token %}
+														<input type='hidden' id="add_val" name='personnel' value=''>
+														<input type="hidden" name="institution" value="{{actual_institution.id}}">
+														<div class="row">
+															<div id='add_nom' class="h3 col-sm-12 text-success">
+																
+															</div>
+															<div class="col-sm-12">
+																<div class="form-group">
+																	<select class="form-control" name="role" >
+																		{% for v in roles %}<option value="{{v.id}}" selected>{{v}}</option>{% endfor %}
+																	</select>
+																</div>
+															</div>
+														</div>
+														<button type="submit" class="btn btn-primary">Enregistrer
+														</button>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								
+
+								
+									<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+									
+
+									<script type="text/javascript">
+										ros_btn = document.getElementsByClassName("ros_btn");
+										ros_click = 0
+										for (var i=0;i<ros_btn.length;i++){
+											ros_btn[i].onclick = function(){
+												$(".ros_btn").removeClass("btn-success");
+												$(".ros_btn").addClass("btn-light");
+												this.className = "ros_btn btn btn-success";
+
+												id_div = parseInt(this.getAttribute('data-elt'));
+												ros_div = document.getElementsByClassName("ros_div");
+												ros_click = id_div;
+												$(ros_div).slideUp(function(){
+
+												});
+												$(ros_div[id_div]).slideDown('slow');
+
+											}
+										}
+
+										$(".renseigner").click(function(){
+											$("#add_nom").text($(this).attr('data-nom'));
+											$("#add_val").val($(this).attr('data-id'));
+										});
+										line_func = document.getElementsByClassName('line_func');
+										line_struc = document.getElementsByClassName('line_struc');
+	//alert(line_struc.length)
+	i=0;
+	{% for f in actual_institution.functions %}
+	//line_func[i].textContent = "{{f}}";
+	line_func[i].setAttribute('data-id',{{f.id}});
+	i++;
+	{% endfor %}
+
+	i=0;
+	{% if g_vs == 'p2' %}
+	{% for f in actual_institution.structures %}
+		//line_struc[i].textContent = "{{f}}";
+		//line_struc[i].setAttribute('data-id',{{f.id}});
+		i++;
+		{% endfor %}
+		{% elif g_vs == 'u2' %}
+		function type_users(role){
+			$.ajax({
+				url: '/get_elements_hierachy/',
+				data: {
+					'institution':{{actual_institution.id}},
+					'nature':-100,
+					'type_entity':role
+				},
+				dataType: 'json',
+				success: function (data) {
+					entities_roles_desc = document.getElementById("entities_roles_desc");
+					entities_roles_desc.innerHTML = ""
+					for (var i=0;i<data.lines.length;i++){
+						entities_roles_desc.innerHTML += "<div class='p-2'> <span data-value='"+data.ids[i]+"' class='border-success entity_rolD btn'>"+data.lines[i]+"</span></div>";
+					}
+					$(".entity_rolD").click(function(){
+						$(".entity_rolD").removeClass("btn-success");
+						$(this).addClass("btn-success")
+						simple_user = document.getElementById("simple_user");
+						simple_user.value = $(this).attr('data-value')
+					})
+				},
+				error: function(data) {}
+			});		
+		}
+		account_roles_lines = document.getElementById("account_roles_lines");
+		account_roles_lines.onchange = function(){
+			type_users(this.value);
+		}
+		type_users(account_roles_lines.value);//.getElementsByTagName("option")[0]
+		{% endif %}
+		function list_elts(hierachie){
+		/*
+		$.ajax({
+			url: '/get_elements_hierachy/',
+			data: {
+				'institution':{{actual_institution.id}},
+				'nature':hierachie,
+			},
+			dataType: 'json',
+			success: function (data) {
+				rol_list = document.getElementById('rol_list');
+				tmp = "";
+				for (var i=0;i<data.lines.length;i++){
+					tmp += "<li class='list-group-item'> <input class='list_value' id=cie"+data.ids[i]+" value="+data.ids[i]+" type='checkbox'>&nbsp;<label for='cie"+data.ids[i]+"'>"+data.lines[i]+"</label></li>";
+				}
+				try{
+					rol_list.innerHTML = tmp;
+				}
+				catch(error){
+
+				}
+			},
+			error: function(data){
+			}
+		}); 
+		*/
+	}
+
+	list_elts(-1);
+	{% if g_v != 'p2' %}
+	entiRole_select = document.getElementById("entiRole_select")
+	entiRole_select.onchange = function(){
+		list_elts(this.value)
+	}
+	{% endif %}
+
+	function saveRoles(){
+		ros_click_input = document.getElementById("ros_click");
+		ros_click_input.value = ros_click;
+		if (ros_click == 1){
+			entity_administr = document.getElementById("entity_administr");
+			list_value = document.getElementsByClassName("list_value");
+			tmp = "";
+			for (var i=0;i<list_value.length;i++){
+				if (list_value[i].checked == true){
+					tmp += list_value[i].value+"#";
+				}
+			}
+			entity_administr.value = tmp;
+		}
+	}
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+	$(document).ready(function() {
+	  $('.js-example-basic-single').select2({
+		placeholder: 'Saisissez Votre Adresse Email',
+		allowClear: true,
+		tags: true,
+		createTag: function(params) {
+		  var term = $.trim(params.term);
+	
+		  if (term === '') {
+			return null;
+		  }
+	
+		  return {
+			id: term,
+			text: term,
+			newTag: true
+		  }
+		}
+	  });
+	});
+	</script>
+<script>
+		$(document).ready(function() {
+		  // Lorsqu'un utilisateur est sÃ©lectionnÃ© dans la liste dÃ©roulante
+		  $('.mail').on('change', function() {
+			var mail = $(this).val();
+			
+			// RÃ©cupÃ¨re le jeton CSRF
+			var csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
+			
+			// RequÃªte AJAX
+			$.ajax({
+			  url: "/recuperer_personnel/",
+			  type: 'POST',
+			  data: {
+				csrfmiddlewaretoken: csrf_token,
+				mail: mail
+			  },
+			  dataType: 'json',
+			  success: function(data) {
+				// Met Ã  jour les champs du formulaire avec les informations rÃ©cupÃ©rÃ©es
+				console.log(data);
+				$('.nom').val(data.nom);
+				$('.prenom').val(data.prenom);
+				$('.telephone').val(data.tel);
+				console.log(data.telephone)
+			  },
+			  error: function(jqXHR, textStatus, errorThrown) {
+				console.log('error');
+			  }
+			});
+		  });
+		});
+	  </script>
+
+{% for message in messages %}
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   {% if message.tags == 'success' %}
+    <script>
+        swal("Succes!", "{{ message }}", "success");
+    </script>
+   {% endif %}
+{% endfor %}
+
+
+{% for message in messages %}
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   {% if message.tags == 'info' %}
+    <script>
+        swal("info!", "{{ message }}", "info");
+    </script>
+   {% endif %}
+{% endfor %}
+<script>
+	(function() {
+  
+		'use strict';
+	  
+		$('.input-file').each(function() {
+		  var $input = $(this),
+			  $label = $input.next('.js-labelFile'),
+			  labelVal = $label.html();
+		  
+		 $input.on('change', function(element) {
+			var fileName = '';
+			if (element.target.value) fileName = element.target.value.split('\\').pop();
+			fileName ? $label.addClass('has-file').find('.js-fileName').html(fileName) : $label.removeClass('has-file').html(labelVal);
+		 });
+		});
+	  
+	  })();
+</script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap4.js"></script>
+<script>
+	new DataTable('#example');
+</script>
+
+
+{% endblock %}

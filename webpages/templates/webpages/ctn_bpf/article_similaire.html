@@ -1,0 +1,315 @@
+{% extends './dashboard.html' %}
+{% block content %}
+<div class="container mx-auto px-4 py-6">
+    <!-- Accordéon pour ajouter des articles -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
+        <!-- En-tête de l'accordéon -->
+        <div class="flex items-center justify-between p-4 bg-gray-50 cursor-pointer" 
+             onclick="toggleAccordion('addArticleAccordion')">
+            <div class="flex items-center">
+                <i class="fas fa-plus-square text-xl text-gray-500 mr-3 accordion-icon-off"></i>
+                <i class="fas fa-minus-square text-xl text-gray-500 mr-3 accordion-icon-on hidden"></i>
+                <h3 class="text-lg font-bold text-gray-800">
+                    Ajoutez Vos Articles Similaires à L'article 
+                    <span class="text-blue-600">{{actuality.intitule}}</span>
+                </h3>
+            </div>
+        </div>
+
+        <!-- Contenu de l'accordéon -->
+        <div id="addArticleAccordion" class="p-6 border-t">
+            <form method="POST" action="/add_information_data/{{ actuality.id }}/" enctype="multipart/form-data" class="space-y-6">
+                {% csrf_token %}
+                <input type="hidden" name="institution" value="{{actual_institution.id}}">
+                
+                <!-- Nom et Prix -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nom De Votre Article</label>
+                        <input type="text" name="intitule" placeholder="Nom Article" 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Prix De Votre Article</label>
+                        <input type="number" name="prix" placeholder="Prix Article" 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                </div>
+
+                <!-- Upload d'images -->
+                <div class="border-t border-gray-200 pt-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-3">Sélectionnez Vos Images</label>
+                    <div class="relative w-32 h-32 rounded-full bg-gray-100 mx-auto flex items-center justify-center overflow-hidden cursor-pointer" 
+                         id="image-upload-container">
+                        <div class="absolute inset-0 flex items-center justify-center" id="image-preview">
+                            <p class="text-gray-500 text-sm text-center p-4">Cliquer pour ajouter des images</p>
+                        </div>
+                        <input type="file" name="photos" accept=".png,.jpg,.jpeg" multiple 
+                               class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" id="file-input">
+                        <div class="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow-md hover:bg-gray-50">
+                            <i class="fas fa-pen text-gray-600"></i>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-4" id="thumbnail-container"></div>
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Description De Votre Article</label>
+                    <textarea name="description" rows="3"
+                              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                </div>
+
+                <!-- Sélecteurs -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Genre -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Genre</label>
+                        <select name="sexe" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Sélectionnez</option>
+                            <option value="Homme">Homme</option>
+                            <option value="Femme">Femme</option>
+                            <option value="Tous">Tous</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Tranche d'âge -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Tranche d'âge</label>
+                        <select name="tranche" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Sélectionnez</option>
+                            <option value="Adultes">Adultes</option>
+                            <option value="Enfants">Enfants</option>
+                            <option value="Bébés">Bébés</option>
+                            <option value="Adolescents">Adolescents</option>
+                            <option value="Tous">Tous</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Couleur -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Couleur</label>
+                        <select name="colors" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                             <option value="">-- Choisissez une couleur --</option>
+                        <option value="Rouge" style="color: red;">Rouge (Red)</option>
+                        <option value="Bleu" style="color: blue;">Bleu (Blue)</option>
+                        <option value="Vert" style="color: green;">Vert (Green)</option>
+                        <option value="Jaune" style="color: yellow;">Jaune (Yellow)</option>
+                        <option value="Orange" style="color: orange;">Orange (Orange)</option>
+                        <option value="Violet" style="color: purple;">Violet (Purple)</option>
+                        <option value="Rose" style="color: pink;">Rose (Pink)</option>
+                        <option value="Marron" style="color: brown;">Marron (Brown)</option>
+                        <option value="Noir" style="color: black;">Noir (Black)</option>
+                        <option value="Blanc" style="color: black; background-color: #eee;">Blanc (White)</option>
+                        <option value="Gris" style="color: gray;">Gris (Gray)</option>
+                        <option value="Cyan" style="color: cyan;">Cyan (Cyan)</option>
+                        <option value="Magenta" style="color: magenta;">Magenta (Magenta)</option>
+                        <option value="Vert clair" style="color: lime;">Vert clair (Lime)</option>
+                        <option value="Olive" style="color: olive;">Olive (Olive)</option>
+                        <option value="Sarcelle" style="color: teal;">Sarcelle (Teal)</option>
+                        <option value="Bleu marine " style="color: navy;">Bleu marine (Navy)</option>
+                        <option value="Bordeaux" style="color: maroon;">Bordeaux (Maroon)</option>
+                        <option value="Argent" style="color: silver;">Argent (Silver)</option>
+                        <option value="Or" style="color: gold;">Or (Gold)</option>
+                        <option value="indigo" style="color: indigo;">Indigo (Indigo)</option>
+                        <option value="violet" style="color: violet;">Violet (Violet)</option>
+                        <option value="turquoise" style="color: turquoise;">Turquoise (Turquoise)</option>
+                        <option value="Corail" style="color: coral;">Corail (Coral)</option>
+                         <option value="Tous" style="color: coral;">Tous</option>
+                            <!-- Ajoutez les autres options de couleur ici -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Bouton de soumission -->
+                <div class="flex justify-end pt-4 border-t border-gray-200">
+                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <i class="fas fa-plus mr-2"></i> Ajouter
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tableau des articles existants -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="p-4 border-b">
+            <h3 class="text-lg font-semibold text-gray-800">Vos Articles Similaires</h3>
+        </div>
+        
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom Article</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    {% for sous_actualites in sous_actualite %}
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="w-10 h-10 rounded-full bg-cover bg-center" style="background-image: url('{{ sous_actualites.photos.url }}')"></div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            {{ sous_actualites.intitule }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <div class="flex space-x-2">
+                                <a href="/delete_sous_actualite/{{ sous_actualites.id }}/" 
+                                   class="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                                <a href="#" onclick="openEditModal('{{ sous_actualites.id }}')" 
+                                   class="text-blue-600 hover:text-blue-900 p-1 rounded-full hover:bg-blue-50">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal d'édition (identique à celui de création mais pré-rempli) -->
+<div id="editModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 z-50 hidden flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl mx-4">
+        <!-- Le contenu du modal d'édition sera injecté ici par JavaScript -->
+    </div>
+</div>
+
+<!-- Scripts -->
+<script>
+// Gestion de l'accordéon
+function toggleAccordion(id) {
+    const accordion = document.getElementById(id);
+    accordion.classList.toggle('hidden');
+    
+    // Toggle icons
+    document.querySelectorAll('.accordion-icon-off, .accordion-icon-on').forEach(icon => {
+        icon.classList.toggle('hidden');
+    });
+}
+
+// Gestion de l'upload d'images
+document.getElementById('file-input').addEventListener('change', function(event) {
+    const files = event.target.files;
+    const previewContainer = document.getElementById('image-preview');
+    const thumbnailContainer = document.getElementById('thumbnail-container');
+    
+    previewContainer.innerHTML = '';
+    thumbnailContainer.innerHTML = '';
+    
+    if (files.length > 0) {
+        // Afficher la première image en grand
+        const firstFile = files[0];
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'w-full h-full object-cover rounded-full';
+            previewContainer.appendChild(img);
+        };
+        reader.readAsDataURL(firstFile);
+        
+        // Créer des miniatures pour toutes les images
+        Array.from(files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const thumbWrapper = document.createElement('div');
+                thumbWrapper.className = 'relative w-16 h-16 rounded-md overflow-hidden border';
+                
+                const thumbImg = document.createElement('img');
+                thumbImg.src = e.target.result;
+                thumbImg.className = 'w-full h-full object-cover';
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center';
+                removeBtn.innerHTML = '×';
+                removeBtn.onclick = function() {
+                    thumbWrapper.remove();
+                    // TODO: Supprimer le fichier de l'input
+                };
+                
+                thumbWrapper.appendChild(thumbImg);
+                thumbWrapper.appendChild(removeBtn);
+                thumbnailContainer.appendChild(thumbWrapper);
+            };
+            reader.readAsDataURL(file);
+        });
+    } else {
+        previewContainer.innerHTML = '<p class="text-gray-500 text-sm text-center p-4">Cliquer pour ajouter des images</p>';
+    }
+});
+
+// Fonction pour ouvrir le modal d'édition
+function openEditModal(articleId) {
+    fetch(`/get_article_data/${articleId}/`)
+        .then(response => response.json())
+        .then(data => {
+            const modalContent = `
+                <div class="p-6">
+                    <div class="flex justify-between items-center border-b pb-4">
+                        <h3 class="text-xl font-semibold">Modifier l'article</h3>
+                        <button onclick="closeEditModal()" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <form method="POST" action="/update_sous_actuality/${articleId}/" enctype="multipart/form-data" class="space-y-4 mt-4">
+                        {% csrf_token %}
+                        <input type="hidden" name="institution" value="{{actual_institution.id}}">
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Nom</label>
+                            <input type="text" name="intitule" value="${data.intitule}" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                        
+                        <!-- Ajoutez les autres champs ici pré-remplis avec data -->
+                        
+                        <div class="flex justify-end pt-4 border-t">
+                            <button type="button" onclick="closeEditModal()" 
+                                    class="px-4 py-2 mr-2 text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200">
+                                Annuler
+                            </button>
+                            <button type="submit" 
+                                    class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                                Enregistrer
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            document.getElementById('editModal').innerHTML = modalContent;
+            document.getElementById('editModal').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        });
+}
+
+function closeEditModal() {
+    document.getElementById('editModal').classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+}
+
+// Gestion des messages (succès/erreur)
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+        Swal.fire("Succès", "{{ message }}", "success");
+    {% elif message.tags == 'error' %}
+        Swal.fire("Erreur", "{{ message }}", "error");
+    {% elif message.tags == 'info' %}
+        Swal.fire("Info", "{{ message }}", "info");
+    {% endif %}
+{% endfor %}
+</script>
+
+<!-- Inclure SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}

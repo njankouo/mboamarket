@@ -1,0 +1,64 @@
+<a href="view_actuality/{{ actualite.id }}/" class="group relative block overflow-hidden rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-blue-100 transform hover:-translate-y-1">
+    <!-- Badge de statut dynamique -->
+    <div class="absolute top-2 left-2 z-10">
+        <span class="px-1.5 py-0.5 text-[10px] font-semibold text-white rounded-full flex items-center
+        bg-gradient-to-r from-red-500 to-red-600
+           bg-gradient-to-r from-yellow-500 to-yellow-600
+            bg-gradient-to-r from-green-500 to-green-600">
+            <span class="w-1.5 h-1.5 rounded-full bg-white/80 mr-1"></span>
+            {{ actualite.institution.sigle|truncatechars:8 }}
+        </span>
+    </div>
+
+    <!-- Image -->
+    <div class="relative overflow-hidden aspect-[4/3] bg-gray-50">
+        {% if actualite.photos %}
+        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+             src="{{ actualite.photos.url }}" 
+             alt="{{ actualite.intitule }}"
+             loading="lazy">
+        {% endif %}
+        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </div>
+
+    <!-- Contenu texte -->
+    <div class="p-3 sm:p-4">
+        <!-- Titre -->
+        <h3 class="font-semibold text-gray-900 text-sm sm:text-base line-clamp-2 group-hover:text-blue-600 transition-colors mb-1">
+            {{ actualite.intitule }}
+        </h3>
+
+        <!-- Prix et CTA -->
+        <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+            <div class="flex items-baseline">
+                <span class="text-xs font-bold text-blue-600 sm:text-sm">
+                    {{ actualite.prix|floatformat:"0" }}
+                </span>
+                <span class="text-[0.6em] ml-0.5 text-gray-500">FCFA</span>
+            </div>
+            
+            <div class="flex items-start gap-1.5 text-gray-600 mb-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0 text-blue-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        <div class="min-w-0">
+            <p class="text-xs text-gray-700 truncate" title="{{ institutions.address|default:'Non spécifié' }}">
+                {{ actualite.institution.address|default:"-" }}
+            </p>
+            <p class="text-[0.65rem] text-gray-400 truncate" title="{{ institutions.ville|default:'Non spécifié' }}">
+                {{ actualite.institution.ville|default:"" }}
+            </p>
+        </div>
+    </div>
+        </div>
+    </div>
+
+    <!-- Badge Nouveau -->
+    {% if actualite.is_new %}
+    <div class="absolute top-2 right-2 z-10">
+        <span class="px-2 py-1 text-[10px] font-medium text-white bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-lg shadow-xs">
+            Nouveau
+        </span>
+    </div>
+    {% endif %}
+</a>
