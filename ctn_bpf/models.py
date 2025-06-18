@@ -3005,7 +3005,7 @@ class Actualite(models.Model):
 	is_public = models.BooleanField(null=True)
 	hash_code = models.CharField(max_length=255,null=True)
 	
-	institution= models.ForeignKey(Institution,on_delete=models.CASCADE,null=True)
+	institution= models.ForeignKey(Institution,on_delete=models.CASCADE,null=True,related_name='actualites')
 	#id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	prix = models.IntegerField(null=True)
 

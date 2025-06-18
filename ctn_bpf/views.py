@@ -36576,3 +36576,21 @@ def select_rubrique(request):
     
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
+def boutique_detail(request,slug):
+    baniere = Baniere.objects.get(nom=str(slug))
+    institution = Institution.objects.filter(baniere = baniere.id)
+    baners = Baniere.objects.all()
+
+    
+
+    template = 'webpages/ctn_bpf/boutique_ville.html'
+    context={
+        'baniere':baniere,
+        'institution':institution,
+        'baners':baners
+
+       
+    }
+
+    return render(request,template,context)

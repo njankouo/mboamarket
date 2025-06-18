@@ -7,30 +7,7 @@
     <link rel="stylesheet"href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css"/>
      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
      <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <style>  
-        @keyframes marquee {  
-            0% { transform: translateX(100%); opacity: 1; }  
-            80% { opacity: 1; }  
-            100% { transform: translateX(-100%); opacity: 0; }  
-        }  
-
-        .marquee {  
-            display: flex;  
-            animation: marquee 30s linear infinite; /* La durée totale de l'animation */  
-        }  
-
-        .marquee-item {  
-            flex: 0 0 auto; /* Prevent flex items from shrinking */  
-            padding-right: 50px; /* Espace supplémentaire pour le clic */  
-        }  
-        
-        @media (prefers-reduced-motion: reduce) {  
-            .marquee {  
-                animation: none;  
-            }  
-        }  
-        
-    </style>  
+   
     <style>
          @keyframes progress {
     0% { width: 0%; }
@@ -359,22 +336,69 @@ color: transparent;
    <!-- Modal -->  
    {%block content%}
    <div class="overflow-hidden whitespace-nowrap bg-white p-2 shadow-md rounded-md">  
-    {% if baniere|length == 0 %}  
-        <!-- Aucune bannière à afficher -->  
-        <p class="text-gray-500 text-center">Aucune bannière à afficher.</p>  
-    {% else %}  
-        <div class="marquee flex items-center gap-1">  <!-- Utilisation de gap pour contrôler l'espacement -->  
-            {% for banieres in baniere %}    
-            {%if banieres.logo%}
-                <a href="#" class="marquee-item flex items-center transition-transform duration-200 transform hover:scale-105">  
-                    <!-- Image avec dimensions contrôlées et bordures arrondies -->  
-                    <img class="object-cover w-10 h-10 rounded-full transition-all duration-300 group-hover:scale-125" src="{{banieres.logo.url}}" alt="{{ banieres.nom }}" />  
-                    <span class="text-primary ml-1 text-sm font-semibold">{{banieres.nom}}</span>  <!-- Réduction de ml-2 à ml-1 -->  
-                </a>  
-                {%endif%}
-            {% endfor %}  
-        </div>  
-    {% endif %} 
+    <style>
+    .marquee-container {
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+    }
+    
+    @keyframes marquee {
+        0% { transform: translateX(100%); opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateX(-100%); opacity: 0; }
+    }
+    
+    .marquee {
+        display: flex;
+        animation: marquee 30s linear infinite;
+    }
+    
+    .marquee-item {
+        flex: 0 0 auto;
+        padding-right: 50px;
+    }
+    
+    .marquee-item:hover {
+        animation-play-state: paused;
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+        .marquee {
+            animation: none;
+            justify-content: center;
+        }
+    }
+</style>
+
+<div class="overflow-hidden whitespace-nowrap bg-white p-2 shadow-md rounded-md border border-gray-200">
+    {% if baniere|length == 0 %}
+        <p class="text-gray-500 text-center">Aucune bannière à afficher.</p>
+    {% else %}
+        <div class="marquee-container">
+            <div class="marquee flex items-center gap-4">
+                {% for banieres in baniere %}
+                {% if banieres.logo %}
+                    <a href="/boutique/{{banieres.nom}}/" class="marquee-item flex items-center transition-all duration-300 hover:scale-105 px-4 py-2 rounded-full bg-gradient-to-r from-yellow-100 via-red-100 to-green-100">
+                        <img class="object-cover w-10 h-10 rounded-full border-2 border-white shadow-sm" src="{{banieres.logo.url}}" alt="{{ banieres.nom }}" />
+                        <span class="ml-2 text-sm font-semibold text-gray-800">{{banieres.nom}}</span>
+                    </a>
+                {% endif %}
+                {% endfor %}
+                
+                <!-- Duplication pour animation fluide -->
+                {% for banieres in baniere %}
+                {% if banieres.logo %}
+                    <a href="/boutique/{{banieres.nom}}/" class="marquee-item flex items-center transition-all duration-300 hover:scale-105 px-4 py-2 rounded-full bg-gradient-to-r from-yellow-100 via-red-100 to-green-100">
+                        <img class="object-cover w-10 h-10 rounded-full border-2 border-white shadow-sm" src="{{banieres.logo.url}}" alt="{{ banieres.nom }}" />
+                        <span class="ml-2 text-sm font-semibold text-gray-800">{{banieres.nom}}</span>
+                    </a>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</div>
  
 </div>  
 <div class="sticky top-0 z-20 p-4 bg-gray-600 border-b border-gray-100 shadow-sm">

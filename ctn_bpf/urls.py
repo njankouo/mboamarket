@@ -413,6 +413,8 @@ gestionnaire_url_patterns = [
    path('recherche/suggestions/',views.search_suggestions,name='search_suggestions'),
 
    path('logout_view/',views.logout_view,name='logout_view'),
+
+   path('boutique/<str:slug>/', views.boutique_detail, name='boutique_detail'),
 ]
 ajax_urls_patterns = [
    path('count_notifs/',views.notifs,name='notifs'),
